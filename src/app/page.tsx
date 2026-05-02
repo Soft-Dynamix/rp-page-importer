@@ -25,15 +25,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import Image from 'next/image'
 
-// Service categories with icons and images
+// Service categories with icons and matching motorcycle images
 const serviceCategories = [
   {
     id: 'core-mechanical',
     title: 'Core Mechanical Services',
     icon: Wrench,
-    image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&h=400&fit=crop',
+    // Motorcycle mechanic working on bike
+    image: 'https://images.unsplash.com/photo-1558980664-10e7170b5df9?w=600&h=400&fit=crop',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -52,6 +52,7 @@ const serviceCategories = [
     id: 'diagnostics',
     title: 'Diagnostics & Troubleshooting',
     icon: Brain,
+    // Diagnostic tools / motorcycle electronics
     image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
     services: [
       'Full diagnostic checks (manual & electronic)',
@@ -65,7 +66,8 @@ const serviceCategories = [
     id: 'engine',
     title: 'Engine Services',
     icon: Cog,
-    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop',
+    // Motorcycle engine close-up
+    image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop',
     highlight: true,
     subsections: [
       {
@@ -105,6 +107,7 @@ const serviceCategories = [
     id: 'electrical',
     title: 'Electrical Services',
     icon: Zap,
+    // Motorcycle battery / electrical
     image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
     services: [
       'Battery testing & replacement',
@@ -119,6 +122,7 @@ const serviceCategories = [
     id: 'fuel-system',
     title: 'Fuel System Services',
     icon: Fuel,
+    // Motorcycle fuel tank
     image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
     services: [
       'Carburetor cleaning & rebuild',
@@ -132,6 +136,7 @@ const serviceCategories = [
     id: 'brakes',
     title: 'Brakes & Safety',
     icon: CircleStop,
+    // Motorcycle brake disc/caliper
     image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop',
     services: [
       'Brake pad replacement',
@@ -144,7 +149,8 @@ const serviceCategories = [
     id: 'suspension',
     title: 'Suspension & Handling',
     icon: Gauge,
-    image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop',
+    // Motorcycle front forks
+    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -157,6 +163,7 @@ const serviceCategories = [
     id: 'wheels',
     title: 'Wheels & Tyres',
     icon: CircleDot,
+    // Motorcycle wheel/tyre
     image: 'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&h=400&fit=crop',
     services: [
       'Tyre fitting & replacement',
@@ -170,6 +177,7 @@ const serviceCategories = [
     id: 'transmission',
     title: 'Transmission & Drivetrain',
     icon: Settings,
+    // Motorcycle chain and sprockets
     image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&h=400&fit=crop',
     services: [
       'Clutch replacement',
@@ -182,7 +190,8 @@ const serviceCategories = [
     id: 'exhaust',
     title: 'Exhaust & Performance',
     icon: Rocket,
-    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
+    // Motorcycle exhaust system
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -192,6 +201,7 @@ const serviceCategories = [
     id: 'custom',
     title: 'Custom Builds & Modifications',
     icon: Paintbrush,
+    // Custom motorcycle
     image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
     services: [
       'Frame modifications',
@@ -203,7 +213,8 @@ const serviceCategories = [
     id: 'performance',
     title: 'Performance Upgrades',
     icon: Rocket,
-    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop',
+    // Sport/racing motorcycle
+    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -213,6 +224,7 @@ const serviceCategories = [
     id: 'restoration',
     title: 'Restoration Services',
     icon: RotateCcw,
+    // Vintage/classic motorcycle
     image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=400&fit=crop',
     services: [
       'Full bike restoration',
@@ -225,7 +237,8 @@ const serviceCategories = [
     id: 'workshop',
     title: 'General Workshop Services',
     icon: Package,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+    // Motorcycle workshop/garage
+    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -238,7 +251,8 @@ const serviceCategories = [
     id: 'accessories',
     title: 'Accessories & Add-Ons',
     icon: Package,
-    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
+    // Motorcycle accessories
+    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
     services: [
       'Crash bars installation'
     ]
@@ -247,6 +261,7 @@ const serviceCategories = [
     id: 'business',
     title: 'Business Services',
     icon: Briefcase,
+    // Mobile mechanic / service van
     image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
     highlight: true,
     services: [
