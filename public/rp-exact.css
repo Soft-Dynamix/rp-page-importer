@@ -1,0 +1,418 @@
+/* ============================================
+   RP MOTORCYCLES - EXACT MATCH CSS
+   Based on verified design specifications
+   
+   Add to: Appearance → Customize → Additional CSS
+   ============================================ */
+
+/* ============================================
+   PAGE BACKGROUND - #080c14
+   ============================================ */
+body.elementor-page,
+body.page-template-default,
+body.single-page {
+    background-color: #080c14 !important;
+}
+
+.elementor-section,
+.elementor-column-wrap,
+.elementor-widget-wrap {
+    background-color: transparent !important;
+}
+
+/* ============================================
+   GRADIENT BACKGROUND OVERLAY
+   ============================================ */
+body.elementor-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1400px;
+    height: 900px;
+    background: radial-gradient(ellipse at center, rgba(0,133,255,0.08) 0%, rgba(0,133,255,0.03) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================
+   SERVICE CARDS - EXACT STYLING
+   Card: 24px border-radius, backdrop-blur-2xl
+   Image: 224px height, gradient overlay
+   Border: rgba(255,255,255,0.1)
+   ============================================ */
+
+/* Card Container */
+.elementor-widget-image-box {
+    transition: transform 0.7s ease-out, box-shadow 0.7s ease-out !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Card Hover - transform: translateY(-8px) */
+.elementor-widget-image-box:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 60px rgba(0,133,255,0.15) !important;
+}
+
+/* Card inner */
+.elementor-widget-image-box .elementor-widget-container {
+    border-radius: 24px !important;
+    overflow: hidden;
+}
+
+/* Image Container */
+.elementor-image-box-img {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Image gradient overlay */
+.elementor-image-box-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #080c14, rgba(8,12,20,0.6), transparent);
+    pointer-events: none;
+}
+
+/* Image Zoom - transform: scale(1.05) */
+.elementor-image-box-img img {
+    transition: transform 0.7s ease-out !important;
+    display: block;
+}
+
+.elementor-widget-image-box:hover .elementor-image-box-img img {
+    transform: scale(1.05) !important;
+}
+
+/* Title - 30px, font-weight 700 */
+.elementor-image-box-title {
+    color: #ffffff !important;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    margin-bottom: 12px !important;
+    line-height: 1.2 !important;
+}
+
+/* Description - color: #d1d5db */
+.elementor-image-box-description {
+    color: #d1d5db !important;
+    line-height: 1.8 !important;
+    font-weight: 300 !important;
+}
+
+/* ============================================
+   COLOR ACCENT BARS - 4px height at top
+   Each card has its own color
+   ============================================ */
+
+/* Blue - Core Mechanical (#0085FF) */
+.card-blue .elementor-widget-container {
+    border-top: 4px solid #0085FF !important;
+    box-shadow: 0 0 20px rgba(0,133,255,0.3) !important;
+}
+.card-blue:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(0,133,255,0.4) !important;
+}
+
+/* Purple - Diagnostics (#A855F7) */
+.card-purple .elementor-widget-container {
+    border-top: 4px solid #A855F7 !important;
+    box-shadow: 0 0 20px rgba(168,85,247,0.3) !important;
+}
+.card-purple:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(168,85,247,0.4) !important;
+}
+
+/* Orange - Engine (#F97316) */
+.card-orange .elementor-widget-container {
+    border-top: 4px solid #F97316 !important;
+    box-shadow: 0 0 20px rgba(249,115,22,0.3) !important;
+}
+.card-orange:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(249,115,22,0.4) !important;
+}
+
+/* Yellow - Electrical (#EAB308) */
+.card-yellow .elementor-widget-container {
+    border-top: 4px solid #EAB308 !important;
+    box-shadow: 0 0 20px rgba(234,179,8,0.3) !important;
+}
+.card-yellow:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(234,179,8,0.4) !important;
+}
+
+/* Green - Fuel (#22C55E) */
+.card-green .elementor-widget-container {
+    border-top: 4px solid #22C55E !important;
+    box-shadow: 0 0 20px rgba(34,197,94,0.3) !important;
+}
+.card-green:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(34,197,94,0.4) !important;
+}
+
+/* Red - Brakes (#EF4444) */
+.card-red .elementor-widget-container {
+    border-top: 4px solid #EF4444 !important;
+    box-shadow: 0 0 20px rgba(239,68,68,0.3) !important;
+}
+.card-red:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(239,68,68,0.4) !important;
+}
+
+/* Indigo - Suspension (#6366F1) */
+.card-indigo .elementor-widget-container {
+    border-top: 4px solid #6366F1 !important;
+    box-shadow: 0 0 20px rgba(99,102,241,0.3) !important;
+}
+.card-indigo:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(99,102,241,0.4) !important;
+}
+
+/* Slate - Wheels (#64748B) */
+.card-slate .elementor-widget-container {
+    border-top: 4px solid #64748B !important;
+    box-shadow: 0 0 20px rgba(100,116,139,0.3) !important;
+}
+.card-slate:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(100,116,139,0.4) !important;
+}
+
+/* Emerald - Transmission (#10B981) */
+.card-emerald .elementor-widget-container {
+    border-top: 4px solid #10B981 !important;
+    box-shadow: 0 0 20px rgba(16,185,129,0.3) !important;
+}
+.card-emerald:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(16,185,129,0.4) !important;
+}
+
+/* Amber - Exhaust (#F59E0B) */
+.card-amber .elementor-widget-container {
+    border-top: 4px solid #F59E0B !important;
+    box-shadow: 0 0 20px rgba(245,158,11,0.3) !important;
+}
+.card-amber:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(245,158,11,0.4) !important;
+}
+
+/* Pink - Custom (#EC4899) */
+.card-pink .elementor-widget-container {
+    border-top: 4px solid #EC4899 !important;
+    box-shadow: 0 0 20px rgba(236,72,153,0.3) !important;
+}
+.card-pink:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(236,72,153,0.4) !important;
+}
+
+/* Cyan - Performance (#06B6D4) */
+.card-cyan .elementor-widget-container {
+    border-top: 4px solid #06B6D4 !important;
+    box-shadow: 0 0 20px rgba(6,182,212,0.3) !important;
+}
+.card-cyan:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(6,182,212,0.4) !important;
+}
+
+/* Orange Dark - Restoration (#D97706) */
+.card-orange-dark .elementor-widget-container {
+    border-top: 4px solid #D97706 !important;
+    box-shadow: 0 0 20px rgba(217,119,6,0.3) !important;
+}
+.card-orange-dark:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(217,119,6,0.4) !important;
+}
+
+/* Teal - Workshop (#14B8A6) */
+.card-teal .elementor-widget-container {
+    border-top: 4px solid #14B8A6 !important;
+    box-shadow: 0 0 20px rgba(20,184,166,0.3) !important;
+}
+.card-teal:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(20,184,166,0.4) !important;
+}
+
+/* Violet - Accessories (#8B5CF6) */
+.card-violet .elementor-widget-container {
+    border-top: 4px solid #8B5CF6 !important;
+    box-shadow: 0 0 20px rgba(139,92,246,0.3) !important;
+}
+.card-violet:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(139,92,246,0.4) !important;
+}
+
+/* Sky - Business (#0EA5E9) */
+.card-sky .elementor-widget-container {
+    border-top: 4px solid #0EA5E9 !important;
+    box-shadow: 0 0 20px rgba(14,165,233,0.3) !important;
+}
+.card-sky:hover .elementor-widget-container {
+    box-shadow: 0 0 30px rgba(14,165,233,0.4) !important;
+}
+
+/* ============================================
+   FEATURED CARDS (Popular Badge)
+   Additional glow effect
+   ============================================ */
+.featured .elementor-widget-container {
+    box-shadow: 0 0 40px rgba(0,133,255,0.08) !important;
+}
+
+.featured:hover .elementor-widget-container {
+    box-shadow: 0 20px 60px rgba(0,133,255,0.2) !important;
+}
+
+/* ============================================
+   ICON BOXES - Trust Badges & Contact
+   ============================================ */
+.elementor-widget-icon-box {
+    transition: all 0.5s ease !important;
+}
+
+.elementor-widget-icon-box:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 40px rgba(0,133,255,0.15) !important;
+}
+
+.elementor-widget-icon-box:hover .elementor-widget-container {
+    border-color: rgba(0,133,255,0.4) !important;
+}
+
+/* Icon */
+.elementor-icon-box-icon {
+    transition: transform 0.5s ease !important;
+}
+
+.elementor-widget-icon-box:hover .elementor-icon-box-icon {
+    transform: scale(1.1) !important;
+}
+
+/* Title */
+.elementor-icon-box-title {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+.elementor-icon-box-title span {
+    color: #ffffff !important;
+}
+
+/* Description */
+.elementor-icon-box-description {
+    color: #9ca3af !important;
+}
+
+/* ============================================
+   BUTTON STYLING
+   Primary: #0085FF gradient, rounded-2xl
+   Padding: 32px 40px, font-size: 20px
+   ============================================ */
+.elementor-button {
+    transition: all 0.5s ease !important;
+    font-weight: 700 !important;
+}
+
+.elementor-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 60px rgba(0,133,255,0.6) !important;
+}
+
+/* ============================================
+   HEADINGS
+   H1: 96px, font-weight 900
+   H2: 60px, font-weight 900
+   ============================================ */
+.elementor-heading-title {
+    color: #ffffff !important;
+}
+
+h1.elementor-heading-title {
+    font-size: 96px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+}
+
+h2.elementor-heading-title {
+    font-size: 60px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+.elementor-divider-separator {
+    background: linear-gradient(90deg, transparent, rgba(0,133,255,0.5), transparent) !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0085FF;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #339dff;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+::selection {
+    background: rgba(0,133,255,0.3);
+    color: #ffffff;
+}
+
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   RESPONSIVE - Mobile Adjustments
+   ============================================ */
+@media (max-width: 1024px) {
+    h1.elementor-heading-title {
+        font-size: 60px !important;
+    }
+    
+    h2.elementor-heading-title {
+        font-size: 44px !important;
+    }
+    
+    .elementor-image-box-title {
+        font-size: 24px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    h1.elementor-heading-title {
+        font-size: 48px !important;
+    }
+    
+    h2.elementor-heading-title {
+        font-size: 36px !important;
+    }
+    
+    .elementor-image-box-title {
+        font-size: 20px !important;
+    }
+    
+    .elementor-widget-image-box {
+        margin-bottom: 24px !important;
+    }
+}
