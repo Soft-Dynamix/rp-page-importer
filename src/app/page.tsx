@@ -24,7 +24,8 @@ import {
   ArrowRight,
   Puzzle,
   Check,
-  Star
+  Star,
+  ChevronRight
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -263,93 +264,104 @@ const serviceCategories = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0e17] relative overflow-hidden">
+    <div className="min-h-screen bg-[#080c14] relative overflow-hidden">
       {/* Premium Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Radial gradient overlay */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(0,133,255,0.08)_0%,transparent_70%)]" />
-        {/* Subtle grid pattern */}
+        {/* Main radial gradient */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1400px] h-[900px] bg-[radial-gradient(ellipse_at_center,rgba(0,133,255,0.12)_0%,rgba(0,133,255,0.03)_40%,transparent_70%)]" />
+        
+        {/* Subtle noise texture overlay */}
         <div 
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-        {/* Accent glow */}
-        <div className="absolute top-[20%] right-0 w-[500px] h-[500px] bg-[#0085FF]/[0.03] rounded-full blur-[100px]" />
-        <div className="absolute bottom-[30%] left-0 w-[400px] h-[400px] bg-[#A855F7]/[0.02] rounded-full blur-[80px]" />
+        
+        {/* Animated gradient orbs */}
+        <div className="absolute top-[10%] right-[5%] w-[600px] h-[600px] bg-[#0085FF]/[0.04] rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-[20%] left-[5%] w-[500px] h-[500px] bg-[#A855F7]/[0.03] rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute top-[50%] left-[30%] w-[300px] h-[300px] bg-[#0085FF]/[0.02] rounded-full blur-[80px]" />
+        
+        {/* Subtle grid pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.012]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
+          }}
+        />
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-10 md:pt-16 md:pb-12">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="relative pt-16 pb-14 md:pt-24 md:pb-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center">
             {/* Premium Badge */}
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0085FF]/10 via-[#0085FF]/5 to-[#0085FF]/10 border border-[#0085FF]/20 rounded-full px-6 py-2.5 mb-8 backdrop-blur-sm">
-              <Star className="w-4 h-4 text-[#0085FF]" fill="#0085FF" />
-              <span className="text-[#0085FF] text-base font-semibold tracking-wide uppercase">Professional Motorcycle Services</span>
-              <Star className="w-4 h-4 text-[#0085FF]" fill="#0085FF" />
+            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-[#0085FF]/15 via-[#0085FF]/8 to-[#0085FF]/15 border border-[#0085FF]/25 rounded-full px-8 py-3 mb-10 backdrop-blur-md shadow-[0_0_30px_rgba(0,133,255,0.1)]">
+              <div className="flex items-center gap-1">
+                <Star className="w-4 h-4 text-[#0085FF]" fill="#0085FF" />
+                <Star className="w-3 h-3 text-[#0085FF]/60" fill="#0085FF" />
+              </div>
+              <span className="text-[#0085FF] text-base font-bold tracking-[0.15em] uppercase">Professional Motorcycle Services</span>
+              <div className="flex items-center gap-1">
+                <Star className="w-3 h-3 text-[#0085FF]/60" fill="#0085FF" />
+                <Star className="w-4 h-4 text-[#0085FF]" fill="#0085FF" />
+              </div>
             </div>
             
-            {/* Title with gradient */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 mb-6" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            {/* Title */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-gray-500 mb-8 tracking-[-0.02em]" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Our Services
             </h1>
             
-            {/* Description - LARGER */}
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-12 max-w-3xl mx-auto">
-              From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with precision and care.
+            {/* Decorative line */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#0085FF]/50" />
+              <div className="w-2 h-2 rounded-full bg-[#0085FF]" />
+              <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#0085FF]/50" />
+            </div>
+            
+            {/* Description */}
+            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-14 max-w-4xl mx-auto font-light">
+              From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with <span className="text-white font-medium">precision and care</span>.
             </p>
             
-            {/* Trust Badges - Premium Design */}
-            <div className="flex flex-wrap justify-center gap-5">
-              <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0085FF]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex items-center gap-4 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-6 py-4 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
-                    <Award className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <span className="text-white text-lg font-semibold block">Expert Technicians</span>
-                    <span className="text-gray-400 text-sm">Certified Professionals</span>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0085FF]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex items-center gap-4 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-6 py-4 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <span className="text-white text-lg font-semibold block">Quality Guaranteed</span>
-                    <span className="text-gray-400 text-sm">Workmanship Warranty</span>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0085FF]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex items-center gap-4 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-6 py-4 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <span className="text-white text-lg font-semibold block">All Makes & Models</span>
-                    <span className="text-gray-400 text-sm">Universal Expertise</span>
+            {/* Trust Badges */}
+            <div className="flex flex-wrap justify-center gap-6">
+              {[
+                { icon: Award, title: 'Expert Technicians', subtitle: 'Certified Professionals', color: '#0085FF' },
+                { icon: Shield, title: 'Quality Guaranteed', subtitle: 'Workmanship Warranty', color: '#22C55E' },
+                { icon: Users, title: 'All Makes & Models', subtitle: 'Universal Expertise', color: '#A855F7' },
+              ].map((item, index) => (
+                <div key={index} className="group relative">
+                  {/* Glow effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#0085FF]/20 via-[#0085FF]/10 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  
+                  <div className="relative flex items-center gap-5 bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/[0.12] rounded-2xl px-7 py-5 backdrop-blur-md hover:border-[#0085FF]/40 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(0,133,255,0.15)]">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#0085FF]/30 to-transparent rounded-xl blur-md" />
+                      <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF] to-[#0085FF]/80 flex items-center justify-center shadow-[0_4px_20px_rgba(0,133,255,0.4)]">
+                        <item.icon className="w-7 h-7 text-white" />
+                      </div>
+                    </div>
+                    <div className="text-left">
+                      <span className="text-white text-xl font-bold block tracking-tight">{item.title}</span>
+                      <span className="text-gray-400 text-sm font-medium">{item.subtitle}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="relative pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid gap-6 md:gap-7 md:grid-cols-2">
+      <section className="relative pb-20 md:pb-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid gap-7 md:gap-8 md:grid-cols-2">
             {serviceCategories.map((category, index) => {
               const Icon = category.icon
               
@@ -358,117 +370,142 @@ export default function ServicesPage() {
                   key={category.id} 
                   className={`group relative ${category.highlight ? 'md:col-span-2' : ''}`}
                 >
-                  {/* Premium Card with Glass Effect */}
+                  {/* Card Container */}
                   <div className={`
-                    relative h-full rounded-2xl overflow-hidden
-                    bg-gradient-to-br from-white/[0.07] to-white/[0.02]
-                    border border-white/[0.08]
-                    backdrop-blur-xl
-                    transition-all duration-500 ease-out
-                    hover:border-[#0085FF]/30 hover:shadow-[0_0_40px_rgba(0,133,255,0.1)]
-                    ${category.highlight ? 'border-[#0085FF]/20' : ''}
+                    relative h-full rounded-3xl overflow-hidden
+                    bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-transparent
+                    border border-white/[0.1]
+                    backdrop-blur-2xl
+                    transition-all duration-700 ease-out
+                    hover:border-[#0085FF]/40 hover:shadow-[0_20px_60px_rgba(0,133,255,0.15)]
+                    ${category.highlight ? 'border-[#0085FF]/25 shadow-[0_0_40px_rgba(0,133,255,0.08)]' : ''}
                   `}>
                     {/* Premium Color Accent Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-[3px]">
+                    <div className="absolute top-0 left-0 right-0 h-[4px] overflow-hidden">
                       <div 
-                        className="h-full w-full"
+                        className="absolute inset-0"
                         style={{ 
-                          background: `linear-gradient(90deg, transparent, ${category.color}, ${category.color}, transparent)` 
+                          background: `linear-gradient(90deg, transparent 0%, ${category.color} 20%, ${category.color} 80%, transparent 100%)`,
+                          boxShadow: `0 0 20px ${category.color}80`
                         }}
                       />
                     </div>
                     
-                    {/* Subtle inner glow on hover */}
+                    {/* Corner accent */}
                     <div 
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      className="absolute top-0 right-0 w-32 h-32 opacity-20"
                       style={{
-                        background: `radial-gradient(ellipse at top, ${category.color}08, transparent 70%)`
+                        background: `radial-gradient(circle at top right, ${category.color}20, transparent 70%)`
+                      }}
+                    />
+                    
+                    {/* Inner glow on hover */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                      style={{
+                        background: `radial-gradient(ellipse at top, ${category.color}06, transparent 60%)`
                       }}
                     />
 
-                    <div className="relative p-7 md:p-8">
+                    <div className="relative p-8 md:p-10">
                       {/* Header */}
-                      <div className="flex items-start gap-5 mb-6">
+                      <div className="flex items-start gap-6 mb-8">
                         {/* Premium Icon Container */}
-                        <div 
-                          className="relative w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden"
-                          style={{ 
-                            background: `linear-gradient(135deg, ${category.color}20, ${category.color}08)`,
-                            boxShadow: `0 4px 20px ${category.color}15`
-                          }}
-                        >
+                        <div className="relative flex-shrink-0">
                           <div 
-                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            style={{
-                              background: `linear-gradient(135deg, ${category.color}30, transparent)`
-                            }}
+                            className="absolute inset-0 rounded-2xl blur-xl opacity-50"
+                            style={{ backgroundColor: `${category.color}40` }}
                           />
-                          <Icon className="w-7 h-7 relative z-10" style={{ color: category.color }} />
+                          <div 
+                            className="relative w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden"
+                            style={{ 
+                              background: `linear-gradient(135deg, ${category.color}25, ${category.color}08)`,
+                              boxShadow: `inset 0 1px 0 ${category.color}20, 0 8px 32px ${category.color}20`
+                            }}
+                          >
+                            <div 
+                              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                              style={{
+                                background: `linear-gradient(135deg, ${category.color}40, transparent)`
+                              }}
+                            />
+                            <Icon className="w-8 h-8 relative z-10 transition-transform duration-500 group-hover:scale-110" style={{ color: category.color }} />
+                          </div>
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-3 flex-wrap">
-                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                          <div className="flex items-center gap-4 flex-wrap">
+                            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
                               {category.title}
                             </h3>
                             {category.highlight && (
-                              <Badge className="bg-gradient-to-r from-[#0085FF] to-[#0085FF]/80 text-white text-xs px-3 py-1 font-semibold rounded-full border-0">
+                              <Badge className="bg-gradient-to-r from-[#0085FF] to-[#0066CC] text-white text-xs px-4 py-1.5 font-bold rounded-full border-0 shadow-[0_4px_15px_rgba(0,133,255,0.3)]">
                                 Popular
                               </Badge>
                             )}
                           </div>
-                          <p className="text-gray-300 text-base mt-2 leading-relaxed">
+                          <p className="text-gray-400 text-lg mt-3 leading-relaxed font-light">
                             {category.description}
                           </p>
                         </div>
                       </div>
                       
-                      {/* Services List */}
-                      <div className="border-t border-white/[0.06] pt-6">
-                        {category.subsections ? (
-                          <div className="grid gap-6 md:grid-cols-3">
-                            {category.subsections.map((subsection, idx) => (
-                              <div key={idx}>
-                                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: category.color }} />
-                                  {subsection.title}
-                                </h4>
-                                <ul className="space-y-3">
-                                  {subsection.items.map((service, i) => (
-                                    <li key={i} className="flex items-start gap-3 group/item">
-                                      <div 
-                                        className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110"
-                                        style={{ 
-                                          background: `linear-gradient(135deg, ${category.color}20, ${category.color}08)`,
-                                        }}
-                                      >
-                                        <Check className="w-3.5 h-3.5" style={{ color: category.color }} />
-                                      </div>
-                                      <span className="text-gray-200 text-base leading-relaxed group-hover/item:text-white transition-colors duration-300">{service}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <ul className={`grid gap-3 ${category.services && category.services.length > 4 ? 'sm:grid-cols-2' : ''}`}>
-                            {category.services?.map((service, i) => (
-                              <li key={i} className="flex items-start gap-3 group/item">
-                                <div 
-                                  className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110"
-                                  style={{ 
-                                    background: `linear-gradient(135deg, ${category.color}20, ${category.color}08)`,
-                                  }}
-                                >
-                                  <Check className="w-3.5 h-3.5" style={{ color: category.color }} />
-                                </div>
-                                <span className="text-gray-200 text-base leading-relaxed group-hover/item:text-white transition-colors duration-300">{service}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                      {/* Divider */}
+                      <div className="relative mb-8">
+                        <div className="h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
                       </div>
+                      
+                      {/* Services List */}
+                      {category.subsections ? (
+                        <div className="grid gap-8 md:grid-cols-3">
+                          {category.subsections.map((subsection, idx) => (
+                            <div key={idx}>
+                              <h4 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em] mb-5 flex items-center gap-3">
+                                <span 
+                                  className="w-2.5 h-2.5 rounded-full" 
+                                  style={{ 
+                                    backgroundColor: category.color,
+                                    boxShadow: `0 0 10px ${category.color}60`
+                                  }} 
+                                />
+                                {subsection.title}
+                              </h4>
+                              <ul className="space-y-4">
+                                {subsection.items.map((service, i) => (
+                                  <li key={i} className="flex items-start gap-4 group/item">
+                                    <div 
+                                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-400 group-hover/item:scale-110 group-hover/item:shadow-lg"
+                                      style={{ 
+                                        background: `linear-gradient(135deg, ${category.color}18, ${category.color}08)`,
+                                        boxShadow: `0 2px 8px ${category.color}10`
+                                      }}
+                                    >
+                                      <Check className="w-4 h-4" style={{ color: category.color }} />
+                                    </div>
+                                    <span className="text-gray-200 text-lg leading-relaxed group-hover/item:text-white transition-colors duration-300 font-light">{service}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <ul className={`grid gap-4 ${category.services && category.services.length > 5 ? 'sm:grid-cols-2' : ''}`}>
+                          {category.services?.map((service, i) => (
+                            <li key={i} className="flex items-start gap-4 group/item">
+                              <div 
+                                className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-400 group-hover/item:scale-110"
+                                style={{ 
+                                  background: `linear-gradient(135deg, ${category.color}18, ${category.color}08)`,
+                                }}
+                              >
+                                <Check className="w-4 h-4" style={{ color: category.color }} />
+                              </div>
+                              <span className="text-gray-200 text-lg leading-relaxed group-hover/item:text-white transition-colors duration-300 font-light">{service}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -478,41 +515,49 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section - Premium Design */}
-      <section className="relative pb-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-2xl">
-            {/* Premium gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0085FF]/20 via-[#0085FF]/10 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e17] via-transparent to-transparent" />
+      {/* CTA Section */}
+      <section className="relative pb-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="relative overflow-hidden rounded-3xl">
+            {/* Multi-layered background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0085FF]/25 via-[#0085FF]/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080c14] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-l from-[#A855F7]/10 via-transparent to-transparent" />
             
-            {/* Animated border */}
-            <div className="absolute inset-0 rounded-2xl border border-[#0085FF]/20" />
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0085FF]/50 to-transparent" />
+            {/* Animated border glow */}
+            <div className="absolute inset-0 rounded-3xl">
+              <div className="absolute inset-0 rounded-3xl border border-[#0085FF]/20" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0085FF] to-transparent opacity-60" />
+              <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0085FF]/30 to-transparent" />
+            </div>
             
-            <div className="relative p-10 md:p-14">
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            {/* Decorative elements */}
+            <div className="absolute top-10 right-10 w-32 h-32 bg-[#0085FF]/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-10 left-10 w-24 h-24 bg-[#A855F7]/10 rounded-full blur-2xl" />
+            
+            <div className="relative p-12 md:p-16 lg:p-20">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
                 <div className="text-center lg:text-left">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 mb-5 tracking-[-0.02em]" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Ready to Get Started?
                   </h2>
-                  <p className="text-gray-300 text-lg md:text-xl max-w-lg">
-                    Contact us for a free quote. Professional pickup & delivery service available.
+                  <p className="text-gray-300 text-xl md:text-2xl max-w-xl font-light leading-relaxed">
+                    Contact us for a <span className="text-white font-medium">free quote</span>. Professional pickup & delivery service available.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-5">
                   <Button 
-                    className="group relative overflow-hidden bg-gradient-to-r from-[#0085FF] to-[#0070E0] text-white rounded-xl px-8 py-7 text-lg font-semibold shadow-[0_0_30px_rgba(0,133,255,0.3)] hover:shadow-[0_0_50px_rgba(0,133,255,0.5)] transition-all duration-300"
+                    className="group relative overflow-hidden bg-gradient-to-r from-[#0085FF] via-[#0085FF] to-[#0070E0] text-white rounded-2xl px-10 py-8 text-xl font-bold shadow-[0_8px_40px_rgba(0,133,255,0.4)] hover:shadow-[0_12px_60px_rgba(0,133,255,0.6)] transition-all duration-500"
                   >
                     <span className="relative z-10 flex items-center">
-                      <Phone className="w-5 h-5 mr-2" />
+                      <Phone className="w-6 h-6 mr-3" />
                       Get a Quote
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
                     </span>
                   </Button>
                   <Button 
                     variant="outline"
-                    className="bg-transparent border-white/20 text-white hover:bg-white/5 hover:border-white/30 rounded-xl px-8 py-7 text-lg font-medium transition-all duration-300"
+                    className="bg-white/[0.05] border-white/20 text-white hover:bg-white/10 hover:border-white/40 rounded-2xl px-10 py-8 text-xl font-semibold transition-all duration-500 backdrop-blur-sm"
                   >
                     Contact Us
                   </Button>
@@ -523,43 +568,33 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Contact Info - Premium Cards */}
-      <section className="relative border-t border-white/[0.05]">
-        <div className="max-w-6xl mx-auto px-6 py-12">
-          <div className="grid sm:grid-cols-3 gap-5">
-            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-6 hover:border-[#0085FF]/30 transition-all duration-300">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-[#0085FF]" />
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-lg mb-1">Call Us</h3>
-                  <p className="text-gray-400 text-base">Contact us for bookings</p>
-                </div>
-              </div>
-            </div>
-            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-6 hover:border-[#0085FF]/30 transition-all duration-300">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-[#0085FF]" />
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-lg mb-1">Working Hours</h3>
-                  <p className="text-gray-400 text-base">Mon - Sat: 8:00 AM - 5:00 PM</p>
-                </div>
-              </div>
-            </div>
-            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-6 hover:border-[#0085FF]/30 transition-all duration-300">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-[#0085FF]" />
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-lg mb-1">Location</h3>
-                  <p className="text-gray-400 text-base">South Africa</p>
+      {/* Contact Info */}
+      <section className="relative border-t border-white/[0.06]">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-14">
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { icon: Phone, title: 'Call Us', subtitle: 'Contact us for bookings' },
+              { icon: Clock, title: 'Working Hours', subtitle: 'Mon - Sat: 8:00 AM - 5:00 PM' },
+              { icon: MapPin, title: 'Location', subtitle: 'South Africa' },
+            ].map((item, index) => (
+              <div 
+                key={index}
+                className="group relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.1] p-7 hover:border-[#0085FF]/40 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,133,255,0.1)]"
+              >
+                <div className="flex items-center gap-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-[#0085FF]/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center border border-[#0085FF]/20">
+                      <item.icon className="w-7 h-7 text-[#0085FF]" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-xl mb-1">{item.title}</h3>
+                    <p className="text-gray-400 text-lg font-light">{item.subtitle}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
