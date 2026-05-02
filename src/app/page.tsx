@@ -283,61 +283,61 @@ export default function ServicesPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-16 pb-12 md:pt-24 md:pb-16">
-        <div className="max-w-6xl mx-auto px-5">
+      <section className="relative pt-12 pb-10 md:pt-16 md:pb-12">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center">
             {/* Premium Badge */}
-            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#0085FF]/10 via-[#0085FF]/5 to-[#0085FF]/10 border border-[#0085FF]/20 rounded-full px-5 py-2 mb-6 backdrop-blur-sm">
-              <Star className="w-3.5 h-3.5 text-[#0085FF]" fill="#0085FF" />
-              <span className="text-[#0085FF] text-sm font-semibold tracking-wide uppercase">Professional Motorcycle Services</span>
-              <Star className="w-3.5 h-3.5 text-[#0085FF]" fill="#0085FF" />
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0085FF]/10 via-[#0085FF]/5 to-[#0085FF]/10 border border-[#0085FF]/20 rounded-full px-6 py-2.5 mb-8 backdrop-blur-sm">
+              <Star className="w-4 h-4 text-[#0085FF]" fill="#0085FF" />
+              <span className="text-[#0085FF] text-base font-semibold tracking-wide uppercase">Professional Motorcycle Services</span>
+              <Star className="w-4 h-4 text-[#0085FF]" fill="#0085FF" />
             </div>
             
             {/* Title with gradient */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 mb-6" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Our Services
             </h1>
             
-            {/* Description */}
-            <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-10 max-w-2xl mx-auto font-light">
+            {/* Description - LARGER */}
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-12 max-w-3xl mx-auto">
               From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with precision and care.
             </p>
             
             {/* Trust Badges - Premium Design */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-5">
               <div className="group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0085FF]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex items-center gap-3 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-5 py-3 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-white" />
+                <div className="relative flex items-center gap-4 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-6 py-4 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-left">
-                    <span className="text-white text-sm font-semibold block">Expert Technicians</span>
-                    <span className="text-gray-500 text-xs">Certified Professionals</span>
+                    <span className="text-white text-lg font-semibold block">Expert Technicians</span>
+                    <span className="text-gray-400 text-sm">Certified Professionals</span>
                   </div>
                 </div>
               </div>
               <div className="group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0085FF]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex items-center gap-3 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-5 py-3 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-white" />
+                <div className="relative flex items-center gap-4 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-6 py-4 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-left">
-                    <span className="text-white text-sm font-semibold block">Quality Guaranteed</span>
-                    <span className="text-gray-500 text-xs">Workmanship Warranty</span>
+                    <span className="text-white text-lg font-semibold block">Quality Guaranteed</span>
+                    <span className="text-gray-400 text-sm">Workmanship Warranty</span>
                   </div>
                 </div>
               </div>
               <div className="group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0085FF]/20 to-transparent rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex items-center gap-3 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-5 py-3 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-white" />
+                <div className="relative flex items-center gap-4 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-xl px-6 py-4 backdrop-blur-sm hover:border-[#0085FF]/30 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0085FF] to-[#0085FF]/70 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-left">
-                    <span className="text-white text-sm font-semibold block">All Makes & Models</span>
-                    <span className="text-gray-500 text-xs">Universal Expertise</span>
+                    <span className="text-white text-lg font-semibold block">All Makes & Models</span>
+                    <span className="text-gray-400 text-sm">Universal Expertise</span>
                   </div>
                 </div>
               </div>
@@ -348,8 +348,8 @@ export default function ServicesPage() {
 
       {/* Services Section */}
       <section className="relative pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="grid gap-5 md:gap-6 md:grid-cols-2">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid gap-6 md:gap-7 md:grid-cols-2">
             {serviceCategories.map((category, index) => {
               const Icon = category.icon
               
@@ -369,7 +369,7 @@ export default function ServicesPage() {
                     ${category.highlight ? 'border-[#0085FF]/20' : ''}
                   `}>
                     {/* Premium Color Accent Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-[2px]">
+                    <div className="absolute top-0 left-0 right-0 h-[3px]">
                       <div 
                         className="h-full w-full"
                         style={{ 
@@ -386,12 +386,12 @@ export default function ServicesPage() {
                       }}
                     />
 
-                    <div className="relative p-6 md:p-7">
+                    <div className="relative p-7 md:p-8">
                       {/* Header */}
-                      <div className="flex items-start gap-4 mb-5">
+                      <div className="flex items-start gap-5 mb-6">
                         {/* Premium Icon Container */}
                         <div 
-                          className="relative w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden"
+                          className="relative w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden"
                           style={{ 
                             background: `linear-gradient(135deg, ${category.color}20, ${category.color}08)`,
                             boxShadow: `0 4px 20px ${category.color}15`
@@ -403,48 +403,48 @@ export default function ServicesPage() {
                               background: `linear-gradient(135deg, ${category.color}30, transparent)`
                             }}
                           />
-                          <Icon className="w-6 h-6 relative z-10" style={{ color: category.color }} />
+                          <Icon className="w-7 h-7 relative z-10" style={{ color: category.color }} />
                         </div>
                         
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 flex-wrap">
-                            <h3 className="text-lg md:text-xl font-bold text-white tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
                               {category.title}
                             </h3>
                             {category.highlight && (
-                              <Badge className="bg-gradient-to-r from-[#0085FF] to-[#0085FF]/80 text-white text-[10px] px-2.5 py-0.5 font-semibold rounded-full border-0">
+                              <Badge className="bg-gradient-to-r from-[#0085FF] to-[#0085FF]/80 text-white text-xs px-3 py-1 font-semibold rounded-full border-0">
                                 Popular
                               </Badge>
                             )}
                           </div>
-                          <p className="text-gray-400 text-sm mt-1.5 font-light leading-relaxed">
+                          <p className="text-gray-300 text-base mt-2 leading-relaxed">
                             {category.description}
                           </p>
                         </div>
                       </div>
                       
                       {/* Services List */}
-                      <div className="border-t border-white/[0.06] pt-5">
+                      <div className="border-t border-white/[0.06] pt-6">
                         {category.subsections ? (
-                          <div className="grid gap-5 md:grid-cols-3">
+                          <div className="grid gap-6 md:grid-cols-3">
                             {category.subsections.map((subsection, idx) => (
                               <div key={idx}>
-                                <h4 className="text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: category.color }} />
+                                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: category.color }} />
                                   {subsection.title}
                                 </h4>
-                                <ul className="space-y-2.5">
+                                <ul className="space-y-3">
                                   {subsection.items.map((service, i) => (
-                                    <li key={i} className="flex items-start gap-2.5 group/item">
+                                    <li key={i} className="flex items-start gap-3 group/item">
                                       <div 
-                                        className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110"
+                                        className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110"
                                         style={{ 
                                           background: `linear-gradient(135deg, ${category.color}20, ${category.color}08)`,
                                         }}
                                       >
-                                        <Check className="w-3 h-3" style={{ color: category.color }} />
+                                        <Check className="w-3.5 h-3.5" style={{ color: category.color }} />
                                       </div>
-                                      <span className="text-gray-300 text-sm leading-relaxed font-light group-hover/item:text-white transition-colors duration-300">{service}</span>
+                                      <span className="text-gray-200 text-base leading-relaxed group-hover/item:text-white transition-colors duration-300">{service}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -452,18 +452,18 @@ export default function ServicesPage() {
                             ))}
                           </div>
                         ) : (
-                          <ul className={`grid gap-2.5 ${category.services && category.services.length > 4 ? 'sm:grid-cols-2' : ''}`}>
+                          <ul className={`grid gap-3 ${category.services && category.services.length > 4 ? 'sm:grid-cols-2' : ''}`}>
                             {category.services?.map((service, i) => (
-                              <li key={i} className="flex items-start gap-2.5 group/item">
+                              <li key={i} className="flex items-start gap-3 group/item">
                                 <div 
-                                  className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110"
+                                  className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover/item:scale-110"
                                   style={{ 
                                     background: `linear-gradient(135deg, ${category.color}20, ${category.color}08)`,
                                   }}
                                 >
-                                  <Check className="w-3 h-3" style={{ color: category.color }} />
+                                  <Check className="w-3.5 h-3.5" style={{ color: category.color }} />
                                 </div>
-                                <span className="text-gray-300 text-sm leading-relaxed font-light group-hover/item:text-white transition-colors duration-300">{service}</span>
+                                <span className="text-gray-200 text-base leading-relaxed group-hover/item:text-white transition-colors duration-300">{service}</span>
                               </li>
                             ))}
                           </ul>
@@ -479,8 +479,8 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section - Premium Design */}
-      <section className="relative pb-16">
-        <div className="max-w-6xl mx-auto px-5">
+      <section className="relative pb-12">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="relative overflow-hidden rounded-2xl">
             {/* Premium gradient background */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#0085FF]/20 via-[#0085FF]/10 to-transparent" />
@@ -490,19 +490,19 @@ export default function ServicesPage() {
             <div className="absolute inset-0 rounded-2xl border border-[#0085FF]/20" />
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0085FF]/50 to-transparent" />
             
-            <div className="relative p-8 md:p-12">
+            <div className="relative p-10 md:p-14">
               <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="text-center lg:text-left">
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Ready to Get Started?
                   </h2>
-                  <p className="text-gray-400 text-base md:text-lg font-light max-w-md">
-                    Contact us for a free quote. Professional pickup & delivery service available across the region.
+                  <p className="text-gray-300 text-lg md:text-xl max-w-lg">
+                    Contact us for a free quote. Professional pickup & delivery service available.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
-                    className="group relative overflow-hidden bg-gradient-to-r from-[#0085FF] to-[#0070E0] text-white rounded-xl px-7 py-6 text-base font-semibold shadow-[0_0_30px_rgba(0,133,255,0.3)] hover:shadow-[0_0_50px_rgba(0,133,255,0.5)] transition-all duration-300"
+                    className="group relative overflow-hidden bg-gradient-to-r from-[#0085FF] to-[#0070E0] text-white rounded-xl px-8 py-7 text-lg font-semibold shadow-[0_0_30px_rgba(0,133,255,0.3)] hover:shadow-[0_0_50px_rgba(0,133,255,0.5)] transition-all duration-300"
                   >
                     <span className="relative z-10 flex items-center">
                       <Phone className="w-5 h-5 mr-2" />
@@ -512,7 +512,7 @@ export default function ServicesPage() {
                   </Button>
                   <Button 
                     variant="outline"
-                    className="bg-transparent border-white/20 text-white hover:bg-white/5 hover:border-white/30 rounded-xl px-7 py-6 text-base font-medium transition-all duration-300"
+                    className="bg-transparent border-white/20 text-white hover:bg-white/5 hover:border-white/30 rounded-xl px-8 py-7 text-lg font-medium transition-all duration-300"
                   >
                     Contact Us
                   </Button>
@@ -525,53 +525,44 @@ export default function ServicesPage() {
 
       {/* Contact Info - Premium Cards */}
       <section className="relative border-t border-white/[0.05]">
-        <div className="max-w-6xl mx-auto px-5 py-10">
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-5 hover:border-[#0085FF]/30 transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-[#0085FF]" />
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="grid sm:grid-cols-3 gap-5">
+            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-6 hover:border-[#0085FF]/30 transition-all duration-300">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-[#0085FF]" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm mb-0.5">Call Us</h3>
-                  <p className="text-gray-500 text-sm font-light">Contact us for bookings</p>
+                  <h3 className="text-white font-semibold text-lg mb-1">Call Us</h3>
+                  <p className="text-gray-400 text-base">Contact us for bookings</p>
                 </div>
               </div>
             </div>
-            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-5 hover:border-[#0085FF]/30 transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-[#0085FF]" />
+            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-6 hover:border-[#0085FF]/30 transition-all duration-300">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-6 h-6 text-[#0085FF]" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm mb-0.5">Working Hours</h3>
-                  <p className="text-gray-500 text-sm font-light">Mon - Sat: 8:00 AM - 5:00 PM</p>
+                  <h3 className="text-white font-semibold text-lg mb-1">Working Hours</h3>
+                  <p className="text-gray-400 text-base">Mon - Sat: 8:00 AM - 5:00 PM</p>
                 </div>
               </div>
             </div>
-            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-5 hover:border-[#0085FF]/30 transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-[#0085FF]" />
+            <div className="group relative rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.08] p-6 hover:border-[#0085FF]/30 transition-all duration-300">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF]/20 to-[#0085FF]/5 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-[#0085FF]" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm mb-0.5">Location</h3>
-                  <p className="text-gray-500 text-sm font-light">South Africa</p>
+                  <h3 className="text-white font-semibold text-lg mb-1">Location</h3>
+                  <p className="text-gray-400 text-base">South Africa</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="relative border-t border-white/[0.05] py-6">
-        <div className="max-w-6xl mx-auto px-5 text-center">
-          <p className="text-gray-600 text-sm font-light">
-            © {new Date().getFullYear()} RP Motorcycles. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
