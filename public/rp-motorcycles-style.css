@@ -1,0 +1,87 @@
+/* RP Motorcycles - Elementor Compatible CSS */
+/* Add in: Appearance → Customize → Additional CSS */
+
+/* ============================================
+   PAGE BACKGROUND
+   ============================================ */
+body.elementor-page,
+body.page-template-default {
+    background-color: #080c14 !important;
+}
+
+/* ============================================
+   SERVICE CARDS - HOVER EFFECTS
+   ============================================ */
+.elementor-widget-image-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.elementor-widget-image-box:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 50px rgba(0,133,255,0.2) !important;
+}
+
+/* ============================================
+   IMAGE ZOOM ON HOVER
+   ============================================ */
+.elementor-image-box-img img {
+    transition: transform 0.5s ease !important;
+}
+
+.elementor-widget-image-box:hover .elementor-image-box-img img {
+    transform: scale(1.05) !important;
+}
+
+/* ============================================
+   ICON BOX HOVER
+   ============================================ */
+.elementor-widget-icon-box {
+    transition: all 0.3s ease !important;
+}
+
+.elementor-widget-icon-box:hover {
+    transform: translateY(-3px) !important;
+}
+
+/* ============================================
+   BUTTON HOVER
+   ============================================ */
+.elementor-button {
+    transition: all 0.3s ease !important;
+}
+
+.elementor-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(0,133,255,0.4) !important;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0085FF;
+    border-radius: 4px;
+}
+
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   SELECTION COLOR
+   ============================================ */
+::selection {
+    background: rgba(0,133,255,0.3);
+    color: #ffffff;
+}

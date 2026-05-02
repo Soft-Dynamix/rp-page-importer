@@ -1,0 +1,1588 @@
+{
+  "version": "0.4",
+  "title": "RP Motorcycles Services",
+  "type": "page",
+  "content": [
+    {
+      "id": "hero-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#080c14",
+        "padding": {
+          "unit": "px",
+          "top": "80",
+          "right": "30",
+          "bottom": "50",
+          "left": "30"
+        },
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1100
+        }
+      },
+      "elements": [
+        {
+          "id": "hero-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "badge-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "⭐ PROFESSIONAL MOTORCYCLE SERVICES ⭐",
+                "header_size": "div",
+                "align": "center",
+                "title_color": "#0085FF",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "typography_letter_spacing": {
+                  "unit": "px",
+                  "size": 2
+                },
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 12
+                },
+                "_css_classes": "rp-badge",
+                "_background_background": "classic",
+                "_background_color": "rgba(0,133,255,0.12)",
+                "_border_border": "solid",
+                "_border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "_border_color": "rgba(0,133,255,0.25)",
+                "_border_radius": {
+                  "unit": "px",
+                  "top": "50",
+                  "right": "50",
+                  "bottom": "50",
+                  "left": "50"
+                },
+                "_padding": {
+                  "unit": "px",
+                  "top": "12",
+                  "right": "28",
+                  "bottom": "12",
+                  "left": "28"
+                },
+                "_margin": {
+                  "unit": "px",
+                  "bottom": "35"
+                },
+                "_element_width": "initial"
+              }
+            },
+            {
+              "id": "main-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Our Services",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "#ffffff",
+                "typography_typography": "custom",
+                "typography_font_weight": "900",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 60
+                },
+                "typography_font_size_tablet": {
+                  "unit": "px",
+                  "size": 44
+                },
+                "typography_font_size_mobile": {
+                  "unit": "px",
+                  "size": 32
+                }
+              }
+            },
+            {
+              "id": "main-description",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with <span style=\"color:#ffffff;font-weight:600\">precision and care</span>.",
+                "align": "center",
+                "text_color": "#9ca3af",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 18
+                },
+                "_element_width": "initial",
+                "_element_custom_width": {
+                  "unit": "px",
+                  "size": 700
+                },
+                "_margin": {
+                  "unit": "px",
+                  "top": "20",
+                  "bottom": "50"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trust-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#080c14",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "30",
+          "bottom": "50",
+          "left": "30"
+        },
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1100
+        }
+      },
+      "elements": [
+        {
+          "id": "trust-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "trust-inner-section",
+              "elType": "section",
+              "settings": {
+                "structure": "30",
+                "background_background": "classic",
+                "background_color": "#080c14",
+                "gap": "default"
+              },
+              "elements": [
+                {
+                  "id": "trust-col-1",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "_inline_size": 33.33
+                  },
+                  "elements": [
+                    {
+                      "id": "trust-1",
+                      "elType": "widget",
+                      "widgetType": "icon-box",
+                      "settings": {
+                        "selected_icon": {
+                          "value": "fas fa-award",
+                          "library": "fa-solid"
+                        },
+                        "title": "Expert Technicians",
+                        "description": "Certified Professionals",
+                        "position": "left",
+                        "title_size": "h4",
+                        "primary_color": "#0085FF",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "title_color": "#ffffff",
+                        "description_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.04)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.08)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "22",
+                          "right": "22",
+                          "bottom": "22",
+                          "left": "22"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "trust-col-2",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "_inline_size": 33.33
+                  },
+                  "elements": [
+                    {
+                      "id": "trust-2",
+                      "elType": "widget",
+                      "widgetType": "icon-box",
+                      "settings": {
+                        "selected_icon": {
+                          "value": "fas fa-shield-alt",
+                          "library": "fa-solid"
+                        },
+                        "title": "Quality Guaranteed",
+                        "description": "Workmanship Warranty",
+                        "position": "left",
+                        "title_size": "h4",
+                        "primary_color": "#22C55E",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "title_color": "#ffffff",
+                        "description_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.04)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.08)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "22",
+                          "right": "22",
+                          "bottom": "22",
+                          "left": "22"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "trust-col-3",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "_inline_size": 33.33
+                  },
+                  "elements": [
+                    {
+                      "id": "trust-3",
+                      "elType": "widget",
+                      "widgetType": "icon-box",
+                      "settings": {
+                        "selected_icon": {
+                          "value": "fas fa-users",
+                          "library": "fa-solid"
+                        },
+                        "title": "All Makes & Models",
+                        "description": "Universal Expertise",
+                        "position": "left",
+                        "title_size": "h4",
+                        "primary_color": "#A855F7",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "title_color": "#ffffff",
+                        "description_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.04)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.08)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "22",
+                          "right": "22",
+                          "bottom": "22",
+                          "left": "22"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "services-grid-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#080c14",
+        "padding": {
+          "unit": "px",
+          "top": "20",
+          "right": "30",
+          "bottom": "80",
+          "left": "30"
+        },
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1100
+        }
+      },
+      "elements": [
+        {
+          "id": "services-main-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "services-grid",
+              "elType": "section",
+              "settings": {
+                "structure": "20",
+                "background_background": "classic",
+                "background_color": "#080c14",
+                "gap": "extended"
+              },
+              "elements": [
+                {
+                  "id": "left-column",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 50
+                  },
+                  "elements": [
+                    {
+                      "id": "service-1",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/0085FF/FFFFFF/png?text=Motorcycle+Repair"
+                        },
+                        "title": "Core Mechanical Services",
+                        "description": "Essential maintenance and repairs to keep your motorcycle running smoothly.\n\n✓ General repair & servicing\n✓ Full motorcycle servicing (minor/major)\n✓ Oil & filter changes\n✓ Spark plug replacement\n✓ Air filter cleaning/replacement\n✓ Coolant flush & refill\n✓ Brake fluid replacement\n✓ Chain cleaning & adjustment",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#0085FF",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-3",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/F97316/FFFFFF/png?text=Engine+Services"
+                        },
+                        "title": "Engine Services ⭐ POPULAR",
+                        "description": "Complete engine repair, rebuild, and performance tuning.\n\n✓ Engine fault diagnosis\n✓ Full engine rebuild\n✓ Cylinder head reconditioning\n✓ Valve adjustment/replacement\n✓ Piston & ring replacement\n✓ Crankshaft repair\n✓ Performance builds\n✓ Carburetor tuning",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(249,115,22,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#F97316",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-5",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/22C55E/FFFFFF/png?text=Fuel+System"
+                        },
+                        "title": "Fuel System Services",
+                        "description": "Fuel system maintenance, cleaning, and repair.\n\n✓ Carburetor cleaning & rebuild\n✓ Fuel injector cleaning\n✓ Fuel pump repair/replacement\n✓ Fuel line replacement\n✓ Tank cleaning (rust removal)",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#22C55E",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-7",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/6366F1/FFFFFF/png?text=Suspension"
+                        },
+                        "title": "Suspension & Handling",
+                        "description": "Optimize your ride quality and handling.\n\n✓ Fork seal replacement\n✓ Fork rebuilds\n✓ Shock absorber replacement\n✓ Suspension tuning\n✓ Steering head bearing replacement",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#6366F1",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-9",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/F59E0B/000000/png?text=Exhaust"
+                        },
+                        "title": "Exhaust & Performance",
+                        "description": "Custom exhaust solutions and upgrades.\n\n✓ Exhaust system installation\n✓ Custom exhaust fabrication",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#F59E0B",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-11",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/D97706/FFFFFF/png?text=Restoration"
+                        },
+                        "title": "Restoration Services",
+                        "description": "Bring classic motorcycles back to life.\n\n✓ Full bike restoration\n✓ Vintage motorcycle restoration\n✓ Engine restoration\n✓ Parts refurbishment",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#D97706",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-13",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/8B5CF6/FFFFFF/png?text=Accessories"
+                        },
+                        "title": "Accessories & Add-Ons ⭐ POPULAR",
+                        "description": "Enhance your motorcycle with quality accessories.\n\n✓ Crash bars & engine guards\n✓ Panniers & top box fitting\n✓ Windshield installation\n✓ LED light kits\n✓ Phone mounts & GPS holders\n✓ Frame sliders",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(139,92,246,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#8B5CF6",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "right-column",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 50
+                  },
+                  "elements": [
+                    {
+                      "id": "service-2",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/A855F7/FFFFFF/png?text=Diagnostics"
+                        },
+                        "title": "Diagnostics & Troubleshooting",
+                        "description": "Advanced diagnostic services to identify and resolve issues.\n\n✓ Full diagnostic checks (manual & electronic)\n✓ Fault finding (engine, electrical, fuel)\n✓ Performance issues analysis\n✓ Pre-purchase inspections\n✓ Roadworthy inspections",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#A855F7",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-4",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/EAB308/000000/png?text=Electrical"
+                        },
+                        "title": "Electrical Services",
+                        "description": "Complete electrical system diagnosis and repair.\n\n✓ Battery testing & replacement\n✓ Charging system repairs\n✓ Starter motor repairs\n✓ Wiring repairs & rewiring\n✓ Lighting installation & repair\n✓ Indicator & brake light fixes",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#EAB308",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-6",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/EF4444/FFFFFF/png?text=Brakes+Safety"
+                        },
+                        "title": "Brakes & Safety ⭐ POPULAR",
+                        "description": "Critical brake system services for your safety.\n\n✓ Brake pad replacement\n✓ Brake disc replacement\n✓ Brake caliper rebuild\n✓ Brake bleeding",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(239,68,68,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#EF4444",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-8",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/64748B/FFFFFF/png?text=Wheels+Tyres"
+                        },
+                        "title": "Wheels & Tyres",
+                        "description": "Complete wheel and tyre services.\n\n✓ Tyre fitting & replacement\n✓ Tube replacement\n✓ Wheel balancing\n✓ Spoke tightening & alignment\n✓ Bearing replacement",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#64748B",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-10",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/10B981/FFFFFF/png?text=Transmission"
+                        },
+                        "title": "Transmission & Drivetrain",
+                        "description": "Keep your power transfer smooth and reliable.\n\n✓ Clutch replacement\n✓ Clutch cable adjustment/replacement\n✓ Gearbox repairs\n✓ Sprocket replacement",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#10B981",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-12",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/EC4899/FFFFFF/png?text=Custom+Builds"
+                        },
+                        "title": "Custom Builds & Modifications",
+                        "description": "Transform your motorcycle with custom modifications.\n\n✓ Frame modifications\n✓ LED lighting upgrades\n✓ Footpeg relocation",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#EC4899",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-14",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/06B6D4/FFFFFF/png?text=Performance"
+                        },
+                        "title": "Performance Upgrades",
+                        "description": "Unlock your motorcycle's full potential.\n\n✓ Air intake upgrades\n✓ Throttle upgrade",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#06B6D4",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-15",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/14B8A6/FFFFFF/png?text=Workshop"
+                        },
+                        "title": "General Workshop Services",
+                        "description": "Comprehensive workshop services for all needs.\n\n✓ Bike assembly (new/imported)\n✓ Accident repairs\n✓ Insurance assessments & quotes\n✓ Parts sourcing & installation\n✓ Accessory installation",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.03)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#14B8A6",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "service-16",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://placehold.co/600x240/0EA5E9/FFFFFF/png?text=Business+Services"
+                        },
+                        "title": "Business Services ⭐ POPULAR",
+                        "description": "Convenient services designed for busy riders.\n\n✓ Pickup & delivery service\n✓ Mobile mechanic services\n✓ Breakdown assistance\n✓ Warranty on repairs\n✓ Consultation & advice",
+                        "title_size": "h3",
+                        "title_color": "#ffffff",
+                        "description_color": "#b8b8b8",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "image_size": "full",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(14,165,233,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "3",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "#0EA5E9",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "25",
+                          "left": "0"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#080c14",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "30",
+          "bottom": "60",
+          "left": "30"
+        },
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1100
+        }
+      },
+      "elements": [
+        {
+          "id": "cta-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "cta-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Ready to Get Started?",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#ffffff",
+                "typography_typography": "custom",
+                "typography_font_weight": "800",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 42
+                },
+                "_background_background": "classic",
+                "_background_color": "rgba(0,133,255,0.08)",
+                "_border_border": "solid",
+                "_border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "_border_color": "rgba(0,133,255,0.2)",
+                "_border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "_padding": {
+                  "unit": "px",
+                  "top": "50",
+                  "right": "50",
+                  "bottom": "50",
+                  "left": "50"
+                }
+              }
+            },
+            {
+              "id": "cta-description",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Contact us for a <span style=\"color:#ffffff;font-weight:600\">free quote</span>. Professional pickup & delivery service available.",
+                "align": "center",
+                "text_color": "#9ca3af",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 18
+                },
+                "_margin": {
+                  "unit": "px",
+                  "top": "-30",
+                  "bottom": "40"
+                }
+              }
+            },
+            {
+              "id": "cta-button",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Get a Quote",
+                "align": "center",
+                "size": "lg",
+                "button_type": "info",
+                "icon": {
+                  "value": "fas fa-phone",
+                  "library": "fa-solid"
+                },
+                "icon_align": "left",
+                "button_background_color": "#0085FF",
+                "button_text_color": "#ffffff",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "14",
+                  "right": "14",
+                  "bottom": "14",
+                  "left": "14"
+                },
+                "button_padding": {
+                  "unit": "px",
+                  "top": "18",
+                  "right": "40",
+                  "bottom": "18",
+                  "left": "40"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#080c14",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "30",
+          "bottom": "80",
+          "left": "30"
+        },
+        "content_width": "boxed",
+        "width": {
+          "unit": "px",
+          "size": 1100
+        }
+      },
+      "elements": [
+        {
+          "id": "contact-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "contact-inner-section",
+              "elType": "section",
+              "settings": {
+                "structure": "30",
+                "background_background": "classic",
+                "background_color": "#080c14",
+                "gap": "default"
+              },
+              "elements": [
+                {
+                  "id": "contact-col-1",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "_inline_size": 33.33
+                  },
+                  "elements": [
+                    {
+                      "id": "contact-1",
+                      "elType": "widget",
+                      "widgetType": "icon-box",
+                      "settings": {
+                        "selected_icon": {
+                          "value": "fas fa-phone",
+                          "library": "fa-solid"
+                        },
+                        "title": "Call Us",
+                        "description": "Contact us for bookings",
+                        "position": "left",
+                        "title_size": "h4",
+                        "primary_color": "#0085FF",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "title_color": "#ffffff",
+                        "description_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.04)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.08)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "24",
+                          "right": "24",
+                          "bottom": "24",
+                          "left": "24"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "contact-col-2",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "_inline_size": 33.33
+                  },
+                  "elements": [
+                    {
+                      "id": "contact-2",
+                      "elType": "widget",
+                      "widgetType": "icon-box",
+                      "settings": {
+                        "selected_icon": {
+                          "value": "fas fa-clock",
+                          "library": "fa-solid"
+                        },
+                        "title": "Working Hours",
+                        "description": "Mon - Sat: 8:00 AM - 5:00 PM",
+                        "position": "left",
+                        "title_size": "h4",
+                        "primary_color": "#0085FF",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "title_color": "#ffffff",
+                        "description_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.04)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.08)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "24",
+                          "right": "24",
+                          "bottom": "24",
+                          "left": "24"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "contact-col-3",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "_inline_size": 33.33
+                  },
+                  "elements": [
+                    {
+                      "id": "contact-3",
+                      "elType": "widget",
+                      "widgetType": "icon-box",
+                      "settings": {
+                        "selected_icon": {
+                          "value": "fas fa-map-marker-alt",
+                          "library": "fa-solid"
+                        },
+                        "title": "Location",
+                        "description": "South Africa",
+                        "position": "left",
+                        "title_size": "h4",
+                        "primary_color": "#0085FF",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "title_color": "#ffffff",
+                        "description_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.04)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.08)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "24",
+                          "right": "24",
+                          "bottom": "24",
+                          "left": "24"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "background_background": "classic",
+    "background_color": "#080c14"
+  }
+}
