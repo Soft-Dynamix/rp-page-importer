@@ -1,0 +1,235 @@
+/* RP Motorcycles Premium Services - Custom CSS for Elementor */
+/* Add this CSS in Elementor: Edit Page > Gear Icon (bottom left) > Advanced > Custom CSS */
+
+/* Main Background */
+body.elementor-page {
+    background-color: #080c14 !important;
+}
+
+/* Service Card Styling */
+.service-card {
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 133, 255, 0.3) !important;
+    box-shadow: 0 20px 60px rgba(0, 133, 255, 0.15);
+}
+
+/* Color Accent Bar at Top of Cards */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    z-index: 10;
+}
+
+.card-blue::before {
+    background: linear-gradient(90deg, transparent 0%, #0085FF 20%, #0085FF 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(0, 133, 255, 0.5);
+}
+
+.card-purple::before {
+    background: linear-gradient(90deg, transparent 0%, #A855F7 20%, #A855F7 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.card-orange::before,
+.featured::before {
+    background: linear-gradient(90deg, transparent 0%, #F97316 20%, #F97316 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+}
+
+.card-yellow::before {
+    background: linear-gradient(90deg, transparent 0%, #EAB308 20%, #EAB308 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.5);
+}
+
+.card-green::before {
+    background: linear-gradient(90deg, transparent 0%, #22C55E 20%, #22C55E 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.card-red::before {
+    background: linear-gradient(90deg, transparent 0%, #EF4444 20%, #EF4444 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+.card-indigo::before {
+    background: linear-gradient(90deg, transparent 0%, #6366F1 20%, #6366F1 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.card-slate::before {
+    background: linear-gradient(90deg, transparent 0%, #64748B 20%, #64748B 80%, transparent 100%);
+    box-shadow: 0 0 20px rgba(100, 116, 139, 0.5);
+}
+
+/* Featured Cards Glow */
+.featured {
+    box-shadow: 0 0 40px rgba(0, 133, 255, 0.1);
+}
+
+/* Icon Container Glow Effect */
+.service-card .elementor-icon {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .elementor-icon {
+    transform: scale(1.1);
+}
+
+/* Icon List Items Hover Effect */
+.service-card .elementor-icon-list-item {
+    transition: all 0.3s ease;
+    padding: 4px 0;
+}
+
+.service-card .elementor-icon-list-item:hover {
+    padding-left: 8px;
+}
+
+.service-card .elementor-icon-list-item:hover .elementor-icon-list-text {
+    color: #ffffff !important;
+}
+
+/* Image Hover Effect */
+.service-card img {
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Gradient Text for Headings */
+.elementor-heading-title {
+    background: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* CTA Section Gradient Overlay */
+#cta-box {
+    background: linear-gradient(135deg, rgba(0, 133, 255, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%) !important;
+}
+
+/* Button Hover Effects */
+.elementor-button {
+    transition: all 0.3s ease !important;
+}
+
+.elementor-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 133, 255, 0.4);
+}
+
+/* Badge Styling */
+.rp-badge {
+    backdrop-filter: blur(10px);
+}
+
+/* Trust Badges Hover */
+#badge1, #badge2, #badge3 {
+    transition: all 0.3s ease;
+}
+
+#badge1:hover, #badge2:hover, #badge3:hover {
+    border-color: rgba(0, 133, 255, 0.3) !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Divider Styling */
+.elementor-divider {
+    margin: 20px 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .service-card {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    .elementor-heading-title {
+        font-size: 32px !important;
+    }
+}
+
+/* Popular Badge Animation */
+.featured .elementor-heading-title:contains("POPULAR") {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Glassmorphism Effect for Cards */
+.service-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Contact Info Cards Hover */
+#contact-1, #contact-2, #contact-3 {
+    transition: all 0.3s ease;
+}
+
+#contact-1:hover, #contact-2:hover, #contact-3:hover {
+    border-color: rgba(0, 133, 255, 0.3) !important;
+    transform: translateY(-3px);
+}
+
+/* Icon Boxes Glow */
+.service-card .elementor-icon-wrapper {
+    position: relative;
+}
+
+.service-card .elementor-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: inherit;
+    filter: blur(15px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+    background: rgba(0, 133, 255, 0.3);
+    color: #ffffff;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0085FF;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0099ff;
+}

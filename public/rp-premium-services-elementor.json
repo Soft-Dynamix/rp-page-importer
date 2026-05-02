@@ -1,0 +1,3152 @@
+{
+  "version": "0.4",
+  "title": "RP Motorcycles Premium Services",
+  "type": "page",
+  "siteurl": "https://rpmotorcycles.co.za",
+  "content": [
+    {
+      "id": "main-hero",
+      "elType": "container",
+      "settings": {
+        "background_color": "#080c14",
+        "flex_direction": "column",
+        "content_width": "boxed",
+        "boxed_width": {
+          "unit": "px",
+          "size": 1200
+        },
+        "padding": {
+          "unit": "px",
+          "top": "100",
+          "right": "30",
+          "bottom": "80",
+          "left": "30"
+        },
+        "align_items": "center"
+      },
+      "elements": [
+        {
+          "id": "badge-container",
+          "elType": "container",
+          "settings": {
+            "background_color": "rgba(0,133,255,0.15)",
+            "border_border": "solid",
+            "border_width": {
+              "unit": "px",
+              "top": "1",
+              "right": "1",
+              "bottom": "1",
+              "left": "1"
+            },
+            "border_color": "rgba(0,133,255,0.25)",
+            "border_radius": {
+              "unit": "px",
+              "top": "50",
+              "right": "50",
+              "bottom": "50",
+              "left": "50"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "14",
+              "right": "32",
+              "bottom": "14",
+              "left": "32"
+            },
+            "margin": {
+              "unit": "px",
+              "bottom": "40"
+            }
+          },
+          "elements": [
+            {
+              "id": "badge-text",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "⭐ PROFESSIONAL MOTORCYCLE SERVICES ⭐",
+                "header_size": "div",
+                "align": "center",
+                "title_color": "#0085FF",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "typography_letter_spacing": {
+                  "unit": "px",
+                  "size": 2
+                },
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 14
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "main-title",
+          "elType": "widget",
+          "widgetType": "heading",
+          "settings": {
+            "title": "Our Services",
+            "header_size": "h1",
+            "align": "center",
+            "title_color": "#ffffff",
+            "typography_typography": "custom",
+            "typography_font_weight": "900",
+            "typography_font_size": {
+              "unit": "px",
+              "size": 72
+            },
+            "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 48
+            },
+            "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 36
+            },
+            "margin": {
+              "unit": "px",
+              "bottom": "20"
+            }
+          }
+        },
+        {
+          "id": "main-description",
+          "elType": "widget",
+          "widgetType": "text-editor",
+          "settings": {
+            "editor": "From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with <strong style=\"color:#ffffff\">precision and care</strong>.",
+            "align": "center",
+            "text_color": "#d1d5db",
+            "typography_typography": "custom",
+            "typography_font_size": {
+              "unit": "px",
+              "size": 20
+            },
+            "_element_width": "initial",
+            "_element_custom_width": {
+              "unit": "px",
+              "size": 700
+            },
+            "margin": {
+              "unit": "px",
+              "bottom": "50"
+            }
+          }
+        },
+        {
+          "id": "trust-badges",
+          "elType": "container",
+          "settings": {
+            "flex_direction": "row",
+            "flex_wrap": "wrap",
+            "justify_content": "center",
+            "gap": {
+              "unit": "px",
+              "size": 24
+            }
+          },
+          "elements": [
+            {
+              "id": "badge1",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.06)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.12)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "16",
+                  "right": "16",
+                  "bottom": "16",
+                  "left": "16"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "20",
+                  "right": "28",
+                  "bottom": "20",
+                  "left": "28"
+                },
+                "flex_direction": "row",
+                "align_items": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 16
+                }
+              },
+              "elements": [
+                {
+                  "id": "badge1-icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": {
+                      "value": "fas fa-award",
+                      "library": "fa-solid"
+                    },
+                    "primary_color": "#0085FF",
+                    "size": {
+                      "unit": "px",
+                      "size": 28
+                    }
+                  }
+                },
+                {
+                  "id": "badge1-text",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Expert Technicians",
+                    "header_size": "div",
+                    "title_color": "#ffffff",
+                    "typography_typography": "custom",
+                    "typography_font_weight": "700",
+                    "typography_font_size": {
+                      "unit": "px",
+                      "size": 16
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "badge2",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.06)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.12)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "16",
+                  "right": "16",
+                  "bottom": "16",
+                  "left": "16"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "20",
+                  "right": "28",
+                  "bottom": "20",
+                  "left": "28"
+                },
+                "flex_direction": "row",
+                "align_items": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 16
+                }
+              },
+              "elements": [
+                {
+                  "id": "badge2-icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": {
+                      "value": "fas fa-shield-alt",
+                      "library": "fa-solid"
+                    },
+                    "primary_color": "#22C55E",
+                    "size": {
+                      "unit": "px",
+                      "size": 28
+                    }
+                  }
+                },
+                {
+                  "id": "badge2-text",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Quality Guaranteed",
+                    "header_size": "div",
+                    "title_color": "#ffffff",
+                    "typography_typography": "custom",
+                    "typography_font_weight": "700",
+                    "typography_font_size": {
+                      "unit": "px",
+                      "size": 16
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "badge3",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.06)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.12)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "16",
+                  "right": "16",
+                  "bottom": "16",
+                  "left": "16"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "20",
+                  "right": "28",
+                  "bottom": "20",
+                  "left": "28"
+                },
+                "flex_direction": "row",
+                "align_items": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 16
+                }
+              },
+              "elements": [
+                {
+                  "id": "badge3-icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": {
+                      "value": "fas fa-users",
+                      "library": "fa-solid"
+                    },
+                    "primary_color": "#A855F7",
+                    "size": {
+                      "unit": "px",
+                      "size": 28
+                    }
+                  }
+                },
+                {
+                  "id": "badge3-text",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "All Makes & Models",
+                    "header_size": "div",
+                    "title_color": "#ffffff",
+                    "typography_typography": "custom",
+                    "typography_font_weight": "700",
+                    "typography_font_size": {
+                      "unit": "px",
+                      "size": 16
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "services-section",
+      "elType": "container",
+      "settings": {
+        "background_color": "#080c14",
+        "flex_direction": "column",
+        "content_width": "boxed",
+        "boxed_width": {
+          "unit": "px",
+          "size": 1200
+        },
+        "padding": {
+          "unit": "px",
+          "top": "20",
+          "right": "30",
+          "bottom": "80",
+          "left": "30"
+        }
+      },
+      "elements": [
+        {
+          "id": "services-grid",
+          "elType": "container",
+          "settings": {
+            "flex_direction": "row",
+            "flex_wrap": "wrap",
+            "gap": {
+              "unit": "px",
+              "size": 28
+            }
+          },
+          "elements": [
+            {
+              "id": "service-card-1",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-blue"
+              },
+              "elements": [
+                {
+                  "id": "card1-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/0085FF/FFFFFF/png?text=Motorcycle+Repair",
+                      "alt": "Core Mechanical Services"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card1-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card1-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card1-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(0,133,255,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card1-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-wrench",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#0085FF",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card1-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card1-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "Core Mechanical Services",
+                                "header_size": "h3",
+                                "title_color": "#ffffff",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 24
+                                }
+                              }
+                            },
+                            {
+                              "id": "card1-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Essential maintenance and repairs to keep your motorcycle running smoothly",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card1-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card1-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "General repair & servicing",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Full motorcycle servicing (minor / major)",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Oil & filter changes",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Spark plug replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Air filter cleaning/replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Coolant flush & refill",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#0085FF",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-2",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-purple"
+              },
+              "elements": [
+                {
+                  "id": "card2-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/A855F7/FFFFFF/png?text=Diagnostics",
+                      "alt": "Diagnostics"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card2-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card2-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card2-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(168,85,247,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card2-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-brain",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#A855F7",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card2-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card2-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "Diagnostics & Troubleshooting",
+                                "header_size": "h3",
+                                "title_color": "#ffffff",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 24
+                                }
+                              }
+                            },
+                            {
+                              "id": "card2-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Advanced diagnostic services to identify and resolve issues",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card2-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card2-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Full diagnostic checks (manual & electronic)",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Fault finding (engine, electrical, fuel system)",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Performance issues analysis",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Pre-purchase inspections",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Roadworthy inspections",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#A855F7",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-3",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(249,115,22,0.25)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 100
+                },
+                "_css_classes": "service-card card-orange featured"
+              },
+              "elements": [
+                {
+                  "id": "card3-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/1200x300/F97316/FFFFFF/png?text=Engine+Services",
+                      "alt": "Engine Services"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card3-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card3-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card3-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(249,115,22,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card3-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-cog",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#F97316",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card3-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card3-title-row",
+                              "elType": "container",
+                              "settings": {
+                                "flex_direction": "row",
+                                "align_items": "center",
+                                "gap": {
+                                  "unit": "px",
+                                  "size": 12
+                                }
+                              },
+                              "elements": [
+                                {
+                                  "id": "card3-title",
+                                  "elType": "widget",
+                                  "widgetType": "heading",
+                                  "settings": {
+                                    "title": "Engine Services",
+                                    "header_size": "h3",
+                                    "title_color": "#ffffff",
+                                    "typography_typography": "custom",
+                                    "typography_font_weight": "700",
+                                    "typography_font_size": {
+                                      "unit": "px",
+                                      "size": 24
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "card3-badge",
+                                  "elType": "widget",
+                                  "widgetType": "heading",
+                                  "settings": {
+                                    "title": "POPULAR",
+                                    "header_size": "div",
+                                    "title_color": "#ffffff",
+                                    "typography_typography": "custom",
+                                    "typography_font_weight": "700",
+                                    "typography_font_size": {
+                                      "unit": "px",
+                                      "size": 11
+                                    },
+                                    "background_background": "classic",
+                                    "background_color": "#0085FF",
+                                    "border_radius": {
+                                      "unit": "px",
+                                      "top": "20",
+                                      "right": "20",
+                                      "bottom": "20",
+                                      "left": "20"
+                                    },
+                                    "padding": {
+                                      "unit": "px",
+                                      "top": "6",
+                                      "right": "14",
+                                      "bottom": "6",
+                                      "left": "14"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "id": "card3-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Complete engine repair, rebuild, and performance tuning",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card3-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card3-columns",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "gap": {
+                          "unit": "px",
+                          "size": 40
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card3-col1",
+                          "elType": "container",
+                          "settings": {
+                            "width": {
+                              "unit": "%",
+                              "size": 33
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card3-col1-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "REPAIRS",
+                                "header_size": "div",
+                                "title_color": "#6b7280",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_letter_spacing": {
+                                  "unit": "px",
+                                  "size": 2
+                                },
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 12
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "bottom": "16"
+                                }
+                              }
+                            },
+                            {
+                              "id": "card3-col1-list",
+                              "elType": "widget",
+                              "widgetType": "icon-list",
+                              "settings": {
+                                "icon_list": [
+                                  {
+                                    "text": "Engine fault diagnosis",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Top-end repairs",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Bottom-end repairs",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  }
+                                ],
+                                "icon_color": "#F97316",
+                                "text_color": "#e5e7eb",
+                                "icon_size": {
+                                  "unit": "px",
+                                  "size": 14
+                                },
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card3-col2",
+                          "elType": "container",
+                          "settings": {
+                            "width": {
+                              "unit": "%",
+                              "size": 33
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card3-col2-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "REBUILDS & OVERHAULS",
+                                "header_size": "div",
+                                "title_color": "#6b7280",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_letter_spacing": {
+                                  "unit": "px",
+                                  "size": 2
+                                },
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 12
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "bottom": "16"
+                                }
+                              }
+                            },
+                            {
+                              "id": "card3-col2-list",
+                              "elType": "widget",
+                              "widgetType": "icon-list",
+                              "settings": {
+                                "icon_list": [
+                                  {
+                                    "text": "Full engine rebuild",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Cylinder head reconditioning",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Valve adjustment/replacement",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Piston & ring replacement",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Crankshaft repair",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  }
+                                ],
+                                "icon_color": "#F97316",
+                                "text_color": "#e5e7eb",
+                                "icon_size": {
+                                  "unit": "px",
+                                  "size": 14
+                                },
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card3-col3",
+                          "elType": "container",
+                          "settings": {
+                            "width": {
+                              "unit": "%",
+                              "size": 33
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card3-col3-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "PERFORMANCE",
+                                "header_size": "div",
+                                "title_color": "#6b7280",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_letter_spacing": {
+                                  "unit": "px",
+                                  "size": 2
+                                },
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 12
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "bottom": "16"
+                                }
+                              }
+                            },
+                            {
+                              "id": "card3-col3-list",
+                              "elType": "widget",
+                              "widgetType": "icon-list",
+                              "settings": {
+                                "icon_list": [
+                                  {
+                                    "text": "Engine tuning",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Performance builds",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "High-performance cams",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  },
+                                  {
+                                    "text": "Carburetor tuning/jetting",
+                                    "selected_icon": {
+                                      "value": "fas fa-check",
+                                      "library": "fa-solid"
+                                    }
+                                  }
+                                ],
+                                "icon_color": "#F97316",
+                                "text_color": "#e5e7eb",
+                                "icon_size": {
+                                  "unit": "px",
+                                  "size": 14
+                                },
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-4",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-yellow"
+              },
+              "elements": [
+                {
+                  "id": "card4-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/EAB308/000000/png?text=Electrical+Services",
+                      "alt": "Electrical Services"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card4-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card4-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card4-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(234,179,8,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card4-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-bolt",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#EAB308",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card4-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card4-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "Electrical Services",
+                                "header_size": "h3",
+                                "title_color": "#ffffff",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 24
+                                }
+                              }
+                            },
+                            {
+                              "id": "card4-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Complete electrical system diagnosis and repair",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card4-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card4-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Battery testing & replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Charging system repairs",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Starter motor repairs",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Wiring repairs & rewiring",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Lighting installation & repair",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Indicator & brake light fixes",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#EAB308",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-5",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-green"
+              },
+              "elements": [
+                {
+                  "id": "card5-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/22C55E/FFFFFF/png?text=Fuel+System",
+                      "alt": "Fuel System Services"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card5-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card5-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card5-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(34,197,94,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card5-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-gas-pump",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#22C55E",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card5-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card5-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "Fuel System Services",
+                                "header_size": "h3",
+                                "title_color": "#ffffff",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 24
+                                }
+                              }
+                            },
+                            {
+                              "id": "card5-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Fuel system maintenance, cleaning, and repair",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card5-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card5-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Carburetor cleaning & rebuild",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Fuel injector cleaning",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Fuel pump repair/replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Fuel line replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Tank cleaning (rust removal)",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#22C55E",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-6",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(239,68,68,0.25)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-red featured"
+              },
+              "elements": [
+                {
+                  "id": "card6-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/EF4444/FFFFFF/png?text=Brakes+Safety",
+                      "alt": "Brakes & Safety"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card6-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card6-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card6-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(239,68,68,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card6-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-shield-alt",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#EF4444",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card6-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card6-title-row",
+                              "elType": "container",
+                              "settings": {
+                                "flex_direction": "row",
+                                "align_items": "center",
+                                "gap": {
+                                  "unit": "px",
+                                  "size": 12
+                                }
+                              },
+                              "elements": [
+                                {
+                                  "id": "card6-title",
+                                  "elType": "widget",
+                                  "widgetType": "heading",
+                                  "settings": {
+                                    "title": "Brakes & Safety",
+                                    "header_size": "h3",
+                                    "title_color": "#ffffff",
+                                    "typography_typography": "custom",
+                                    "typography_font_weight": "700",
+                                    "typography_font_size": {
+                                      "unit": "px",
+                                      "size": 24
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": "card6-badge",
+                                  "elType": "widget",
+                                  "widgetType": "heading",
+                                  "settings": {
+                                    "title": "POPULAR",
+                                    "header_size": "div",
+                                    "title_color": "#ffffff",
+                                    "typography_typography": "custom",
+                                    "typography_font_weight": "700",
+                                    "typography_font_size": {
+                                      "unit": "px",
+                                      "size": 11
+                                    },
+                                    "background_background": "classic",
+                                    "background_color": "#0085FF",
+                                    "border_radius": {
+                                      "unit": "px",
+                                      "top": "20",
+                                      "right": "20",
+                                      "bottom": "20",
+                                      "left": "20"
+                                    },
+                                    "padding": {
+                                      "unit": "px",
+                                      "top": "6",
+                                      "right": "14",
+                                      "bottom": "6",
+                                      "left": "14"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "id": "card6-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Critical brake system services for your safety",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card6-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card6-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Brake pad replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Brake disc replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Brake caliper rebuild",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Brake bleeding",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#EF4444",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-7",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-indigo"
+              },
+              "elements": [
+                {
+                  "id": "card7-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/6366F1/FFFFFF/png?text=Suspension",
+                      "alt": "Suspension & Handling"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card7-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card7-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card7-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(99,102,241,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card7-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-tachometer-alt",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#6366F1",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card7-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card7-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "Suspension & Handling",
+                                "header_size": "h3",
+                                "title_color": "#ffffff",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 24
+                                }
+                              }
+                            },
+                            {
+                              "id": "card7-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Optimize your ride quality and handling",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card7-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card7-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Fork seal replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Fork rebuilds",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Shock absorber replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Suspension tuning",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Steering head bearing replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#6366F1",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "service-card-8",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "24",
+                  "bottom": "24",
+                  "left": "24"
+                },
+                "width": {
+                  "unit": "%",
+                  "size": 48
+                },
+                "_css_classes": "service-card card-slate"
+              },
+              "elements": [
+                {
+                  "id": "card8-image",
+                  "elType": "widget",
+                  "widgetType": "image",
+                  "settings": {
+                    "image": {
+                      "url": "https://placehold.co/600x300/64748B/FFFFFF/png?text=Wheels+Tyres",
+                      "alt": "Wheels & Tyres"
+                    },
+                    "image_size": "full",
+                    "align": "center",
+                    "width": {
+                      "unit": "%",
+                      "size": 100
+                    },
+                    "_border_radius": {
+                      "unit": "px",
+                      "top": "24",
+                      "right": "24",
+                      "bottom": "0",
+                      "left": "0"
+                    }
+                  }
+                },
+                {
+                  "id": "card8-content",
+                  "elType": "container",
+                  "settings": {
+                    "padding": {
+                      "unit": "px",
+                      "top": "30",
+                      "right": "30",
+                      "bottom": "30",
+                      "left": "30"
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "card8-header",
+                      "elType": "container",
+                      "settings": {
+                        "flex_direction": "row",
+                        "align_items": "flex-start",
+                        "gap": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "margin": {
+                          "unit": "px",
+                          "bottom": "20"
+                        }
+                      },
+                      "elements": [
+                        {
+                          "id": "card8-icon-box",
+                          "elType": "container",
+                          "settings": {
+                            "background_color": "rgba(100,116,139,0.2)",
+                            "border_radius": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            },
+                            "padding": {
+                              "unit": "px",
+                              "top": "14",
+                              "right": "14",
+                              "bottom": "14",
+                              "left": "14"
+                            }
+                          },
+                          "elements": [
+                            {
+                              "id": "card8-icon",
+                              "elType": "widget",
+                              "widgetType": "icon",
+                              "settings": {
+                                "selected_icon": {
+                                  "value": "fas fa-circle",
+                                  "library": "fa-solid"
+                                },
+                                "primary_color": "#64748B",
+                                "size": {
+                                  "unit": "px",
+                                  "size": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "card8-title-container",
+                          "elType": "container",
+                          "settings": {
+                            "flex_direction": "column"
+                          },
+                          "elements": [
+                            {
+                              "id": "card8-title",
+                              "elType": "widget",
+                              "widgetType": "heading",
+                              "settings": {
+                                "title": "Wheels & Tyres",
+                                "header_size": "h3",
+                                "title_color": "#ffffff",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 24
+                                }
+                              }
+                            },
+                            {
+                              "id": "card8-desc",
+                              "elType": "widget",
+                              "widgetType": "text-editor",
+                              "settings": {
+                                "editor": "Complete wheel and tyre services",
+                                "text_color": "#9ca3af",
+                                "typography_typography": "custom",
+                                "typography_font_size": {
+                                  "unit": "px",
+                                  "size": 16
+                                },
+                                "margin": {
+                                  "unit": "px",
+                                  "top": "8"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "card8-divider",
+                      "elType": "widget",
+                      "widgetType": "divider",
+                      "settings": {
+                        "style": "solid",
+                        "color": "rgba(255,255,255,0.1)",
+                        "weight": {
+                          "unit": "px",
+                          "size": 1
+                        },
+                        "gap": {
+                          "unit": "px",
+                          "size": 25
+                        }
+                      }
+                    },
+                    {
+                      "id": "card8-services",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Tyre fitting & replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Tube replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Wheel balancing",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Spoke tightening & alignment",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          },
+                          {
+                            "text": "Bearing replacement",
+                            "selected_icon": {
+                              "value": "fas fa-check",
+                              "library": "fa-solid"
+                            }
+                          }
+                        ],
+                        "icon_color": "#64748B",
+                        "text_color": "#e5e7eb",
+                        "icon_size": {
+                          "unit": "px",
+                          "size": 14
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta-section",
+      "elType": "container",
+      "settings": {
+        "background_color": "#080c14",
+        "flex_direction": "column",
+        "content_width": "boxed",
+        "boxed_width": {
+          "unit": "px",
+          "size": 1200
+        },
+        "padding": {
+          "unit": "px",
+          "top": "20",
+          "right": "30",
+          "bottom": "80",
+          "left": "30"
+        }
+      },
+      "elements": [
+        {
+          "id": "cta-box",
+          "elType": "container",
+          "settings": {
+            "background_background": "classic",
+            "background_color": "rgba(0,133,255,0.1)",
+            "border_border": "solid",
+            "border_width": {
+              "unit": "px",
+              "top": "1",
+              "right": "1",
+              "bottom": "1",
+              "left": "1"
+            },
+            "border_color": "rgba(0,133,255,0.2)",
+            "border_radius": {
+              "unit": "px",
+              "top": "24",
+              "right": "24",
+              "bottom": "24",
+              "left": "24"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "60",
+              "right": "60",
+              "bottom": "60",
+              "left": "60"
+            },
+            "flex_direction": "column",
+            "align_items": "center"
+          },
+          "elements": [
+            {
+              "id": "cta-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Ready to Get Started?",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#ffffff",
+                "typography_typography": "custom",
+                "typography_font_weight": "800",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 48
+                },
+                "typography_font_size_tablet": {
+                  "unit": "px",
+                  "size": 36
+                },
+                "typography_font_size_mobile": {
+                  "unit": "px",
+                  "size": 28
+                },
+                "margin": {
+                  "unit": "px",
+                  "bottom": "16"
+                }
+              }
+            },
+            {
+              "id": "cta-description",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Contact us for a <strong style=\"color:#ffffff\">free quote</strong>. Professional pickup & delivery service available.",
+                "align": "center",
+                "text_color": "#d1d5db",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 20
+                },
+                "margin": {
+                  "unit": "px",
+                  "bottom": "32"
+                }
+              }
+            },
+            {
+              "id": "cta-buttons",
+              "elType": "container",
+              "settings": {
+                "flex_direction": "row",
+                "justify_content": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 20
+                }
+              },
+              "elements": [
+                {
+                  "id": "cta-btn-primary",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "settings": {
+                    "text": "Get a Quote",
+                    "align": "center",
+                    "button_type": "info",
+                    "background_background": "classic",
+                    "button_background_color": "#0085FF",
+                    "button_text_color": "#ffffff",
+                    "typography_typography": "custom",
+                    "typography_font_weight": "700",
+                    "typography_font_size": {
+                      "unit": "px",
+                      "size": 18
+                    },
+                    "border_radius": {
+                      "unit": "px",
+                      "top": "16",
+                      "right": "16",
+                      "bottom": "16",
+                      "left": "16"
+                    },
+                    "button_padding": {
+                      "unit": "px",
+                      "top": "20",
+                      "right": "40",
+                      "bottom": "20",
+                      "left": "40"
+                    },
+                    "selected_icon": {
+                      "value": "fas fa-phone",
+                      "library": "fa-solid"
+                    },
+                    "icon_align": "left"
+                  }
+                },
+                {
+                  "id": "cta-btn-secondary",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "settings": {
+                    "text": "Contact Us",
+                    "align": "center",
+                    "background_background": "classic",
+                    "button_background_color": "rgba(255,255,255,0.05)",
+                    "button_text_color": "#ffffff",
+                    "border_border": "solid",
+                    "border_width": {
+                      "unit": "px",
+                      "top": "1",
+                      "right": "1",
+                      "bottom": "1",
+                      "left": "1"
+                    },
+                    "border_color": "rgba(255,255,255,0.2)",
+                    "typography_typography": "custom",
+                    "typography_font_weight": "600",
+                    "typography_font_size": {
+                      "unit": "px",
+                      "size": 18
+                    },
+                    "border_radius": {
+                      "unit": "px",
+                      "top": "16",
+                      "right": "16",
+                      "bottom": "16",
+                      "left": "16"
+                    },
+                    "button_padding": {
+                      "unit": "px",
+                      "top": "20",
+                      "right": "40",
+                      "bottom": "20",
+                      "left": "40"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "contact-info",
+          "elType": "container",
+          "settings": {
+            "flex_direction": "row",
+            "flex_wrap": "wrap",
+            "justify_content": "center",
+            "gap": {
+              "unit": "px",
+              "size": 24
+            },
+            "margin": {
+              "unit": "px",
+              "top": "40"
+            }
+          },
+          "elements": [
+            {
+              "id": "contact-1",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "16",
+                  "right": "16",
+                  "bottom": "16",
+                  "left": "16"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "28",
+                  "bottom": "24",
+                  "left": "28"
+                },
+                "flex_direction": "row",
+                "align_items": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 16
+                }
+              },
+              "elements": [
+                {
+                  "id": "contact-1-icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": {
+                      "value": "fas fa-phone",
+                      "library": "fa-solid"
+                    },
+                    "primary_color": "#0085FF",
+                    "size": {
+                      "unit": "px",
+                      "size": 28
+                    }
+                  }
+                },
+                {
+                  "id": "contact-1-text",
+                  "elType": "container",
+                  "settings": {
+                    "flex_direction": "column"
+                  },
+                  "elements": [
+                    {
+                      "id": "contact-1-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Call Us",
+                        "header_size": "div",
+                        "title_color": "#ffffff",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 18
+                        }
+                      }
+                    },
+                    {
+                      "id": "contact-1-sub",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Contact us for bookings",
+                        "text_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 14
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "contact-2",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "16",
+                  "right": "16",
+                  "bottom": "16",
+                  "left": "16"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "28",
+                  "bottom": "24",
+                  "left": "28"
+                },
+                "flex_direction": "row",
+                "align_items": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 16
+                }
+              },
+              "elements": [
+                {
+                  "id": "contact-2-icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": {
+                      "value": "fas fa-clock",
+                      "library": "fa-solid"
+                    },
+                    "primary_color": "#0085FF",
+                    "size": {
+                      "unit": "px",
+                      "size": 28
+                    }
+                  }
+                },
+                {
+                  "id": "contact-2-text",
+                  "elType": "container",
+                  "settings": {
+                    "flex_direction": "column"
+                  },
+                  "elements": [
+                    {
+                      "id": "contact-2-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Working Hours",
+                        "header_size": "div",
+                        "title_color": "#ffffff",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 18
+                        }
+                      }
+                    },
+                    {
+                      "id": "contact-2-sub",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Mon - Sat: 8:00 AM - 5:00 PM",
+                        "text_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 14
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "contact-3",
+              "elType": "container",
+              "settings": {
+                "background_color": "rgba(255,255,255,0.04)",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "1",
+                  "right": "1",
+                  "bottom": "1",
+                  "left": "1"
+                },
+                "border_color": "rgba(255,255,255,0.08)",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "16",
+                  "right": "16",
+                  "bottom": "16",
+                  "left": "16"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "24",
+                  "right": "28",
+                  "bottom": "24",
+                  "left": "28"
+                },
+                "flex_direction": "row",
+                "align_items": "center",
+                "gap": {
+                  "unit": "px",
+                  "size": 16
+                }
+              },
+              "elements": [
+                {
+                  "id": "contact-3-icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": {
+                      "value": "fas fa-map-marker-alt",
+                      "library": "fa-solid"
+                    },
+                    "primary_color": "#0085FF",
+                    "size": {
+                      "unit": "px",
+                      "size": 28
+                    }
+                  }
+                },
+                {
+                  "id": "contact-3-text",
+                  "elType": "container",
+                  "settings": {
+                    "flex_direction": "column"
+                  },
+                  "elements": [
+                    {
+                      "id": "contact-3-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Location",
+                        "header_size": "div",
+                        "title_color": "#ffffff",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 18
+                        }
+                      }
+                    },
+                    {
+                      "id": "contact-3-sub",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "South Africa",
+                        "text_color": "#9ca3af",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 14
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "background_color": "#080c14",
+    "padding": {
+      "unit": "px",
+      "top": "0",
+      "right": "0",
+      "bottom": "0",
+      "left": "0"
+    }
+  }
+}
