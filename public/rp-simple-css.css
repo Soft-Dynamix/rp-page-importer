@@ -1,0 +1,93 @@
+/* RP Motorcycles - Simple CSS for Elementor Free */
+/* Paste in Appearance → Customize → Additional CSS */
+
+/* Page Background */
+body.elementor-page {
+    background-color: #080c14 !important;
+}
+
+/* Card Hover Effects */
+.elementor-widget-image-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.elementor-widget-image-box:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 50px rgba(0,133,255,0.2) !important;
+}
+
+/* Image Zoom on Hover */
+.elementor-image-box-img img {
+    transition: transform 0.5s ease !important;
+}
+
+.elementor-widget-image-box:hover .elementor-image-box-img img {
+    transform: scale(1.05) !important;
+}
+
+/* Title Styling */
+.elementor-image-box-title {
+    color: #ffffff !important;
+}
+
+/* Description Styling */
+.elementor-image-box-description {
+    color: #b0b0b0 !important;
+}
+
+/* Icon Box Hover */
+.elementor-widget-icon-box {
+    transition: all 0.3s ease !important;
+}
+
+.elementor-widget-icon-box:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 40px rgba(0,133,255,0.15) !important;
+}
+
+/* Button Hover */
+.elementor-button {
+    transition: all 0.3s ease !important;
+}
+
+.elementor-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 30px rgba(0,133,255,0.4) !important;
+}
+
+/* Heading Hover Effect */
+.elementor-widget-heading h1,
+.elementor-widget-heading h2,
+.elementor-widget-heading h3 {
+    transition: all 0.3s ease !important;
+}
+
+/* Divider Styling */
+.elementor-divider-separator {
+    background: linear-gradient(90deg, transparent, rgba(0,133,255,0.5), transparent) !important;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0085FF;
+    border-radius: 4px;
+}
+
+/* Selection Color */
+::selection {
+    background: rgba(0,133,255,0.3);
+    color: #ffffff;
+}
