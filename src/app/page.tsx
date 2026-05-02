@@ -18,13 +18,13 @@ import {
   Phone,
   Clock,
   MapPin,
-  ChevronRight,
   Shield,
   Award,
   Users,
   Sparkles,
   ArrowRight,
-  Star
+  Star,
+  Puzzle
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -36,7 +36,6 @@ const serviceCategories = [
     description: 'Essential maintenance and repairs to keep your motorcycle running smoothly',
     icon: Wrench,
     color: '#0085FF',
-    bgColor: '#0085FF',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -57,7 +56,6 @@ const serviceCategories = [
     description: 'Advanced diagnostic services to identify and resolve issues',
     icon: Brain,
     color: '#A855F7',
-    bgColor: '#A855F7',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
@@ -75,7 +73,7 @@ const serviceCategories = [
     highlight: true,
     subsections: [
       { title: 'Repairs', items: ['Engine fault diagnosis', 'Top-end repairs', 'Bottom-end repairs'] },
-      { title: 'Rebuilds & Overhauls', items: ['Full engine rebuild', 'Engine overhaul', 'Cylinder head reconditioning', 'Valve adjustment/replacement', 'Piston & ring replacement', 'Crankshaft repair/replacement', 'Bearing replacement', 'Gasket & seal replacement', 'Compression restoration'] },
+      { title: 'Rebuilds & Overhauls', items: ['Full engine rebuild', 'Engine overhaul (complete strip & rebuild)', 'Cylinder head reconditioning', 'Valve adjustment / valve replacement', 'Piston & ring replacement', 'Crankshaft repair/replacement', 'Bearing replacement', 'Gasket & seal replacement', 'Compression restoration'] },
       { title: 'Performance', items: ['Engine tuning', 'Performance builds', 'High-performance cams', 'Carburetor tuning / jetting'] }
     ]
   },
@@ -85,7 +83,6 @@ const serviceCategories = [
     description: 'Complete electrical system diagnosis and repair',
     icon: Zap,
     color: '#EAB308',
-    bgColor: '#EAB308',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
@@ -101,7 +98,6 @@ const serviceCategories = [
     description: 'Fuel system maintenance, cleaning, and repair',
     icon: Fuel,
     color: '#22C55E',
-    bgColor: '#22C55E',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
@@ -130,7 +126,6 @@ const serviceCategories = [
     description: 'Optimize your ride quality and handling',
     icon: Gauge,
     color: '#6366F1',
-    bgColor: '#6366F1',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -145,7 +140,6 @@ const serviceCategories = [
     description: 'Complete wheel and tyre services',
     icon: CircleDot,
     color: '#64748B',
-    bgColor: '#64748B',
     services: [
       'Tyre fitting & replacement',
       'Tube replacement',
@@ -160,7 +154,6 @@ const serviceCategories = [
     description: 'Keep your power transfer smooth and reliable',
     icon: Settings,
     color: '#10B981',
-    bgColor: '#10B981',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
@@ -174,7 +167,6 @@ const serviceCategories = [
     description: 'Custom exhaust solutions and performance upgrades',
     icon: Rocket,
     color: '#F59E0B',
-    bgColor: '#F59E0B',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -186,7 +178,6 @@ const serviceCategories = [
     description: 'Transform your motorcycle with custom modifications',
     icon: Paintbrush,
     color: '#EC4899',
-    bgColor: '#EC4899',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
@@ -199,7 +190,6 @@ const serviceCategories = [
     description: 'Unlock your motorcycles full potential',
     icon: Sparkles,
     color: '#06B6D4',
-    bgColor: '#06B6D4',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -211,7 +201,6 @@ const serviceCategories = [
     description: 'Bring classic motorcycles back to life',
     icon: RotateCcw,
     color: '#D97706',
-    bgColor: '#D97706',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
@@ -225,7 +214,6 @@ const serviceCategories = [
     description: 'Comprehensive workshop services for all needs',
     icon: Package,
     color: '#14B8A6',
-    bgColor: '#14B8A6',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -237,11 +225,24 @@ const serviceCategories = [
   {
     id: 'accessories',
     title: 'Accessories & Add-Ons',
-    description: 'Enhance your motorcycle with quality accessories',
-    icon: Package,
+    description: 'Enhance your motorcycle with quality accessories and upgrades',
+    icon: Puzzle,
     color: '#8B5CF6',
-    bgColor: '#8B5CF6',
-    services: ['Crash bars installation']
+    highlight: true,
+    services: [
+      'Crash bars & engine guards installation',
+      'Panniers & top box fitting',
+      'Windshield & screen installation',
+      'Handlebar grips & bar-end mirrors',
+      'LED light kits & auxiliary lighting',
+      'Phone mounts & GPS holders',
+      'Tank pads & protectors',
+      'Handguards & lever guards',
+      'Seat upgrades & gel pads',
+      'Exhaust heat shields',
+      'Radiator guards & protection',
+      'Frame sliders & sliders'
+    ]
   },
   {
     id: 'business',
@@ -265,29 +266,24 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-[#0B1120]">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0085FF]/5 via-transparent to-transparent" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#0085FF]/10 rounded-full blur-3xl opacity-30" />
         
         <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-20">
           <div className="text-center max-w-3xl mx-auto">
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-[#0085FF]/10 border border-[#0085FF]/20 rounded-full px-4 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 bg-[#0085FF] rounded-full animate-pulse" />
               <span className="text-[#0085FF] text-sm font-medium tracking-wide">Professional Motorcycle Services</span>
             </div>
             
-            {/* Title */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Our Services
             </h1>
             
-            {/* Description */}
             <p className="text-lg text-slate-400 leading-relaxed mb-12 max-w-2xl mx-auto">
               From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with precision and care.
             </p>
             
-            {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-4 md:gap-8">
               {[
                 { icon: Award, label: 'Expert Technicians' },
@@ -307,20 +303,18 @@ export default function ServicesPage() {
       {/* Services Section */}
       <section className="relative pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-6">
-          {/* Services Grid */}
-          <div className="grid gap-4 md:gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {serviceCategories.map((category, index) => {
+          <div className="grid gap-6 md:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-2">
+            {serviceCategories.map((category) => {
               const Icon = category.icon
               
               return (
                 <div 
                   key={category.id} 
-                  className={`group relative bg-gradient-to-b from-white/[0.07] to-white/[0.02] rounded-2xl border border-white/10 overflow-hidden transition-all duration-300 hover:border-white/20 hover:bg-gradient-to-b hover:from-white/[0.1] hover:to-white/[0.03] ${category.highlight ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+                  className={`group relative bg-gradient-to-b from-white/[0.06] to-white/[0.02] rounded-2xl border border-white/10 overflow-hidden transition-all duration-300 hover:border-white/20 hover:from-white/[0.08] hover:to-white/[0.03] ${category.highlight ? 'ring-1 ring-[#0085FF]/20' : ''}`}
                 >
-                  {/* Gradient Top Border */}
                   <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                   
-                  <div className="p-6">
+                  <div className="p-6 md:p-7">
                     {/* Header */}
                     <div className="flex items-start gap-4 mb-5">
                       <div 
@@ -330,7 +324,7 @@ export default function ServicesPage() {
                         <Icon className="w-6 h-6" style={{ color: category.color }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1.5">
+                        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                           <h3 className="text-lg font-semibold text-white tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             {category.title}
                           </h3>
@@ -341,51 +335,41 @@ export default function ServicesPage() {
                             </span>
                           )}
                         </div>
-                        <p className="text-slate-500 text-sm leading-relaxed line-clamp-2">
+                        <p className="text-slate-500 text-sm leading-relaxed">
                           {category.description}
                         </p>
                       </div>
                     </div>
                     
-                    {/* Services List */}
-                    <div className="space-y-1.5">
+                    {/* Services List - Show ALL services */}
+                    <div className="border-t border-white/5 pt-4">
                       {category.subsections ? (
-                        <div className="space-y-3">
+                        <div className="grid gap-4 sm:grid-cols-3">
                           {category.subsections.map((subsection, idx) => (
                             <div key={idx}>
-                              <h4 className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+                              <h4 className="text-xs font-semibold text-[#0085FF] uppercase tracking-wider mb-2">
                                 {subsection.title}
                               </h4>
-                              <ul className="space-y-1">
-                                {subsection.items.slice(0, 2).map((service, i) => (
-                                  <li key={i} className="flex items-center gap-2 text-slate-300 text-sm">
-                                    <CheckCircle className="w-3.5 h-3.5 text-[#0085FF]/70 flex-shrink-0" />
-                                    <span className="truncate">{service}</span>
+                              <ul className="space-y-1.5">
+                                {subsection.items.map((service, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-slate-300 text-sm">
+                                    <CheckCircle className="w-3.5 h-3.5 text-[#0085FF]/70 flex-shrink-0 mt-0.5" />
+                                    <span>{service}</span>
                                   </li>
                                 ))}
-                                {subsection.items.length > 2 && (
-                                  <li className="text-slate-500 text-xs pl-5">
-                                    +{subsection.items.length - 2} more
-                                  </li>
-                                )}
                               </ul>
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <>
-                          {category.services?.slice(0, 4).map((service, i) => (
-                            <div key={i} className="flex items-center gap-2.5 text-slate-300 text-sm">
-                              <CheckCircle className="w-3.5 h-3.5 text-[#0085FF]/70 flex-shrink-0" />
+                        <ul className={`grid gap-1.5 ${category.services && category.services.length > 5 ? 'sm:grid-cols-2' : ''}`}>
+                          {category.services?.map((service, i) => (
+                            <li key={i} className="flex items-start gap-2 text-slate-300 text-sm">
+                              <CheckCircle className="w-3.5 h-3.5 text-[#0085FF]/70 flex-shrink-0 mt-0.5" />
                               <span>{service}</span>
-                            </div>
+                            </li>
                           ))}
-                          {category.services && category.services.length > 4 && (
-                            <div className="text-slate-500 text-xs pl-6 pt-1">
-                              +{category.services.length - 4} more services
-                            </div>
-                          )}
-                        </>
+                        </ul>
                       )}
                     </div>
                   </div>
@@ -400,7 +384,6 @@ export default function ServicesPage() {
       <section className="relative pb-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0085FF]/20 via-[#0085FF]/10 to-transparent border border-[#0085FF]/20">
-            {/* Background Pattern */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiMwMDg1RkYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-30" />
             
             <div className="relative px-8 py-12 md:px-16 md:py-16">
@@ -443,8 +426,8 @@ export default function ServicesPage() {
               { icon: Clock, title: 'Working Hours', value: 'Mon - Sat: 8:00 AM - 5:00 PM' },
               { icon: MapPin, title: 'Location', value: 'South Africa' }
             ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="w-10 h-10 rounded-lg bg-[#0085FF]/10 flex items-center justify-center flex-shrink-0">
+              <div key={idx} className="flex items-center gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors">
+                <div className="w-11 h-11 rounded-xl bg-[#0085FF]/10 flex items-center justify-center flex-shrink-0">
                   <item.icon className="w-5 h-5 text-[#0085FF]" />
                 </div>
                 <div>
