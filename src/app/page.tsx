@@ -24,11 +24,11 @@ import {
   ArrowRight,
   Puzzle,
   Check,
-  Star,
-  ChevronRight
+  Star
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 const serviceCategories = [
   {
@@ -37,6 +37,7 @@ const serviceCategories = [
     description: 'Essential maintenance and repairs to keep your motorcycle running smoothly',
     icon: Wrench,
     color: '#0085FF',
+    image: 'https://placehold.co/800x400/0085FF/FFFFFF/png?text=Motorcycle+Repair',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -57,6 +58,7 @@ const serviceCategories = [
     description: 'Advanced diagnostic services to identify and resolve issues',
     icon: Brain,
     color: '#A855F7',
+    image: 'https://placehold.co/800x400/A855F7/FFFFFF/png?text=Diagnostics',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
@@ -71,6 +73,7 @@ const serviceCategories = [
     description: 'Complete engine repair, rebuild, and performance tuning',
     icon: Cog,
     color: '#F97316',
+    image: 'https://placehold.co/800x400/F97316/FFFFFF/png?text=Engine+Services',
     highlight: true,
     subsections: [
       { title: 'Repairs', items: ['Engine fault diagnosis', 'Top-end repairs', 'Bottom-end repairs'] },
@@ -84,6 +87,7 @@ const serviceCategories = [
     description: 'Complete electrical system diagnosis and repair',
     icon: Zap,
     color: '#EAB308',
+    image: 'https://placehold.co/800x400/EAB308/000000/png?text=Electrical+Services',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
@@ -99,6 +103,7 @@ const serviceCategories = [
     description: 'Fuel system maintenance, cleaning, and repair',
     icon: Fuel,
     color: '#22C55E',
+    image: 'https://placehold.co/800x400/22C55E/FFFFFF/png?text=Fuel+System',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
@@ -113,6 +118,7 @@ const serviceCategories = [
     description: 'Critical brake system services for your safety',
     icon: Shield,
     color: '#EF4444',
+    image: 'https://placehold.co/800x400/EF4444/FFFFFF/png?text=Brakes+Safety',
     highlight: true,
     services: [
       'Brake pad replacement',
@@ -127,6 +133,7 @@ const serviceCategories = [
     description: 'Optimize your ride quality and handling',
     icon: Gauge,
     color: '#6366F1',
+    image: 'https://placehold.co/800x400/6366F1/FFFFFF/png?text=Suspension',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -141,6 +148,7 @@ const serviceCategories = [
     description: 'Complete wheel and tyre services',
     icon: CircleDot,
     color: '#64748B',
+    image: 'https://placehold.co/800x400/64748B/FFFFFF/png?text=Wheels+Tyres',
     services: [
       'Tyre fitting & replacement',
       'Tube replacement',
@@ -155,6 +163,7 @@ const serviceCategories = [
     description: 'Keep your power transfer smooth and reliable',
     icon: Settings,
     color: '#10B981',
+    image: 'https://placehold.co/800x400/10B981/FFFFFF/png?text=Transmission',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
@@ -168,6 +177,7 @@ const serviceCategories = [
     description: 'Custom exhaust solutions and performance upgrades',
     icon: Rocket,
     color: '#F59E0B',
+    image: 'https://placehold.co/800x400/F59E0B/000000/png?text=Exhaust',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -179,6 +189,7 @@ const serviceCategories = [
     description: 'Transform your motorcycle with custom modifications',
     icon: Paintbrush,
     color: '#EC4899',
+    image: 'https://placehold.co/800x400/EC4899/FFFFFF/png?text=Custom+Builds',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
@@ -191,6 +202,7 @@ const serviceCategories = [
     description: 'Unlock your motorcycles full potential',
     icon: Sparkles,
     color: '#06B6D4',
+    image: 'https://placehold.co/800x400/06B6D4/FFFFFF/png?text=Performance',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -202,6 +214,7 @@ const serviceCategories = [
     description: 'Bring classic motorcycles back to life',
     icon: RotateCcw,
     color: '#D97706',
+    image: 'https://placehold.co/800x400/D97706/FFFFFF/png?text=Restoration',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
@@ -215,6 +228,7 @@ const serviceCategories = [
     description: 'Comprehensive workshop services for all needs',
     icon: Package,
     color: '#14B8A6',
+    image: 'https://placehold.co/800x400/14B8A6/FFFFFF/png?text=Workshop',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -229,6 +243,7 @@ const serviceCategories = [
     description: 'Enhance your motorcycle with quality accessories and upgrades',
     icon: Puzzle,
     color: '#8B5CF6',
+    image: 'https://placehold.co/800x400/8B5CF6/FFFFFF/png?text=Accessories',
     highlight: true,
     services: [
       'Crash bars & engine guards installation',
@@ -251,6 +266,7 @@ const serviceCategories = [
     description: 'Convenient services designed for busy riders',
     icon: Briefcase,
     color: '#0EA5E9',
+    image: 'https://placehold.co/800x400/0EA5E9/FFFFFF/png?text=Business+Services',
     highlight: true,
     services: [
       'Pickup & delivery service',
@@ -381,7 +397,7 @@ export default function ServicesPage() {
                     ${category.highlight ? 'border-[#0085FF]/25 shadow-[0_0_40px_rgba(0,133,255,0.08)]' : ''}
                   `}>
                     {/* Premium Color Accent Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-[4px] overflow-hidden">
+                    <div className="absolute top-0 left-0 right-0 h-[4px] overflow-hidden z-20">
                       <div 
                         className="absolute inset-0"
                         style={{ 
@@ -391,9 +407,27 @@ export default function ServicesPage() {
                       />
                     </div>
                     
+                    {/* Service Image */}
+                    <div className="relative h-48 md:h-56 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#080c14] via-[#080c14]/60 to-transparent z-10" />
+                      <Image
+                        src={category.image}
+                        alt={category.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      {/* Fallback gradient if image doesn't load */}
+                      <div 
+                        className="absolute inset-0 opacity-50"
+                        style={{
+                          background: `linear-gradient(135deg, ${category.color}20, transparent)`
+                        }}
+                      />
+                    </div>
+                    
                     {/* Corner accent */}
                     <div 
-                      className="absolute top-0 right-0 w-32 h-32 opacity-20"
+                      className="absolute top-48 right-0 w-32 h-32 opacity-20"
                       style={{
                         background: `radial-gradient(circle at top right, ${category.color}20, transparent 70%)`
                       }}
@@ -409,7 +443,7 @@ export default function ServicesPage() {
 
                     <div className="relative p-8 md:p-10">
                       {/* Header */}
-                      <div className="flex items-start gap-6 mb-8">
+                      <div className="flex items-start gap-6 mb-8 -mt-16 relative z-10">
                         {/* Premium Icon Container */}
                         <div className="relative flex-shrink-0">
                           <div 
@@ -417,7 +451,7 @@ export default function ServicesPage() {
                             style={{ backgroundColor: `${category.color}40` }}
                           />
                           <div 
-                            className="relative w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden"
+                            className="relative w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-[#080c14]"
                             style={{ 
                               background: `linear-gradient(135deg, ${category.color}25, ${category.color}08)`,
                               boxShadow: `inset 0 1px 0 ${category.color}20, 0 8px 32px ${category.color}20`
@@ -433,7 +467,7 @@ export default function ServicesPage() {
                           </div>
                         </div>
                         
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 pt-1">
                           <div className="flex items-center gap-4 flex-wrap">
                             <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
                               {category.title}
