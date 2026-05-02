@@ -33,7 +33,7 @@ const serviceCategories = [
     id: 'core-mechanical',
     title: 'Core Mechanical Services',
     icon: Wrench,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&h=400&fit=crop',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -52,7 +52,7 @@ const serviceCategories = [
     id: 'diagnostics',
     title: 'Diagnostics & Troubleshooting',
     icon: Brain,
-    image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
@@ -105,7 +105,7 @@ const serviceCategories = [
     id: 'electrical',
     title: 'Electrical Services',
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
@@ -119,7 +119,7 @@ const serviceCategories = [
     id: 'fuel-system',
     title: 'Fuel System Services',
     icon: Fuel,
-    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
@@ -132,7 +132,7 @@ const serviceCategories = [
     id: 'brakes',
     title: 'Brakes & Safety',
     icon: CircleStop,
-    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop',
     services: [
       'Brake pad replacement',
       'Brake disc replacement',
@@ -144,7 +144,7 @@ const serviceCategories = [
     id: 'suspension',
     title: 'Suspension & Handling',
     icon: Gauge,
-    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -170,7 +170,7 @@ const serviceCategories = [
     id: 'transmission',
     title: 'Transmission & Drivetrain',
     icon: Settings,
-    image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&h=400&fit=crop',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
@@ -182,7 +182,7 @@ const serviceCategories = [
     id: 'exhaust',
     title: 'Exhaust & Performance',
     icon: Rocket,
-    image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -192,7 +192,7 @@ const serviceCategories = [
     id: 'custom',
     title: 'Custom Builds & Modifications',
     icon: Paintbrush,
-    image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
@@ -203,7 +203,7 @@ const serviceCategories = [
     id: 'performance',
     title: 'Performance Upgrades',
     icon: Rocket,
-    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -213,7 +213,7 @@ const serviceCategories = [
     id: 'restoration',
     title: 'Restoration Services',
     icon: RotateCcw,
-    image: 'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=400&fit=crop',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
@@ -225,7 +225,7 @@ const serviceCategories = [
     id: 'workshop',
     title: 'General Workshop Services',
     icon: Package,
-    image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -238,7 +238,7 @@ const serviceCategories = [
     id: 'accessories',
     title: 'Accessories & Add-Ons',
     icon: Package,
-    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
     services: [
       'Crash bars installation'
     ]
@@ -247,7 +247,7 @@ const serviceCategories = [
     id: 'business',
     title: 'Business Services',
     icon: Briefcase,
-    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
     highlight: true,
     services: [
       'Pickup & delivery service',
@@ -311,6 +311,10 @@ export default function ServicesPage() {
                         src={category.image}
                         alt={category.title}
                         className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = `https://placehold.co/600x400/212A37/0085FF?text=${encodeURIComponent(category.title)}`;
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/60 to-transparent"></div>
                     </div>
