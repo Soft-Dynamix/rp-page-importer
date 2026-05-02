@@ -1,0 +1,343 @@
+/* ============================================
+   RP MOTORCYCLES - PREMIUM SERVICES CSS
+   Add to: Appearance → Customize → Additional CSS
+   ============================================ */
+
+/* ============================================
+   PAGE BACKGROUND - Dark Theme
+   ============================================ */
+body.elementor-page,
+body.page-template-default,
+body.single-page {
+    background-color: #080c14 !important;
+}
+
+.elementor-section,
+.elementor-column-wrap {
+    background-color: transparent !important;
+}
+
+/* ============================================
+   SERVICE CARDS - Premium Styling
+   ============================================ */
+
+/* Card container */
+.elementor-widget-image-box {
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+    overflow: hidden;
+}
+
+/* Card hover */
+.elementor-widget-image-box:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 25px 60px rgba(0,133,255,0.15) !important;
+}
+
+/* Image zoom on hover */
+.elementor-image-box-img {
+    overflow: hidden;
+}
+
+.elementor-image-box-img img {
+    transition: transform 0.6s ease !important;
+}
+
+.elementor-widget-image-box:hover .elementor-image-box-img img {
+    transform: scale(1.08) !important;
+}
+
+/* Title styling */
+.elementor-image-box-title {
+    color: #ffffff !important;
+    margin-bottom: 12px !important;
+}
+
+/* Description styling */
+.elementor-image-box-description {
+    color: #b8b8b8 !important;
+    line-height: 1.8 !important;
+}
+
+/* Checkmark styling */
+.elementor-image-box-description {
+    font-size: 15px !important;
+}
+
+/* ============================================
+   COLOR ACCENT BARS - Each Card Color
+   ============================================ */
+
+/* Blue - Core Mechanical */
+.card-blue,
+.card-blue .elementor-widget-container {
+    border-top-color: #0085FF !important;
+}
+.card-blue:hover {
+    box-shadow: 0 25px 60px rgba(0,133,255,0.2) !important;
+}
+
+/* Purple - Diagnostics */
+.card-purple,
+.card-purple .elementor-widget-container {
+    border-top-color: #A855F7 !important;
+}
+.card-purple:hover {
+    box-shadow: 0 25px 60px rgba(168,85,247,0.2) !important;
+}
+
+/* Orange - Engine */
+.card-orange,
+.card-orange .elementor-widget-container {
+    border-top-color: #F97316 !important;
+}
+.card-orange:hover {
+    box-shadow: 0 25px 60px rgba(249,115,22,0.2) !important;
+}
+
+/* Yellow - Electrical */
+.card-yellow,
+.card-yellow .elementor-widget-container {
+    border-top-color: #EAB308 !important;
+}
+.card-yellow:hover {
+    box-shadow: 0 25px 60px rgba(234,179,8,0.2) !important;
+}
+
+/* Green - Fuel */
+.card-green,
+.card-green .elementor-widget-container {
+    border-top-color: #22C55E !important;
+}
+.card-green:hover {
+    box-shadow: 0 25px 60px rgba(34,197,94,0.2) !important;
+}
+
+/* Red - Brakes */
+.card-red,
+.card-red .elementor-widget-container {
+    border-top-color: #EF4444 !important;
+}
+.card-red:hover {
+    box-shadow: 0 25px 60px rgba(239,68,68,0.2) !important;
+}
+
+/* Indigo - Suspension */
+.card-indigo,
+.card-indigo .elementor-widget-container {
+    border-top-color: #6366F1 !important;
+}
+.card-indigo:hover {
+    box-shadow: 0 25px 60px rgba(99,102,241,0.2) !important;
+}
+
+/* Slate - Wheels */
+.card-slate,
+.card-slate .elementor-widget-container {
+    border-top-color: #64748B !important;
+}
+.card-slate:hover {
+    box-shadow: 0 25px 60px rgba(100,116,139,0.2) !important;
+}
+
+/* Emerald - Transmission */
+.card-emerald,
+.card-emerald .elementor-widget-container {
+    border-top-color: #10B981 !important;
+}
+.card-emerald:hover {
+    box-shadow: 0 25px 60px rgba(16,185,129,0.2) !important;
+}
+
+/* Amber - Exhaust */
+.card-amber,
+.card-amber .elementor-widget-container {
+    border-top-color: #F59E0B !important;
+}
+.card-amber:hover {
+    box-shadow: 0 25px 60px rgba(245,158,11,0.2) !important;
+}
+
+/* Pink - Custom Builds */
+.card-pink,
+.card-pink .elementor-widget-container {
+    border-top-color: #EC4899 !important;
+}
+.card-pink:hover {
+    box-shadow: 0 25px 60px rgba(236,72,153,0.2) !important;
+}
+
+/* Cyan - Performance */
+.card-cyan,
+.card-cyan .elementor-widget-container {
+    border-top-color: #06B6D4 !important;
+}
+.card-cyan:hover {
+    box-shadow: 0 25px 60px rgba(6,182,212,0.2) !important;
+}
+
+/* Orange Dark - Restoration */
+.card-orange-dark,
+.card-orange-dark .elementor-widget-container {
+    border-top-color: #D97706 !important;
+}
+.card-orange-dark:hover {
+    box-shadow: 0 25px 60px rgba(217,119,6,0.2) !important;
+}
+
+/* Teal - Workshop */
+.card-teal,
+.card-teal .elementor-widget-container {
+    border-top-color: #14B8A6 !important;
+}
+.card-teal:hover {
+    box-shadow: 0 25px 60px rgba(20,184,166,0.2) !important;
+}
+
+/* Violet - Accessories */
+.card-violet,
+.card-violet .elementor-widget-container {
+    border-top-color: #8B5CF6 !important;
+}
+.card-violet:hover {
+    box-shadow: 0 25px 60px rgba(139,92,246,0.2) !important;
+}
+
+/* Sky - Business */
+.card-sky,
+.card-sky .elementor-widget-container {
+    border-top-color: #0EA5E9 !important;
+}
+.card-sky:hover {
+    box-shadow: 0 25px 60px rgba(14,165,233,0.2) !important;
+}
+
+/* ============================================
+   FEATURED CARDS - Popular Badge Glow
+   ============================================ */
+.featured {
+    box-shadow: 0 0 50px rgba(0,133,255,0.08) !important;
+}
+
+.featured:hover {
+    box-shadow: 0 25px 70px rgba(0,133,255,0.2) !important;
+}
+
+/* ============================================
+   ICON BOXES - Trust Badges & Contact
+   ============================================ */
+.elementor-widget-icon-box {
+    transition: all 0.3s ease !important;
+}
+
+.elementor-widget-icon-box:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 40px rgba(0,133,255,0.1) !important;
+}
+
+.elementor-icon-box-icon {
+    transition: transform 0.3s ease !important;
+}
+
+.elementor-widget-icon-box:hover .elementor-icon-box-icon {
+    transform: scale(1.1) !important;
+}
+
+/* ============================================
+   BUTTON STYLING
+   ============================================ */
+.elementor-button {
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+
+.elementor-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 35px rgba(0,133,255,0.4) !important;
+}
+
+/* ============================================
+   HEADING STYLES
+   ============================================ */
+.elementor-heading-title {
+    color: #ffffff;
+}
+
+/* ============================================
+   DIVIDER STYLES
+   ============================================ */
+.elementor-divider-separator {
+    background: linear-gradient(90deg, transparent, rgba(0,133,255,0.4), transparent) !important;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+/* The CTA section uses inline styles from JSON */
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0085FF;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0099ff;
+}
+
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   SELECTION COLOR
+   ============================================ */
+::selection {
+    background: rgba(0,133,255,0.3);
+    color: #ffffff;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    .elementor-widget-image-box {
+        margin-bottom: 20px !important;
+    }
+    
+    .elementor-heading-title {
+        font-size: 36px !important;
+    }
+    
+    .elementor-image-box-title {
+        font-size: 20px !important;
+    }
+}
+
+/* ============================================
+   GRADIENT BACKGROUND EFFECT
+   ============================================ */
+body.elementor-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1400px;
+    height: 900px;
+    background: radial-gradient(ellipse at center, rgba(0,133,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
