@@ -25,13 +25,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import Image from 'next/image'
 
-// Service categories with icons
+// Service categories with icons and images
 const serviceCategories = [
   {
     id: 'core-mechanical',
     title: 'Core Mechanical Services',
     icon: Wrench,
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -50,6 +52,7 @@ const serviceCategories = [
     id: 'diagnostics',
     title: 'Diagnostics & Troubleshooting',
     icon: Brain,
+    image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=400&fit=crop',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
@@ -62,6 +65,7 @@ const serviceCategories = [
     id: 'engine',
     title: 'Engine Services',
     icon: Cog,
+    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop',
     highlight: true,
     subsections: [
       {
@@ -101,6 +105,7 @@ const serviceCategories = [
     id: 'electrical',
     title: 'Electrical Services',
     icon: Zap,
+    image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
@@ -114,6 +119,7 @@ const serviceCategories = [
     id: 'fuel-system',
     title: 'Fuel System Services',
     icon: Fuel,
+    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
@@ -126,6 +132,7 @@ const serviceCategories = [
     id: 'brakes',
     title: 'Brakes & Safety',
     icon: CircleStop,
+    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
     services: [
       'Brake pad replacement',
       'Brake disc replacement',
@@ -137,6 +144,7 @@ const serviceCategories = [
     id: 'suspension',
     title: 'Suspension & Handling',
     icon: Gauge,
+    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -149,6 +157,7 @@ const serviceCategories = [
     id: 'wheels',
     title: 'Wheels & Tyres',
     icon: CircleDot,
+    image: 'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&h=400&fit=crop',
     services: [
       'Tyre fitting & replacement',
       'Tube replacement',
@@ -161,6 +170,7 @@ const serviceCategories = [
     id: 'transmission',
     title: 'Transmission & Drivetrain',
     icon: Settings,
+    image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
@@ -172,6 +182,7 @@ const serviceCategories = [
     id: 'exhaust',
     title: 'Exhaust & Performance',
     icon: Rocket,
+    image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -181,6 +192,7 @@ const serviceCategories = [
     id: 'custom',
     title: 'Custom Builds & Modifications',
     icon: Paintbrush,
+    image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
@@ -191,6 +203,7 @@ const serviceCategories = [
     id: 'performance',
     title: 'Performance Upgrades',
     icon: Rocket,
+    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -200,6 +213,7 @@ const serviceCategories = [
     id: 'restoration',
     title: 'Restoration Services',
     icon: RotateCcw,
+    image: 'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&h=400&fit=crop',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
@@ -211,6 +225,7 @@ const serviceCategories = [
     id: 'workshop',
     title: 'General Workshop Services',
     icon: Package,
+    image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -223,6 +238,7 @@ const serviceCategories = [
     id: 'accessories',
     title: 'Accessories & Add-Ons',
     icon: Package,
+    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
     services: [
       'Crash bars installation'
     ]
@@ -231,6 +247,7 @@ const serviceCategories = [
     id: 'business',
     title: 'Business Services',
     icon: Briefcase,
+    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
     highlight: true,
     services: [
       'Pickup & delivery service',
@@ -258,40 +275,54 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Section - Each service with image */}
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {serviceCategories.map((category) => {
-              const Icon = category.icon
-              return (
-                <Card 
-                  key={category.id}
-                  className={`bg-[#212A37] border-[#4F5B62]/50 hover:border-[#0085FF]/50 transition-all duration-300 ${
-                    category.highlight ? 'ring-2 ring-[#0085FF]/30' : ''
-                  }`}
-                >
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-[#0085FF]/20 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-6 h-6 text-[#0085FF]" />
-                      </div>
-                      <CardTitle className="text-white text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        {category.title}
-                        {category.highlight && (
-                          <Badge className="ml-3 bg-[#0085FF]/20 text-[#0085FF] text-xs border-[#0085FF]/30">
-                            Popular
-                          </Badge>
-                        )}
-                      </CardTitle>
+          
+          {serviceCategories.map((category, index) => {
+            const Icon = category.icon
+            const isEven = index % 2 === 0
+            
+            return (
+              <div key={category.id} className="mb-16 last:mb-0">
+                {/* Service Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-full bg-[#0085FF]/20 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-7 h-7 text-[#0085FF]" />
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                      {category.title}
+                    </h2>
+                    {category.highlight && (
+                      <Badge className="bg-[#0085FF]/20 text-[#0085FF] text-sm border-[#0085FF]/30">
+                        Popular
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+
+                {/* Service Content - Image and Services */}
+                <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-start`}>
+                  {/* Image */}
+                  <div className="w-full lg:w-2/5 flex-shrink-0">
+                    <div className="relative rounded-xl overflow-hidden aspect-video bg-[#212A37]">
+                      <img
+                        src={category.image}
+                        alt={category.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/60 to-transparent"></div>
                     </div>
-                  </CardHeader>
-                  <CardContent className="pt-0">
+                  </div>
+
+                  {/* Services List */}
+                  <div className="flex-1">
                     {category.subsections ? (
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" collapsible className="w-full" defaultValue={`sub-0`}>
                         {category.subsections.map((subsection, idx) => (
-                          <AccordionItem key={idx} value={`sub-${idx}`} className="border-[#4F5B62]/30 last:border-b-0">
-                            <AccordionTrigger className="text-[#0085FF] hover:text-[#0177E3] py-3 text-base font-semibold text-left">
+                          <AccordionItem key={idx} value={`sub-${idx}`} className="border-[#4F5B62]/30">
+                            <AccordionTrigger className="text-[#0085FF] hover:text-[#0177E3] py-4 text-lg font-semibold text-left">
                               {subsection.title}
                             </AccordionTrigger>
                             <AccordionContent>
@@ -317,11 +348,16 @@ export default function ServicesPage() {
                         ))}
                       </ul>
                     )}
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                {index < serviceCategories.length - 1 && (
+                  <div className="mt-12 border-t border-[#4F5B62]/30"></div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </section>
 
