@@ -23,7 +23,8 @@ import {
   Shield,
   Award,
   Users,
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -34,7 +35,7 @@ const serviceCategories = [
     title: 'Core Mechanical Services',
     description: 'Essential maintenance and repairs to keep your motorcycle running smoothly',
     icon: Wrench,
-    color: 'from-blue-500 to-cyan-500',
+    color: '#0085FF',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -54,7 +55,7 @@ const serviceCategories = [
     title: 'Diagnostics & Troubleshooting',
     description: 'Advanced diagnostic services to identify and resolve issues',
     icon: Brain,
-    color: 'from-purple-500 to-pink-500',
+    color: '#A855F7',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
@@ -68,7 +69,7 @@ const serviceCategories = [
     title: 'Engine Services',
     description: 'Complete engine repair, rebuild, and performance tuning',
     icon: Cog,
-    color: 'from-orange-500 to-red-500',
+    color: '#F97316',
     highlight: true,
     subsections: [
       {
@@ -100,7 +101,7 @@ const serviceCategories = [
     title: 'Electrical Services',
     description: 'Complete electrical system diagnosis and repair',
     icon: Zap,
-    color: 'from-yellow-500 to-orange-500',
+    color: '#EAB308',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
@@ -115,7 +116,7 @@ const serviceCategories = [
     title: 'Fuel System Services',
     description: 'Fuel system maintenance, cleaning, and repair',
     icon: Fuel,
-    color: 'from-green-500 to-teal-500',
+    color: '#22C55E',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
@@ -129,7 +130,7 @@ const serviceCategories = [
     title: 'Brakes & Safety',
     description: 'Critical brake system services for your safety',
     icon: Shield,
-    color: 'from-red-500 to-rose-500',
+    color: '#EF4444',
     highlight: true,
     services: [
       'Brake pad replacement',
@@ -143,7 +144,7 @@ const serviceCategories = [
     title: 'Suspension & Handling',
     description: 'Optimize your ride quality and handling',
     icon: Gauge,
-    color: 'from-indigo-500 to-purple-500',
+    color: '#6366F1',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -157,7 +158,7 @@ const serviceCategories = [
     title: 'Wheels & Tyres',
     description: 'Complete wheel and tyre services',
     icon: CircleDot,
-    color: 'from-slate-500 to-gray-600',
+    color: '#64748B',
     services: [
       'Tyre fitting & replacement',
       'Tube replacement',
@@ -171,7 +172,7 @@ const serviceCategories = [
     title: 'Transmission & Drivetrain',
     description: 'Keep your power transfer smooth and reliable',
     icon: Settings,
-    color: 'from-emerald-500 to-green-500',
+    color: '#10B981',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
@@ -184,7 +185,7 @@ const serviceCategories = [
     title: 'Exhaust & Performance',
     description: 'Custom exhaust solutions and performance upgrades',
     icon: Rocket,
-    color: 'from-amber-500 to-yellow-500',
+    color: '#F59E0B',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -195,7 +196,7 @@ const serviceCategories = [
     title: 'Custom Builds & Modifications',
     description: 'Transform your motorcycle with custom modifications',
     icon: Paintbrush,
-    color: 'from-fuchsia-500 to-pink-500',
+    color: '#EC4899',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
@@ -207,7 +208,7 @@ const serviceCategories = [
     title: 'Performance Upgrades',
     description: 'Unlock your motorcycles full potential',
     icon: Sparkles,
-    color: 'from-cyan-500 to-blue-500',
+    color: '#06B6D4',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -218,7 +219,7 @@ const serviceCategories = [
     title: 'Restoration Services',
     description: 'Bring classic motorcycles back to life',
     icon: RotateCcw,
-    color: 'from-amber-600 to-orange-600',
+    color: '#D97706',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
@@ -231,7 +232,7 @@ const serviceCategories = [
     title: 'General Workshop Services',
     description: 'Comprehensive workshop services for all needs',
     icon: Package,
-    color: 'from-teal-500 to-cyan-500',
+    color: '#14B8A6',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -245,7 +246,7 @@ const serviceCategories = [
     title: 'Accessories & Add-Ons',
     description: 'Enhance your motorcycle with quality accessories',
     icon: Package,
-    color: 'from-violet-500 to-purple-500',
+    color: '#8B5CF6',
     services: [
       'Crash bars installation'
     ]
@@ -255,7 +256,7 @@ const serviceCategories = [
     title: 'Business Services',
     description: 'Convenient services designed for busy riders',
     icon: Briefcase,
-    color: 'from-sky-500 to-blue-500',
+    color: '#0EA5E9',
     highlight: true,
     services: [
       'Pickup & delivery service',
@@ -271,129 +272,132 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-[#0F172A]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 md:py-24">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230085FF' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
-        
-        {/* Gradient Orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0085FF]/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="mb-6 bg-[#0085FF]/20 text-[#0085FF] border-[#0085FF]/30 text-sm px-4 py-1">
-            Professional Motorcycle Services
-          </Badge>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0085FF] to-cyan-400">Services</span>
-          </h1>
-          <p className="text-lg md:text-xl text-[#E7F6FF]/70 max-w-3xl mx-auto leading-relaxed mb-8" style={{ fontFamily: 'Inter, sans-serif' }}>
-            From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive 
-            motorcycle services. Our experienced technicians handle all makes and models with precision and care.
-          </p>
-          
-          {/* Quick Stats */}
-          <div className="flex flex-wrap justify-center gap-8 mt-12">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#0085FF]/20 flex items-center justify-center">
-                <Award className="w-6 h-6 text-[#0085FF]" />
+      <section className="relative py-12 md:py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Badge */}
+            <Badge className="mb-6 bg-[#0085FF]/15 text-[#0085FF] border-[#0085FF]/20 text-sm px-5 py-1.5 font-medium">
+              Professional Motorcycle Services
+            </Badge>
+            
+            {/* Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Our <span className="text-[#0085FF]">Services</span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-base md:text-lg text-[#94A3B8] max-w-2xl mx-auto leading-relaxed mb-10" style={{ fontFamily: 'Inter, sans-serif' }}>
+              From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive 
+              motorcycle services. Our experienced technicians handle all makes and models.
+            </p>
+            
+            {/* Quick Stats */}
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+              <div className="flex items-center gap-3 bg-[#1E293B]/50 rounded-full px-5 py-2.5">
+                <Award className="w-5 h-5 text-[#0085FF]" />
+                <span className="text-white font-medium text-sm">Expert Technicians</span>
               </div>
-              <div className="text-left">
-                <div className="text-white font-bold text-lg">Expert</div>
-                <div className="text-[#E7F6FF]/60 text-sm">Technicians</div>
+              <div className="flex items-center gap-3 bg-[#1E293B]/50 rounded-full px-5 py-2.5">
+                <Shield className="w-5 h-5 text-[#0085FF]" />
+                <span className="text-white font-medium text-sm">Quality Guaranteed</span>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#0085FF]/20 flex items-center justify-center">
-                <Shield className="w-6 h-6 text-[#0085FF]" />
-              </div>
-              <div className="text-left">
-                <div className="text-white font-bold text-lg">Quality</div>
-                <div className="text-[#E7F6FF]/60 text-sm">Guaranteed</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#0085FF]/20 flex items-center justify-center">
-                <Users className="w-6 h-6 text-[#0085FF]" />
-              </div>
-              <div className="text-left">
-                <div className="text-white font-bold text-lg">All Makes</div>
-                <div className="text-[#E7F6FF]/60 text-sm">& Models</div>
+              <div className="flex items-center gap-3 bg-[#1E293B]/50 rounded-full px-5 py-2.5">
+                <Users className="w-5 h-5 text-[#0085FF]" />
+                <span className="text-white font-medium text-sm">All Makes & Models</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-12 md:py-16">
+      {/* Services Section */}
+      <section className="pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              What We Offer
+            </h2>
+            <p className="text-[#94A3B8] text-base">Click on any service category to see details</p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {serviceCategories.map((category) => {
               const Icon = category.icon
               
               return (
                 <div 
                   key={category.id} 
-                  className={`group relative bg-gradient-to-br from-[#1E293B] to-[#0F172A] rounded-2xl border border-[#4F5B62]/30 overflow-hidden transition-all duration-300 hover:border-[#0085FF]/50 hover:shadow-lg hover:shadow-[#0085FF]/10 ${category.highlight ? 'md:col-span-2 ring-1 ring-[#0085FF]/20' : ''}`}
+                  className={`group relative bg-[#1E293B] rounded-xl border border-[#334155] overflow-hidden transition-all duration-200 hover:border-[#0085FF]/60 hover:bg-[#1E293B]/80 ${category.highlight ? 'ring-1 ring-[#0085FF]/30' : ''}`}
                 >
-                  {/* Gradient Accent */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${category.color}`} />
+                  {/* Color Bar */}
+                  <div className="h-1 w-full" style={{ backgroundColor: category.color }} />
                   
-                  <div className={`p-6 md:p-8 ${category.highlight ? 'md:flex md:gap-8' : ''}`}>
+                  <div className="p-5">
                     {/* Header */}
-                    <div className={`flex items-start gap-4 mb-6 ${category.highlight ? 'md:w-1/3' : ''}`}>
-                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                        <Icon className="w-7 h-7 text-white" />
+                    <div className="flex items-start gap-4 mb-4">
+                      <div 
+                        className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${category.color}20` }}
+                      >
+                        <Icon className="w-5 h-5" style={{ color: category.color }} />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h3 className="text-xl md:text-2xl font-bold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-lg font-semibold text-white truncate" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             {category.title}
                           </h3>
                           {category.highlight && (
-                            <Badge className="bg-[#0085FF] text-white text-xs">Popular</Badge>
+                            <Badge className="bg-[#0085FF] text-white text-[10px] px-2 py-0.5 font-medium">
+                              Popular
+                            </Badge>
                           )}
                         </div>
-                        {category.description && (
-                          <p className="text-[#E7F6FF]/60 text-sm mt-1" style={{ fontFamily: 'Inter, sans-serif' }}>
-                            {category.description}
-                          </p>
-                        )}
+                        <p className="text-[#94A3B8] text-sm leading-relaxed line-clamp-2">
+                          {category.description}
+                        </p>
                       </div>
                     </div>
                     
                     {/* Services List */}
-                    <div className={`${category.highlight ? 'md:w-2/3' : ''}`}>
+                    <div className="border-t border-[#334155]/50 pt-4">
                       {category.subsections ? (
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="space-y-3">
                           {category.subsections.map((subsection, idx) => (
                             <div key={idx}>
-                              <h4 className="text-[#0085FF] font-semibold mb-3 text-sm uppercase tracking-wide">
+                              <h4 className="text-xs font-semibold text-[#0085FF] uppercase tracking-wider mb-1.5">
                                 {subsection.title}
                               </h4>
-                              <ul className="space-y-2">
-                                {subsection.items.map((service, i) => (
-                                  <li key={i} className="flex items-start gap-2 text-[#E7F6FF]/80 text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
-                                    <CheckCircle className="w-4 h-4 text-[#0085FF] mt-0.5 flex-shrink-0" />
-                                    <span>{service}</span>
+                              <ul className="space-y-1">
+                                {subsection.items.slice(0, 3).map((service, i) => (
+                                  <li key={i} className="flex items-center gap-2 text-[#CBD5E1] text-sm">
+                                    <CheckCircle className="w-3.5 h-3.5 text-[#0085FF] flex-shrink-0" />
+                                    <span className="truncate">{service}</span>
                                   </li>
                                 ))}
+                                {subsection.items.length > 3 && (
+                                  <li className="text-[#64748B] text-xs pl-5">
+                                    +{subsection.items.length - 3} more
+                                  </li>
+                                )}
                               </ul>
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <ul className={`grid gap-2 ${category.services && category.services.length > 4 ? 'sm:grid-cols-2' : ''}`}>
-                          {category.services?.map((service, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[#E7F6FF]/80 text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
-                              <CheckCircle className="w-4 h-4 text-[#0085FF] mt-0.5 flex-shrink-0" />
+                        <ul className="space-y-1.5">
+                          {category.services?.slice(0, 4).map((service, i) => (
+                            <li key={i} className="flex items-center gap-2 text-[#CBD5E1] text-sm">
+                              <CheckCircle className="w-3.5 h-3.5 text-[#0085FF] flex-shrink-0" />
                               <span>{service}</span>
                             </li>
                           ))}
+                          {category.services && category.services.length > 4 && (
+                            <li className="text-[#64748B] text-xs pl-5">
+                              +{category.services.length - 4} more services
+                            </li>
+                          )}
                         </ul>
                       )}
                     </div>
@@ -406,74 +410,72 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0085FF]/10 via-transparent to-purple-500/10" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-[#1E293B] to-[#0F172A] rounded-3xl p-8 md:p-12 lg:p-16 border border-[#4F5B62]/30 text-center">
-            <div className="w-16 h-16 rounded-full bg-[#0085FF]/20 flex items-center justify-center mx-auto mb-6">
-              <Phone className="w-8 h-8 text-[#0085FF]" />
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Ready to Get Your Motorcycle Serviced?
-            </h2>
-            <p className="text-[#E7F6FF]/70 text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Contact us today for a free quote. We offer pickup & delivery services and mobile mechanic options for your convenience.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-[#0085FF] hover:bg-[#0177E3] text-white rounded-full px-8 py-6 text-base font-semibold transition-all shadow-lg shadow-[#0085FF]/25 hover:shadow-[#0085FF]/40"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Get a Free Quote
-                <ChevronRight className="w-5 h-5 ml-1" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-[#4F5B62] text-[#E7F6FF] hover:bg-[#1E293B] rounded-full px-8 py-6 text-base font-semibold transition-all"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                View Our Work
-              </Button>
+      <section className="py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-[#1E293B] to-[#0F172A] rounded-2xl border border-[#334155] p-8 md:p-12">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Need Your Motorcycle Serviced?
+                </h2>
+                <p className="text-[#94A3B8] text-base max-w-lg">
+                  Contact us for a free quote. We offer pickup & delivery and mobile mechanic services.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  size="lg" 
+                  className="bg-[#0085FF] hover:bg-[#0085FF]/90 text-white rounded-full px-6 py-5 text-base font-medium transition-all"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Get a Free Quote
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-[#334155] text-[#CBD5E1] hover:bg-[#1E293B] rounded-full px-6 py-5 text-base font-medium transition-all"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
+                >
+                  Contact Us
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact Info */}
-      <section className="py-12 md:py-16 border-t border-[#4F5B62]/30">
+      <section className="py-10 border-t border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#0085FF]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:bg-[#0085FF]/20 group-hover:scale-110">
-                <Phone className="w-7 h-7 text-[#0085FF]" />
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="flex items-center gap-4 bg-[#1E293B]/30 rounded-xl p-4">
+              <div className="w-12 h-12 bg-[#0085FF]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Phone className="w-5 h-5 text-[#0085FF]" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Call Us</h3>
-              <p className="text-[#E7F6FF]/60" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Contact us for bookings and enquiries
-              </p>
+              <div>
+                <h3 className="text-white font-semibold text-sm" style={{ fontFamily: 'Outfit, sans-serif' }}>Call Us</h3>
+                <p className="text-[#94A3B8] text-sm">Contact us for bookings</p>
+              </div>
             </div>
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#0085FF]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:bg-[#0085FF]/20 group-hover:scale-110">
-                <Clock className="w-7 h-7 text-[#0085FF]" />
+            <div className="flex items-center gap-4 bg-[#1E293B]/30 rounded-xl p-4">
+              <div className="w-12 h-12 bg-[#0085FF]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 text-[#0085FF]" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Working Hours</h3>
-              <p className="text-[#E7F6FF]/60" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Mon - Sat: 8:00 AM - 5:00 PM
-              </p>
+              <div>
+                <h3 className="text-white font-semibold text-sm" style={{ fontFamily: 'Outfit, sans-serif' }}>Working Hours</h3>
+                <p className="text-[#94A3B8] text-sm">Mon - Sat: 8:00 AM - 5:00 PM</p>
+              </div>
             </div>
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#0085FF]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:bg-[#0085FF]/20 group-hover:scale-110">
-                <MapPin className="w-7 h-7 text-[#0085FF]" />
+            <div className="flex items-center gap-4 bg-[#1E293B]/30 rounded-xl p-4">
+              <div className="w-12 h-12 bg-[#0085FF]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-5 h-5 text-[#0085FF]" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
-              <p className="text-[#E7F6FF]/60" style={{ fontFamily: 'Inter, sans-serif' }}>
-                South Africa
-              </p>
+              <div>
+                <h3 className="text-white font-semibold text-sm" style={{ fontFamily: 'Outfit, sans-serif' }}>Location</h3>
+                <p className="text-[#94A3B8] text-sm">South Africa</p>
+              </div>
             </div>
           </div>
         </div>
