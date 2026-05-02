@@ -1,0 +1,992 @@
+{
+  "title": "RP Motorcycles Services",
+  "type": "section",
+  "version": "0.4",
+  "page_settings": {
+    "background_color": "#080c14"
+  },
+  "content": [
+    {
+      "id": "main-section",
+      "elType": "section",
+      "settings": {
+        "background_color": "#080c14",
+        "padding": {
+          "unit": "px",
+          "top": "80",
+          "right": "20",
+          "bottom": "80",
+          "left": "20"
+        }
+      },
+      "elements": [
+        {
+          "id": "main-column",
+          "elType": "column",
+          "settings": {},
+          "elements": [
+            {
+              "id": "badge-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "⭐ PROFESSIONAL MOTORCYCLE SERVICES ⭐",
+                "header_size": "div",
+                "align": "center",
+                "title_color": "#0085FF",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 14
+                },
+                "typography_letter_spacing": {
+                  "unit": "px",
+                  "size": 2
+                },
+                "_background_color": "rgba(0,133,255,0.1)",
+                "_border_radius": {
+                  "unit": "px",
+                  "top": "30",
+                  "right": "30",
+                  "bottom": "30",
+                  "left": "30"
+                },
+                "_padding": {
+                  "unit": "px",
+                  "top": "14",
+                  "right": "32",
+                  "bottom": "14",
+                  "left": "32"
+                },
+                "_css_classes": "elementor-align-center",
+                "_element_width": "initial",
+                "_element_custom_width": {
+                  "unit": "%",
+                  "size": ""
+                },
+                "_margin": {
+                  "unit": "px",
+                  "bottom": "40"
+                }
+              }
+            },
+            {
+              "id": "main-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Our Services",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_weight": "900",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 72
+                },
+                "typography_font_size_tablet": {
+                  "unit": "px",
+                  "size": 48
+                },
+                "typography_font_size_mobile": {
+                  "unit": "px",
+                  "size": 36
+                }
+              }
+            },
+            {
+              "id": "subtitle",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align: center;\">From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models with <strong>precision and care</strong>.</p>",
+                "align": "center",
+                "text_color": "#d1d5db",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 20
+                },
+                "_element_width": "initial",
+                "_element_custom_width": {
+                  "unit": "px",
+                  "size": 700
+                },
+                "_margin": {
+                  "unit": "px",
+                  "top": "20",
+                  "bottom": "50"
+                }
+              }
+            },
+            {
+              "id": "services-grid",
+              "elType": "section",
+              "settings": {
+                "structure": "20",
+                "background_color": "#080c14",
+                "gap": "extended",
+                "content_position": "center"
+              },
+              "elements": [
+                {
+                  "id": "col-left",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 50
+                  },
+                  "elements": [
+                    {
+                      "id": "card1",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1486262715615-1e3d50a4c6e6?w=800&q=80"
+                        },
+                        "title_text": "🔧 Core Mechanical Services",
+                        "description_text": "Essential maintenance and repairs to keep your motorcycle running smoothly\n\n✓ General repair & servicing\n✓ Full motorcycle servicing\n✓ Oil & filter changes\n✓ Spark plug replacement\n✓ Air filter cleaning\n✓ Coolant flush & refill",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card3",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&q=80"
+                        },
+                        "title_text": "⚙️ Engine Services",
+                        "description_text": "Complete engine repair, rebuild, and performance tuning\n\n✓ Engine fault diagnosis\n✓ Full engine rebuild\n✓ Cylinder head reconditioning\n✓ Valve adjustment\n✓ Piston & ring replacement\n✓ Performance builds",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card5",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558980664-769d59546b3d?w=800&q=80"
+                        },
+                        "title_text": "⛽ Fuel System Services",
+                        "description_text": "Fuel system maintenance, cleaning, and repair\n\n✓ Carburetor cleaning & rebuild\n✓ Fuel injector cleaning\n✓ Fuel pump repair\n✓ Fuel line replacement\n✓ Tank cleaning",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card7",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=800&q=80"
+                        },
+                        "title_text": "🔧 Suspension & Handling",
+                        "description_text": "Optimize your ride quality and handling\n\n✓ Fork seal replacement\n✓ Fork rebuilds\n✓ Shock absorber replacement\n✓ Suspension tuning\n✓ Steering head bearing",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card9",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981285-6f0c94958bb6?w=800&q=80"
+                        },
+                        "title_text": "⚙️ Transmission & Drivetrain",
+                        "description_text": "Keep your power transfer smooth and reliable\n\n✓ Clutch replacement\n✓ Clutch cable adjustment\n✓ Gearbox repairs\n✓ Sprocket replacement",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card11",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981033-0f0309284409?w=800&q=80"
+                        },
+                        "title_text": "🎨 Custom Builds & Modifications",
+                        "description_text": "Transform your motorcycle with custom modifications\n\n✓ Frame modifications\n✓ LED lighting upgrades\n✓ Footpeg relocation",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card13",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80"
+                        },
+                        "title_text": "🔄 Restoration Services",
+                        "description_text": "Bring classic motorcycles back to life\n\n✓ Full bike restoration\n✓ Vintage motorcycle restoration\n✓ Engine restoration\n✓ Parts refurbishment",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card15",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=800&q=80"
+                        },
+                        "title_text": "🧩 Accessories & Add-Ons",
+                        "description_text": "Enhance your motorcycle with quality accessories\n\n✓ Crash bars & engine guards\n✓ Panniers & top box fitting\n✓ Windshield installation\n✓ LED light kits\n✓ Frame sliders",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "col-right",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 50
+                  },
+                  "elements": [
+                    {
+                      "id": "card2",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                        },
+                        "title_text": "🔍 Diagnostics & Troubleshooting",
+                        "description_text": "Advanced diagnostic services to identify and resolve issues\n\n✓ Full diagnostic checks\n✓ Fault finding\n✓ Performance issues analysis\n✓ Pre-purchase inspections\n✓ Roadworthy inspections",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card4",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80"
+                        },
+                        "title_text": "⚡ Electrical Services",
+                        "description_text": "Complete electrical system diagnosis and repair\n\n✓ Battery testing & replacement\n✓ Charging system repairs\n✓ Starter motor repairs\n✓ Wiring repairs & rewiring\n✓ Lighting installation & repair",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card6",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1449426468152-d7713fa16e59?w=800&q=80"
+                        },
+                        "title_text": "🛡️ Brakes & Safety",
+                        "description_text": "Critical brake system services for your safety\n\n✓ Brake pad replacement\n✓ Brake disc replacement\n✓ Brake caliper rebuild\n✓ Brake bleeding",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card8",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&q=80"
+                        },
+                        "title_text": "⭕ Wheels & Tyres",
+                        "description_text": "Complete wheel and tyre services\n\n✓ Tyre fitting & replacement\n✓ Wheel balancing\n✓ Spoke tightening & alignment\n✓ Bearing replacement",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card10",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&q=80"
+                        },
+                        "title_text": "🚀 Exhaust & Performance",
+                        "description_text": "Custom exhaust solutions and performance upgrades\n\n✓ Exhaust system installation\n✓ Custom exhaust fabrication",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card12",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=800&q=80"
+                        },
+                        "title_text": "✨ Performance Upgrades",
+                        "description_text": "Unlock your motorcycle's full potential\n\n✓ Air intake upgrades\n✓ Throttle upgrade",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card14",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1486262715615-1e3d50a4c6e6?w=800&q=80"
+                        },
+                        "title_text": "📦 General Workshop Services",
+                        "description_text": "Comprehensive workshop services for all needs\n\n✓ Bike assembly (new or imported bikes)\n✓ Accident repairs\n✓ Insurance assessments & quotes\n✓ Parts sourcing & installation\n✓ Accessory installation",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    },
+                    {
+                      "id": "card16",
+                      "elType": "widget",
+                      "widgetType": "image-box",
+                      "settings": {
+                        "image": {
+                          "url": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80"
+                        },
+                        "title_text": "💼 Business Services",
+                        "description_text": "Convenient services designed for busy riders\n\n✓ Pickup & delivery service\n✓ Mobile mechanic services\n✓ Breakdown assistance\n✓ Warranty on repairs\n✓ Consultation & advice",
+                        "title_color": "#FFFFFF",
+                        "description_color": "#d0d4da",
+                        "title_size": "24",
+                        "_background_background": "classic",
+                        "_background_color": "rgba(255,255,255,0.05)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(255,255,255,0.1)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "20",
+                          "right": "20",
+                          "bottom": "20",
+                          "left": "20"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "30",
+                          "right": "30",
+                          "bottom": "30",
+                          "left": "30"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "bottom": "25"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "cta-section",
+              "elType": "section",
+              "settings": {
+                "background_color": "#080c14",
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0"
+                }
+              },
+              "elements": [
+                {
+                  "id": "cta-column",
+                  "elType": "column",
+                  "settings": {},
+                  "elements": [
+                    {
+                      "id": "cta-heading",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Ready to Get Started?",
+                        "header_size": "h2",
+                        "align": "center",
+                        "title_color": "#FFFFFF",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "800",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 48
+                        },
+                        "typography_font_size_mobile": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "_background_background": "classic",
+                        "_background_color": "rgba(0,133,255,0.1)",
+                        "_border_border": "solid",
+                        "_border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1"
+                        },
+                        "_border_color": "rgba(0,133,255,0.2)",
+                        "_border_radius": {
+                          "unit": "px",
+                          "top": "24",
+                          "right": "24",
+                          "bottom": "24",
+                          "left": "24"
+                        },
+                        "_padding": {
+                          "unit": "px",
+                          "top": "50",
+                          "right": "50",
+                          "bottom": "50",
+                          "left": "50"
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "top": "40"
+                        }
+                      }
+                    },
+                    {
+                      "id": "cta-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "<p style=\"text-align: center;\">Contact us for a free quote. Professional pickup &amp; delivery service available.</p>",
+                        "align": "center",
+                        "text_color": "#d1d5db",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 18
+                        },
+                        "_margin": {
+                          "unit": "px",
+                          "top": "-40",
+                          "bottom": "20"
+                        }
+                      }
+                    },
+                    {
+                      "id": "cta-button",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "📞 Get a Quote",
+                        "link": {
+                          "url": "/contact"
+                        },
+                        "align": "center",
+                        "size": "lg",
+                        "button_type": "info",
+                        "button_background_color": "#0085FF",
+                        "button_text_color": "#FFFFFF",
+                        "typography_typography": "custom",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 18
+                        },
+                        "border_radius": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "16",
+                          "bottom": "16",
+                          "left": "16"
+                        },
+                        "button_padding": {
+                          "unit": "px",
+                          "top": "18",
+                          "right": "40",
+                          "bottom": "18",
+                          "left": "40"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
