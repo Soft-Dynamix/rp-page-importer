@@ -121,3 +121,42 @@ Key Design Changes:
 - More whitespace between sections
 - Larger icons and headings
 - Gradient overlay on images for text readability
+
+---
+Task ID: 4
+Agent: webDevReview Agent
+Task: Fix image loading and match images to services
+
+Work Log:
+- Fixed Next.js config to allow image domains
+- Added fallback placeholder for failed images
+- Changed image URLs to use Unsplash Source API with keywords
+- Each service category now uses relevant keywords:
+  - Core Mechanical: motorcycle,mechanic,workshop
+  - Diagnostics: motorcycle,engine,technology
+  - Engine: motorcycle,engine,piston
+  - Electrical: motorcycle,headlight,lights
+  - Fuel System: motorcycle,tank,gas
+  - Brakes: motorcycle,brake,disc
+  - Suspension: motorcycle,forks,suspension
+  - Wheels: motorcycle,wheel,tire
+  - Transmission: motorcycle,chain,gear
+  - Exhaust: motorcycle,exhaust,pipe
+  - Custom: cafe,racer,custom,motorcycle
+  - Performance: racing,motorcycle,sport,bike
+  - Restoration: vintage,motorcycle,classic,bike
+  - Workshop: motorcycle,garage,workshop
+  - Accessories: motorcycle,accessories,parts
+  - Business: motorcycle,service,repair
+
+Stage Summary:
+- Images now dynamically load based on service keywords
+- Fallback placeholder if image fails
+- All services preserved
+- Page loads successfully
+
+Note for WordPress Implementation:
+- For best results, use your own photos of actual work
+- Recommended image size: 600x400px or 1200x800px
+- Images should show: workshop, engines, brakes, wheels, etc.
+- Consider hiring photographer for professional shots

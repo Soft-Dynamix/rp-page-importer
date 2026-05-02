@@ -26,14 +26,15 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
-// Service categories with icons and matching motorcycle images
+// Service categories with keyword-based image URLs from Unsplash
+// Using source.unsplash.com with specific keywords for each service
 const serviceCategories = [
   {
     id: 'core-mechanical',
     title: 'Core Mechanical Services',
     icon: Wrench,
-    // Motorcycle mechanic working on bike
-    image: 'https://images.unsplash.com/photo-1558980664-10e7170b5df9?w=600&h=400&fit=crop',
+    // Motorcycle mechanic working
+    image: 'https://source.unsplash.com/600x400/?motorcycle,mechanic,workshop',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
@@ -52,8 +53,8 @@ const serviceCategories = [
     id: 'diagnostics',
     title: 'Diagnostics & Troubleshooting',
     icon: Brain,
-    // Diagnostic tools / motorcycle electronics
-    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
+    // Motorcycle electronics/diagnostics
+    image: 'https://source.unsplash.com/600x400/?motorcycle,engine,technology',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
@@ -66,8 +67,8 @@ const serviceCategories = [
     id: 'engine',
     title: 'Engine Services',
     icon: Cog,
-    // Motorcycle engine close-up
-    image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop',
+    // Motorcycle engine
+    image: 'https://source.unsplash.com/600x400/?motorcycle,engine,piston',
     highlight: true,
     subsections: [
       {
@@ -107,8 +108,8 @@ const serviceCategories = [
     id: 'electrical',
     title: 'Electrical Services',
     icon: Zap,
-    // Motorcycle battery / electrical
-    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
+    // Motorcycle electrical/battery
+    image: 'https://source.unsplash.com/600x400/?motorcycle,headlight,lights',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
@@ -123,7 +124,7 @@ const serviceCategories = [
     title: 'Fuel System Services',
     icon: Fuel,
     // Motorcycle fuel tank
-    image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
+    image: 'https://source.unsplash.com/600x400/?motorcycle,tank,gas',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
@@ -136,8 +137,8 @@ const serviceCategories = [
     id: 'brakes',
     title: 'Brakes & Safety',
     icon: CircleStop,
-    // Motorcycle brake disc/caliper
-    image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop',
+    // Motorcycle brakes
+    image: 'https://source.unsplash.com/600x400/?motorcycle,brake,disc',
     services: [
       'Brake pad replacement',
       'Brake disc replacement',
@@ -149,8 +150,8 @@ const serviceCategories = [
     id: 'suspension',
     title: 'Suspension & Handling',
     icon: Gauge,
-    // Motorcycle front forks
-    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop',
+    // Motorcycle suspension/forks
+    image: 'https://source.unsplash.com/600x400/?motorcycle,forks,suspension',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
@@ -163,8 +164,8 @@ const serviceCategories = [
     id: 'wheels',
     title: 'Wheels & Tyres',
     icon: CircleDot,
-    // Motorcycle wheel/tyre
-    image: 'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&h=400&fit=crop',
+    // Motorcycle wheels/tyres
+    image: 'https://source.unsplash.com/600x400/?motorcycle,wheel,tire',
     services: [
       'Tyre fitting & replacement',
       'Tube replacement',
@@ -177,8 +178,8 @@ const serviceCategories = [
     id: 'transmission',
     title: 'Transmission & Drivetrain',
     icon: Settings,
-    // Motorcycle chain and sprockets
-    image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&h=400&fit=crop',
+    // Motorcycle chain/sprocket
+    image: 'https://source.unsplash.com/600x400/?motorcycle,chain,gear',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
@@ -190,8 +191,8 @@ const serviceCategories = [
     id: 'exhaust',
     title: 'Exhaust & Performance',
     icon: Rocket,
-    // Motorcycle exhaust system
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+    // Motorcycle exhaust
+    image: 'https://source.unsplash.com/600x400/?motorcycle,exhaust,pipe',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
@@ -201,8 +202,8 @@ const serviceCategories = [
     id: 'custom',
     title: 'Custom Builds & Modifications',
     icon: Paintbrush,
-    // Custom motorcycle
-    image: 'https://images.unsplash.com/photo-1558980664-769d59546b3d?w=600&h=400&fit=crop',
+    // Custom motorcycle/cafe racer
+    image: 'https://source.unsplash.com/600x400/?cafe,racer,custom,motorcycle',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
@@ -214,7 +215,7 @@ const serviceCategories = [
     title: 'Performance Upgrades',
     icon: Rocket,
     // Sport/racing motorcycle
-    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c4?w=600&h=400&fit=crop',
+    image: 'https://source.unsplash.com/600x400/?racing,motorcycle,sport,bike',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
@@ -225,7 +226,7 @@ const serviceCategories = [
     title: 'Restoration Services',
     icon: RotateCcw,
     // Vintage/classic motorcycle
-    image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=400&fit=crop',
+    image: 'https://source.unsplash.com/600x400/?vintage,motorcycle,classic,bike',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
@@ -237,8 +238,8 @@ const serviceCategories = [
     id: 'workshop',
     title: 'General Workshop Services',
     icon: Package,
-    // Motorcycle workshop/garage
-    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop',
+    // Motorcycle workshop
+    image: 'https://source.unsplash.com/600x400/?motorcycle,garage,workshop',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
@@ -252,7 +253,7 @@ const serviceCategories = [
     title: 'Accessories & Add-Ons',
     icon: Package,
     // Motorcycle accessories
-    image: 'https://images.unsplash.com/photo-1558981033-0f0309284409?w=600&h=400&fit=crop',
+    image: 'https://source.unsplash.com/600x400/?motorcycle,accessories,parts',
     services: [
       'Crash bars installation'
     ]
@@ -261,8 +262,8 @@ const serviceCategories = [
     id: 'business',
     title: 'Business Services',
     icon: Briefcase,
-    // Mobile mechanic / service van
-    image: 'https://images.unsplash.com/photo-1558981420-4f4c7fbe6f2e?w=600&h=400&fit=crop',
+    // Motorcycle service
+    image: 'https://source.unsplash.com/600x400/?motorcycle,service,repair',
     highlight: true,
     services: [
       'Pickup & delivery service',
