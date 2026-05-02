@@ -22,7 +22,6 @@ import {
   Users,
   Sparkles,
   ArrowRight,
-  Star,
   Puzzle,
   Check
 } from 'lucide-react'
@@ -263,105 +262,103 @@ const serviceCategories = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0f1a]">
+    <div className="min-h-screen bg-[#0c1222]">
       {/* Hero Section */}
-      <section className="relative pt-16 pb-12 md:pt-20 md:pb-16">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0085FF]/8 via-transparent to-transparent" />
-        
-        <div className="relative max-w-5xl mx-auto px-6">
+      <section className="pt-14 pb-10 md:pt-20 md:pb-14">
+        <div className="max-w-5xl mx-auto px-5">
           <div className="text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#0085FF]/10 border border-[#0085FF]/25 rounded-full px-5 py-2 mb-6">
-              <span className="w-2 h-2 bg-[#0085FF] rounded-full" />
-              <span className="text-[#0085FF] text-sm font-semibold">Professional Motorcycle Services</span>
+            <div className="inline-flex items-center gap-2 bg-[#0085FF]/15 border border-[#0085FF]/30 rounded-full px-4 py-1.5 mb-5">
+              <span className="w-1.5 h-1.5 bg-[#0085FF] rounded-full" />
+              <span className="text-[#0085FF] text-sm font-medium">Professional Motorcycle Services</span>
             </div>
             
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-5" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Our Services
             </h1>
             
             {/* Description */}
-            <p className="text-lg text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
               From routine maintenance to complete engine rebuilds, RP Motorcycles offers comprehensive motorcycle services. Our experienced technicians handle all makes and models.
             </p>
             
             {/* Trust Badges */}
             <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { icon: Award, label: 'Expert Technicians' },
-                { icon: Shield, label: 'Quality Guaranteed' },
-                { icon: Users, label: 'All Makes & Models' }
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2">
-                  <item.icon className="w-4 h-4 text-[#0085FF]" />
-                  <span className="text-white text-sm">{item.label}</span>
-                </div>
-              ))}
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                <Award className="w-4 h-4 text-[#0085FF]" />
+                <span className="text-white text-sm font-medium">Expert Technicians</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                <Shield className="w-4 h-4 text-[#0085FF]" />
+                <span className="text-white text-sm font-medium">Quality Guaranteed</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                <Users className="w-4 h-4 text-[#0085FF]" />
+                <span className="text-white text-sm font-medium">All Makes & Models</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="pb-16 md:pb-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid gap-5 md:grid-cols-2">
+      <section className="pb-14 md:pb-20">
+        <div className="max-w-5xl mx-auto px-5">
+          <div className="grid gap-4 md:gap-5 md:grid-cols-2">
             {serviceCategories.map((category) => {
               const Icon = category.icon
               
               return (
                 <div 
                   key={category.id} 
-                  className={`bg-[#111827] rounded-xl border border-gray-800 overflow-hidden ${category.highlight ? 'border-[#0085FF]/40' : ''}`}
+                  className={`bg-[#151d2e] rounded-lg border border-gray-700/50 overflow-hidden ${category.highlight ? 'border-[#0085FF]/50 ring-1 ring-[#0085FF]/20' : ''}`}
                 >
                   {/* Color Bar */}
-                  <div className="h-1" style={{ backgroundColor: category.color }} />
+                  <div className="h-1.5" style={{ backgroundColor: category.color }} />
                   
                   <div className="p-5">
                     {/* Header */}
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-start gap-3 mb-3">
                       <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: `${category.color}20` }}
+                        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${category.color}18` }}
                       >
                         <Icon className="w-5 h-5" style={{ color: category.color }} />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <h3 className="text-base font-semibold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
                             {category.title}
                           </h3>
                           {category.highlight && (
-                            <Badge className="bg-[#0085FF] text-white text-[10px] px-1.5 py-0.5 font-medium">
+                            <Badge className="bg-[#0085FF] text-white text-[10px] px-2 py-0 font-medium">
                               Popular
                             </Badge>
                           )}
                         </div>
+                        <p className="text-gray-400 text-sm mt-1">
+                          {category.description}
+                        </p>
                       </div>
                     </div>
                     
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm mb-4">
-                      {category.description}
-                    </p>
-                    
                     {/* Services List */}
-                    <div className="border-t border-gray-800 pt-4">
+                    <div className="border-t border-gray-700/50 pt-3 mt-3">
                       {category.subsections ? (
-                        <div className="grid gap-4 sm:grid-cols-3">
+                        <div className="grid gap-3 sm:grid-cols-3">
                           {category.subsections.map((subsection, idx) => (
                             <div key={idx}>
-                              <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                              <h4 className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
                                 {subsection.title}
                               </h4>
-                              <ul className="space-y-2">
+                              <ul className="space-y-1.5">
                                 {subsection.items.map((service, i) => (
                                   <li key={i} className="flex items-start gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-[#0085FF]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <div className="w-4 h-4 rounded bg-[#0085FF]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                                       <Check className="w-2.5 h-2.5 text-[#0085FF]" />
                                     </div>
-                                    <span className="text-gray-200 text-sm">{service}</span>
+                                    <span className="text-gray-300 text-sm leading-snug">{service}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -369,13 +366,13 @@ export default function ServicesPage() {
                           ))}
                         </div>
                       ) : (
-                        <ul className={`grid gap-2 ${category.services && category.services.length > 5 ? 'sm:grid-cols-2' : ''}`}>
+                        <ul className={`grid gap-1.5 ${category.services && category.services.length > 5 ? 'sm:grid-cols-2' : ''}`}>
                           {category.services?.map((service, i) => (
                             <li key={i} className="flex items-start gap-2">
-                              <div className="w-4 h-4 rounded-full bg-[#0085FF]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <div className="w-4 h-4 rounded bg-[#0085FF]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <Check className="w-2.5 h-2.5 text-[#0085FF]" />
                               </div>
-                              <span className="text-gray-200 text-sm">{service}</span>
+                              <span className="text-gray-300 text-sm leading-snug">{service}</span>
                             </li>
                           ))}
                         </ul>
@@ -390,21 +387,21 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="pb-16">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="bg-gradient-to-r from-[#0085FF]/20 to-[#0085FF]/5 rounded-2xl border border-[#0085FF]/30 p-8 md:p-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+      <section className="pb-14">
+        <div className="max-w-5xl mx-auto px-5">
+          <div className="bg-gradient-to-br from-[#0085FF]/15 via-[#0085FF]/8 to-transparent rounded-xl border border-[#0085FF]/25 p-6 md:p-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-5">
               <div className="text-center md:text-left">
-                <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-1.5" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   Ready to Get Started?
                 </h2>
-                <p className="text-gray-300">
+                <p className="text-gray-300 text-sm md:text-base">
                   Contact us for a free quote. Pickup & delivery available.
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-2.5">
                 <Button 
-                  className="bg-[#0085FF] hover:bg-[#0085FF]/90 text-white rounded-lg px-6 py-3 font-semibold"
+                  className="bg-[#0085FF] hover:bg-[#0070E0] text-white rounded-lg px-5 py-2.5 text-sm font-semibold"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Get a Quote
@@ -412,7 +409,7 @@ export default function ServicesPage() {
                 </Button>
                 <Button 
                   variant="outline"
-                  className="border-gray-700 text-white hover:bg-gray-800 rounded-lg px-6 py-3"
+                  className="border-gray-600 text-white hover:bg-gray-800 rounded-lg px-5 py-2.5 text-sm"
                 >
                   Contact Us
                 </Button>
@@ -423,31 +420,43 @@ export default function ServicesPage() {
       </section>
 
       {/* Contact Info */}
-      <section className="border-t border-gray-800">
-        <div className="max-w-5xl mx-auto px-6 py-10">
-          <div className="grid sm:grid-cols-3 gap-5">
-            {[
-              { icon: Phone, title: 'Call Us', value: 'Contact us for bookings' },
-              { icon: Clock, title: 'Working Hours', value: 'Mon - Sat: 8:00 AM - 5:00 PM' },
-              { icon: MapPin, title: 'Location', value: 'South Africa' }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-3 p-4 bg-[#111827] rounded-lg border border-gray-800">
-                <div className="w-10 h-10 rounded-lg bg-[#0085FF]/10 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-5 h-5 text-[#0085FF]" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium text-sm">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.value}</p>
-                </div>
+      <section className="border-t border-gray-800/50">
+        <div className="max-w-5xl mx-auto px-5 py-8">
+          <div className="grid sm:grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 p-3.5 bg-[#151d2e] rounded-lg border border-gray-700/50">
+              <div className="w-9 h-9 rounded-lg bg-[#0085FF]/10 flex items-center justify-center flex-shrink-0">
+                <Phone className="w-4 h-4 text-[#0085FF]" />
               </div>
-            ))}
+              <div>
+                <h3 className="text-white font-medium text-sm">Call Us</h3>
+                <p className="text-gray-400 text-sm">Contact us for bookings</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3.5 bg-[#151d2e] rounded-lg border border-gray-700/50">
+              <div className="w-9 h-9 rounded-lg bg-[#0085FF]/10 flex items-center justify-center flex-shrink-0">
+                <Clock className="w-4 h-4 text-[#0085FF]" />
+              </div>
+              <div>
+                <h3 className="text-white font-medium text-sm">Working Hours</h3>
+                <p className="text-gray-400 text-sm">Mon - Sat: 8:00 AM - 5:00 PM</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3.5 bg-[#151d2e] rounded-lg border border-gray-700/50">
+              <div className="w-9 h-9 rounded-lg bg-[#0085FF]/10 flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-4 h-4 text-[#0085FF]" />
+              </div>
+              <div>
+                <h3 className="text-white font-medium text-sm">Location</h3>
+                <p className="text-gray-400 text-sm">South Africa</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-5">
-        <div className="max-w-5xl mx-auto px-6 text-center">
+      <footer className="border-t border-gray-800/50 py-5">
+        <div className="max-w-5xl mx-auto px-5 text-center">
           <p className="text-gray-500 text-sm">
             © {new Date().getFullYear()} RP Motorcycles. All rights reserved.
           </p>
