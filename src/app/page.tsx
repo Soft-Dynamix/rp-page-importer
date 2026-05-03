@@ -408,7 +408,7 @@ export default function ServicesPage() {
                     </div>
                     
                     {/* Service Image */}
-                    <div className="relative h-48 md:h-56 overflow-hidden">
+                    <div className="relative h-64 md:h-80 overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-t from-[#080c14] via-[#080c14]/60 to-transparent z-10" />
                       <Image
                         src={category.image}
@@ -427,7 +427,7 @@ export default function ServicesPage() {
                     
                     {/* Corner accent */}
                     <div 
-                      className="absolute top-48 right-0 w-32 h-32 opacity-20"
+                      className="absolute top-64 right-0 w-32 h-32 opacity-20"
                       style={{
                         background: `radial-gradient(circle at top right, ${category.color}20, transparent 70%)`
                       }}
@@ -443,7 +443,7 @@ export default function ServicesPage() {
 
                     <div className="relative p-8 md:p-10">
                       {/* Header */}
-                      <div className="flex items-start gap-6 mb-8 -mt-16 relative z-10">
+                      <div className="flex items-start gap-6 mb-8 -mt-20 relative z-10">
                         {/* Premium Icon Container */}
                         <div className="relative flex-shrink-0">
                           <div 
