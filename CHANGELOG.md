@@ -2,6 +2,14 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.0.2] - 2025-05-04
+
+### Fixed
+- **Critical Bug Fix**: Fixed nonce verification mismatch
+  - Nonce was created with `sd_page_importer_nonce` but checked with `rp_page_importer_nonce`
+  - This caused "Forbidden" error on all AJAX requests
+  - All nonce checks now correctly use `sd_page_importer_nonce`
+
 ## [2.0.1] - 2025-05-04
 
 ### Fixed

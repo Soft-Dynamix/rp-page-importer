@@ -3,7 +3,7 @@
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.1';
+    private $version = '2.0.2';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -1278,7 +1278,7 @@ class SD_Page_Importer {
      * AJAX: Get page content for preview
      */
     public function ajax_get_page_content() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -1319,7 +1319,7 @@ class SD_Page_Importer {
      * AJAX: Preview export (generate context for Z.ai)
      */
     public function ajax_preview_export() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -1434,7 +1434,7 @@ CONTEXT;
      * AJAX: Export page to ZIP
      */
     public function ajax_export_page() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -1705,7 +1705,7 @@ PROMPT;
      * Supports both FormData (direct file upload) and base64 encoded data
      */
     public function ajax_import_page() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -2296,7 +2296,7 @@ PHP;
     }
     
     public function ajax_get_import_history() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         $history = get_option('rp_page_importer_history', array());
         
@@ -2341,7 +2341,7 @@ PHP;
      * AJAX: Import from URL
      */
     public function ajax_import_from_url() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -2406,7 +2406,7 @@ PHP;
      * AJAX: Import from FTP/Server
      */
     public function ajax_import_from_ftp() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -2573,7 +2573,7 @@ PHP;
      * AJAX: Delete FTP file
      */
     public function ajax_delete_ftp_file() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -2603,7 +2603,7 @@ PHP;
      * AJAX: Clear all FTP files
      */
     public function ajax_clear_ftp_files() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
@@ -2628,7 +2628,7 @@ PHP;
      * AJAX: Handle chunked file upload
      */
     public function ajax_upload_chunk() {
-        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        check_ajax_referer('sd_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
