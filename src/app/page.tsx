@@ -37,7 +37,7 @@ const serviceCategories = [
     description: 'Essential maintenance and repairs to keep your motorcycle running smoothly',
     icon: Wrench,
     color: '#0085FF',
-    image: 'https://placehold.co/800x400/0085FF/FFFFFF/png?text=Motorcycle+Repair',
+    image: '/core-mechanical.jpg',
     services: [
       'General repair & servicing',
       'Full motorcycle servicing (minor / major)',
