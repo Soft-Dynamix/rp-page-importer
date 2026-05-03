@@ -2,6 +2,32 @@
 
 All notable changes to the RP Page Importer plugin will be documented in this file.
 
+## [1.5.0] - 2025-05-04
+
+### Added
+- **Chunked Upload Method** - The ultimate solution for large files!
+  - Splits files into 2MB chunks automatically
+  - Uploads chunks sequentially to bypass server limits
+  - Shows real-time progress with speed indicator
+  - Works with files of ANY size!
+  - No server configuration changes needed
+
+### Improved
+- Four upload methods now available:
+  1. **Browser Upload** - For small files within server limits
+  2. **Chunked Upload** - For any size file (automatic splitting)
+  3. **URL Import** - For files hosted online
+  4. **FTP/Server** - For pre-uploaded files
+- Better progress tracking with chunk count and upload speed
+- Cleaner UI with tabbed upload methods
+- Automatic file reassembly on server
+
+### Technical
+- New `ajax_upload_chunk()` handler for receiving file chunks
+- `reassemble_and_import()` for combining chunks and processing
+- Chunks stored temporarily in `wp-content/uploads/rp-chunks/`
+- Automatic cleanup after import
+
 ## [1.4.0] - 2025-05-04
 
 ### Added

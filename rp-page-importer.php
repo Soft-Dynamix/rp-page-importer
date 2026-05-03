@@ -2,8 +2,8 @@
 /**
  * Plugin Name: RP Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/rp-page-importer
- * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Supports browser upload, URL import, and FTP/server import for large files.
- * Version: 1.4.0
+ * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Supports browser upload, chunked upload, URL import, and FTP/server import for any file size.
+ * Version: 1.5.0
  * Author: RP Motorcycles
  * Author URI: https://rpmotorcycles.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class RP_Page_Importer {
     
-    private $version = '1.4.0';
+    private $version = '1.5.0';
     private $plugin_name = 'rp-page-importer';
     
     public function __construct() {
@@ -26,6 +26,7 @@ class RP_Page_Importer {
         add_action('wp_ajax_rp_import_page', array($this, 'ajax_import_page'));
         add_action('wp_ajax_rp_import_from_url', array($this, 'ajax_import_from_url'));
         add_action('wp_ajax_rp_import_from_ftp', array($this, 'ajax_import_from_ftp'));
+        add_action('wp_ajax_rp_upload_chunk', array($this, 'ajax_upload_chunk'));
         add_action('wp_ajax_rp_delete_ftp_file', array($this, 'ajax_delete_ftp_file'));
         add_action('wp_ajax_rp_clear_ftp_files', array($this, 'ajax_clear_ftp_files'));
         add_action('wp_ajax_rp_get_import_history', array($this, 'ajax_get_import_history'));
@@ -170,6 +171,10 @@ class RP_Page_Importer {
                     <span class="dashicons dashicons-upload"></span> Browser Upload
                     <small>(Max: <?php echo esc_html($max_upload_mb); ?>)</small>
                 </button>
+                <button type="button" class="rp-method-tab" data-method="chunked">
+                    <span class="dashicons dashicons-networking"></span> Chunked Upload
+                    <small>(No size limit!)</small>
+                </button>
                 <button type="button" class="rp-method-tab" data-method="url">
                     <span class="dashicons dashicons-admin-links"></span> From URL
                     <small>(No size limit)</small>
@@ -187,6 +192,46 @@ class RP_Page_Importer {
                     <div class="rp-upload-info">
                         <span class="dashicons dashicons-upload"></span>
                         <p>Drag & drop a ZIP file here or click to browse</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Method: Chunked Upload -->
+            <div class="rp-upload-method rp-method-chunked" style="display: none;">
+                <div class="rp-chunked-import-box">
+                    <h4><span class="dashicons dashicons-networking"></span> Chunked Upload (No Size Limit)</h4>
+                    <p class="description">Upload large files by splitting them into smaller chunks. Works with any file size!</p>
+                    
+                    <div class="rp-upload-area" id="rp-chunked-upload-area">
+                        <input type="file" id="rp-chunked-file" accept=".zip" />
+                        <div class="rp-upload-info">
+                            <span class="dashicons dashicons-networking"></span>
+                            <p>Select any size ZIP file - it will be uploaded in chunks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="rp-chunked-info" id="rp-chunked-info" style="display: none; margin-top: 15px;">
+                        <div class="rp-chunked-file-info">
+                            <strong>File:</strong> <span id="rp-chunked-filename"></span><br>
+                            <strong>Size:</strong> <span id="rp-chunked-filesize"></span><br>
+                            <strong>Chunks:</strong> <span id="rp-chunked-count"></span> x 2MB
+                        </div>
+                    </div>
+                    
+                    <!-- Chunked Progress -->
+                    <div class="rp-chunk-progress-container" id="rp-chunk-progress-container" style="display: none;">
+                        <h4>Upload Progress</h4>
+                        <div class="rp-chunk-progress-bar">
+                            <div class="rp-chunk-progress-fill" id="rp-chunk-progress-fill"></div>
+                        </div>
+                        <div class="rp-chunk-stats">
+                            <span id="rp-chunk-status">Preparing...</span>
+                            <span id="rp-chunk-percent">0%</span>
+                        </div>
+                        <div class="rp-chunk-details" id="rp-chunk-details">
+                            <small>Chunk <span id="rp-chunk-current">0</span> of <span id="rp-chunk-total">0</span></small>
+                            <small>Speed: <span id="rp-chunk-speed">--</span></small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -420,7 +465,7 @@ class RP_Page_Importer {
                 color: #fff;
             }
             
-            .rp-url-import-box, .rp-ftp-import-box {
+            .rp-url-import-box, .rp-ftp-import-box, .rp-chunked-import-box {
                 background: #fff;
                 padding: 20px;
                 border: 1px solid #dcdcde;
@@ -428,11 +473,59 @@ class RP_Page_Importer {
                 margin-top: 15px;
             }
             
-            .rp-url-import-box h4, .rp-ftp-import-box h4 {
+            .rp-url-import-box h4, .rp-ftp-import-box h4, .rp-chunked-import-box h4 {
                 margin-top: 0;
                 display: flex;
                 align-items: center;
                 gap: 8px;
+            }
+            
+            /* Chunked Upload Styles */
+            .rp-chunked-file-info {
+                background: #f6f7f7;
+                padding: 15px;
+                border-radius: 6px;
+                line-height: 1.8;
+            }
+            
+            .rp-chunk-progress-container {
+                background: #f6f7f7;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 15px;
+            }
+            
+            .rp-chunk-progress-container h4 {
+                margin: 0 0 15px 0;
+            }
+            
+            .rp-chunk-progress-bar {
+                height: 20px;
+                background: #dcdcde;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 10px;
+            }
+            
+            .rp-chunk-progress-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #2271b1, #00a32a);
+                border-radius: 10px;
+                width: 0%;
+                transition: width 0.3s ease;
+            }
+            
+            .rp-chunk-stats {
+                display: flex;
+                justify-content: space-between;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            
+            .rp-chunk-details {
+                display: flex;
+                justify-content: space-between;
+                color: #646970;
             }
             
             .rp-ftp-instructions {
@@ -2457,6 +2550,113 @@ PHP;
         }
         
         wp_send_json_success(array('message' => "Deleted {$deleted} file(s)."));
+    }
+    
+    /**
+     * AJAX: Handle chunked file upload
+     */
+    public function ajax_upload_chunk() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $upload_dir = wp_upload_dir();
+        $chunks_dir = $upload_dir['basedir'] . '/rp-chunks/';
+        
+        // Create chunks directory
+        if (!wp_mkdir_p($chunks_dir)) {
+            wp_send_json_error(array('message' => 'Could not create chunks directory.'));
+        }
+        
+        // Get chunk parameters
+        $chunk_index = isset($_POST['chunk_index']) ? intval($_POST['chunk_index']) : 0;
+        $total_chunks = isset($_POST['total_chunks']) ? intval($_POST['total_chunks']) : 0;
+        $file_id = isset($_POST['file_id']) ? sanitize_key($_POST['file_id']) : '';
+        $filename = isset($_POST['filename']) ? sanitize_file_name($_POST['filename']) : 'import.zip';
+        $is_last = isset($_POST['is_last']) && $_POST['is_last'] === 'true';
+        
+        if (empty($file_id) || $total_chunks === 0) {
+            wp_send_json_error(array('message' => 'Invalid chunk parameters.'));
+        }
+        
+        // Create directory for this file's chunks
+        $file_chunks_dir = $chunks_dir . $file_id . '/';
+        wp_mkdir_p($file_chunks_dir);
+        
+        // Save the chunk
+        if (!empty($_FILES['chunk']) && $_FILES['chunk']['error'] === UPLOAD_ERR_OK) {
+            $chunk_path = $file_chunks_dir . sprintf('%08d.chunk', $chunk_index);
+            
+            if (!move_uploaded_file($_FILES['chunk']['tmp_name'], $chunk_path)) {
+                wp_send_json_error(array('message' => 'Could not save chunk.'));
+            }
+            
+            // If this is the last chunk, reassemble and process
+            if ($is_last) {
+                $result = $this->reassemble_and_import($file_chunks_dir, $total_chunks, $filename);
+                
+                if (is_wp_error($result)) {
+                    wp_send_json_error(array('message' => $result->get_error_message()));
+                }
+                
+                wp_send_json_success($result);
+            } else {
+                // Return progress info
+                wp_send_json_success(array(
+                    'message' => 'Chunk uploaded',
+                    'chunk_index' => $chunk_index,
+                    'total_chunks' => $total_chunks,
+                    'progress' => round((($chunk_index + 1) / $total_chunks) * 100, 1)
+                ));
+            }
+        } else {
+            $error = isset($_FILES['chunk']['error']) ? $_FILES['chunk']['error'] : 'No chunk data';
+            wp_send_json_error(array('message' => 'Chunk upload failed: ' . $error));
+        }
+    }
+    
+    /**
+     * Reassemble chunks and process import
+     */
+    private function reassemble_and_import($chunks_dir, $total_chunks, $filename) {
+        $upload_dir = wp_upload_dir();
+        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        
+        if (!wp_mkdir_p($temp_dir)) {
+            return new WP_Error('temp_error', 'Could not create temporary directory.');
+        }
+        
+        $zip_path = $temp_dir . '/import.zip';
+        $zip_handle = fopen($zip_path, 'wb');
+        
+        if (!$zip_handle) {
+            return new WP_Error('zip_error', 'Could not create ZIP file.');
+        }
+        
+        // Reassemble chunks in order
+        for ($i = 0; $i < $total_chunks; $i++) {
+            $chunk_path = $chunks_dir . sprintf('%08d.chunk', $i);
+            
+            if (!file_exists($chunk_path)) {
+                fclose($zip_handle);
+                $this->recursive_delete($temp_dir);
+                return new WP_Error('chunk_missing', "Chunk {$i} is missing.");
+            }
+            
+            $chunk_data = file_get_contents($chunk_path);
+            fwrite($zip_handle, $chunk_data);
+            unlink($chunk_path); // Delete chunk after writing
+        }
+        
+        fclose($zip_handle);
+        
+        // Clean up chunks directory
+        $this->recursive_delete($chunks_dir);
+        
+        // Process the import
+        return $this->process_import($zip_path, $temp_dir, array());
     }
 }
 

@@ -1,11 +1,13 @@
 /**
  * RP Page Importer - Admin JavaScript
- * Version: 1.4.0
+ * Version: 1.5.0
  */
 (function($) {
     'use strict';
     
     var RPImporter = {
+        chunkSize: 2 * 1024 * 1024, // 2MB chunks
+        
         init: function() {
             this.bindEvents();
             this.loadHistory();
@@ -14,12 +16,17 @@
         bindEvents: function() {
             var self = this;
             
-            // File input change
+            // File input change (browser upload)
             $('#rp-zip-file').on('change', function(e) {
                 self.handleFileSelect(e.target.files[0]);
             });
             
-            // Drag and drop
+            // Chunked file input change
+            $('#rp-chunked-file').on('change', function(e) {
+                self.handleChunkedFileSelect(e.target.files[0]);
+            });
+            
+            // Drag and drop for browser upload
             var $uploadArea = $('#rp-upload-area');
             
             $uploadArea.on('dragover', function(e) {
@@ -47,6 +54,34 @@
                 }
             });
             
+            // Drag and drop for chunked upload
+            var $chunkedUploadArea = $('#rp-chunked-upload-area');
+            
+            $chunkedUploadArea.on('dragover', function(e) {
+                e.preventDefault();
+                $(this).addClass('dragover');
+            });
+            
+            $chunkedUploadArea.on('dragleave', function(e) {
+                e.preventDefault();
+                $(this).removeClass('dragover');
+            });
+            
+            $chunkedUploadArea.on('drop', function(e) {
+                e.preventDefault();
+                $(this).removeClass('dragover');
+                
+                var files = e.originalEvent.dataTransfer.files;
+                if (files.length > 0) {
+                    if (files[0].name.endsWith('.zip')) {
+                        $('#rp-chunked-file')[0].files = files;
+                        self.handleChunkedFileSelect(files[0]);
+                    } else {
+                        alert('Please upload a ZIP file.');
+                    }
+                }
+            });
+            
             // Import button
             $('#rp-import-btn').on('click', function(e) {
                 e.preventDefault();
@@ -66,13 +101,43 @@
             var sizeMB = file.size / (1024 * 1024);
             var sizeWarning = '';
             if (sizeMB > 10) {
-                sizeWarning = '<br><span style="color: #d63638;">⚠ Large file - consider using URL or FTP method for files over 10MB</span>';
+                sizeWarning = '<br><span style="color: #d63638;">⚠ Large file - consider using Chunked Upload method</span>';
             }
             
             $uploadInfo.find('p').html(
                 '<strong>' + file.name + '</strong><br>' +
                 this.formatFileSize(file.size) + sizeWarning
             );
+            
+            // Auto-populate title from filename
+            var title = file.name.replace('.zip', '').replace(/[-_]/g, ' ');
+            title = title.charAt(0).toUpperCase() + title.slice(1);
+            if (!$('#rp-page-title').val()) {
+                $('#rp-page-title').val(title);
+            }
+        },
+        
+        handleChunkedFileSelect: function(file) {
+            if (!file) return;
+            
+            var self = this;
+            var $uploadArea = $('#rp-chunked-upload-area');
+            var $uploadInfo = $uploadArea.find('.rp-upload-info');
+            
+            $uploadArea.addClass('has-file');
+            
+            var totalChunks = Math.ceil(file.size / this.chunkSize);
+            
+            $uploadInfo.find('p').html(
+                '<strong>' + file.name + '</strong><br>' +
+                this.formatFileSize(file.size) + ' - ' + totalChunks + ' chunks'
+            );
+            
+            // Show file info
+            $('#rp-chunked-filename').text(file.name);
+            $('#rp-chunked-filesize').text(this.formatFileSize(file.size));
+            $('#rp-chunked-count').text(totalChunks);
+            $('#rp-chunked-info').show();
             
             // Auto-populate title from filename
             var title = file.name.replace('.zip', '').replace(/[-_]/g, ' ');
@@ -112,6 +177,13 @@
                     return;
                 }
                 this.importFromBrowser();
+            } else if (method === 'chunked') {
+                var chunkedFileInput = $('#rp-chunked-file')[0];
+                if (!chunkedFileInput.files || chunkedFileInput.files.length === 0) {
+                    alert('Please select a file for chunked upload.');
+                    return;
+                }
+                this.importChunked(chunkedFileInput.files[0]);
             } else if (method === 'url') {
                 var url = $('#rp-import-url').val();
                 if (!url) {
@@ -187,7 +259,7 @@
                 error: function(xhr, status, error) {
                     var errorMsg = error;
                     if (xhr.status === 413) {
-                        errorMsg = 'File too large. Please use the URL or FTP method instead.';
+                        errorMsg = 'File too large. Please use the Chunked Upload method instead.';
                     }
                     self.updateProgress(100, 'Server error: ' + errorMsg, 'error');
                     self.showResult({ message: errorMsg }, false);
@@ -198,6 +270,118 @@
                     self.loadHistory();
                 }
             });
+        },
+        
+        importChunked: function(file) {
+            var self = this;
+            var chunkSize = this.chunkSize;
+            var totalChunks = Math.ceil(file.size / chunkSize);
+            var fileId = 'upload_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            var currentChunk = 0;
+            var startTime = Date.now();
+            
+            // Disable button
+            var $btn = $('#rp-import-btn');
+            $btn.prop('disabled', true).find('.dashicons').removeClass('dashicons-upload').addClass('dashicons-update dashicons-spin');
+            $('#rp-import-spinner').addClass('is-active');
+            
+            // Show chunked progress
+            $('#rp-chunk-progress-container').show();
+            $('#rp-progress-section').hide();
+            $('#rp-result-section').hide();
+            
+            // Update UI
+            $('#rp-chunk-total').text(totalChunks);
+            $('#rp-chunk-status').text('Uploading...');
+            
+            var options = this.getOptions();
+            
+            // Upload chunks sequentially
+            var uploadNextChunk = function() {
+                if (currentChunk >= totalChunks) {
+                    return;
+                }
+                
+                var start = currentChunk * chunkSize;
+                var end = Math.min(start + chunkSize, file.size);
+                var chunk = file.slice(start, end);
+                
+                var formData = new FormData();
+                formData.append('action', 'rp_upload_chunk');
+                formData.append('nonce', rpImporter.nonce);
+                formData.append('chunk', chunk);
+                formData.append('chunk_index', currentChunk);
+                formData.append('total_chunks', totalChunks);
+                formData.append('file_id', fileId);
+                formData.append('filename', file.name);
+                formData.append('is_last', currentChunk === totalChunks - 1 ? 'true' : 'false');
+                
+                // Add options for last chunk
+                if (currentChunk === totalChunks - 1) {
+                    Object.keys(options).forEach(function(key) {
+                        formData.append('options[' + key + ']', options[key]);
+                    });
+                }
+                
+                $.ajax({
+                    url: rpImporter.ajax_url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.success) {
+                            currentChunk++;
+                            
+                            // Update progress
+                            var progress = (currentChunk / totalChunks) * 100;
+                            $('#rp-chunk-progress-fill').css('width', progress + '%');
+                            $('#rp-chunk-percent').text(progress.toFixed(1) + '%');
+                            $('#rp-chunk-current').text(currentChunk);
+                            
+                            // Calculate speed
+                            var elapsed = (Date.now() - startTime) / 1000;
+                            var bytesPerSec = (currentChunk * chunkSize) / elapsed;
+                            $('#rp-chunk-speed').text(self.formatFileSize(bytesPerSec) + '/s');
+                            
+                            if (response.data.page_id) {
+                                // Import complete!
+                                $('#rp-chunk-status').text('Complete!');
+                                self.showResult(response.data, true);
+                                self.loadHistory();
+                                
+                                // Re-enable button
+                                $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
+                                $('#rp-import-spinner').removeClass('is-active');
+                                
+                                // Clear file input
+                                $('#rp-chunked-file').val('');
+                                $('#rp-chunked-info').hide();
+                                $('#rp-chunk-progress-container').hide();
+                            } else {
+                                // Upload next chunk
+                                uploadNextChunk();
+                            }
+                        } else {
+                            $('#rp-chunk-status').text('Error: ' + response.data.message);
+                            self.showResult(response.data, false);
+                            
+                            $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
+                            $('#rp-import-spinner').removeClass('is-active');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        $('#rp-chunk-status').text('Error: ' + error);
+                        self.showResult({ message: 'Upload failed: ' + error }, false);
+                        
+                        $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
+                        $('#rp-import-spinner').removeClass('is-active');
+                    }
+                });
+            };
+            
+            // Start uploading
+            uploadNextChunk();
         },
         
         importFromUrl: function(url) {
