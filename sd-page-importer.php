@@ -3,7 +3,7 @@
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.0';
+    private $version = '2.0.1';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -601,7 +601,7 @@ class SD_Page_Importer {
                             url: sdImporter.ajax_url,
                             type: 'POST',
                             data: {
-                                action: 'rp_delete_ftp_file',
+                                action: 'sd_delete_ftp_file',
                                 nonce: sdImporter.nonce,
                                 filename: file
                             },
@@ -623,7 +623,7 @@ class SD_Page_Importer {
                             url: sdImporter.ajax_url,
                             type: 'POST',
                             data: {
-                                action: 'rp_clear_ftp_files',
+                                action: 'sd_clear_ftp_files',
                                 nonce: sdImporter.nonce
                             },
                             success: function(response) {
@@ -834,7 +834,7 @@ class SD_Page_Importer {
                         url: sdImporter.ajax_url,
                         type: 'POST',
                         data: {
-                            action: 'rp_preview_export',
+                            action: 'sd_preview_export',
                             nonce: sdImporter.nonce,
                             page_id: pageId,
                             notes: notes
@@ -862,7 +862,7 @@ class SD_Page_Importer {
                         url: sdImporter.ajax_url,
                         type: 'POST',
                         data: {
-                            action: 'rp_get_page_content',
+                            action: 'sd_get_page_content',
                             nonce: sdImporter.nonce,
                             page_id: pageId,
                             extract_css: $('#sd-export-css').is(':checked')
@@ -899,7 +899,7 @@ class SD_Page_Importer {
                         url: sdImporter.ajax_url,
                         type: 'POST',
                         data: {
-                            action: 'rp_export_page',
+                            action: 'sd_export_page',
                             nonce: sdImporter.nonce,
                             page_id: pageId,
                             include_images: $('#sd-export-images').is(':checked'),

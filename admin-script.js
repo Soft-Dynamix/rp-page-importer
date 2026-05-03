@@ -1,11 +1,11 @@
 /**
- * RP Page Importer - Admin JavaScript
- * Version: 1.5.0
+ * Soft Dynamix Page Importer - Admin JavaScript
+ * Version: 2.0.1
  */
 (function($) {
     'use strict';
     
-    var RPImporter = {
+    var SDImporter = {
         chunkSize: 2 * 1024 * 1024, // 2MB chunks
         
         init: function() {
@@ -218,7 +218,7 @@
             
             // Use FormData for direct file upload
             var formData = new FormData();
-            formData.append('action', 'rp_import_page');
+            formData.append('action', 'sd_import_page');
             formData.append('nonce', sdImporter.nonce);
             formData.append('zip_file', file);
             
@@ -307,7 +307,7 @@
                 var chunk = file.slice(start, end);
                 
                 var formData = new FormData();
-                formData.append('action', 'rp_upload_chunk');
+                formData.append('action', 'sd_upload_chunk');
                 formData.append('nonce', sdImporter.nonce);
                 formData.append('chunk', chunk);
                 formData.append('chunk_index', currentChunk);
@@ -404,7 +404,7 @@
                 url: sdImporter.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'rp_import_from_url',
+                    action: 'sd_import_from_url',
                     nonce: sdImporter.nonce,
                     url: url,
                     options: this.getOptions()
@@ -451,7 +451,7 @@
                 url: sdImporter.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'rp_import_from_ftp',
+                    action: 'sd_import_from_ftp',
                     nonce: sdImporter.nonce,
                     filename: filename,
                     options: this.getOptions()
@@ -527,7 +527,7 @@
                 url: sdImporter.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'rp_get_import_history',
+                    action: 'sd_get_import_history',
                     nonce: sdImporter.nonce
                 },
                 success: function(response) {
@@ -540,7 +540,7 @@
     };
     
     $(document).ready(function() {
-        RPImporter.init();
+        SDImporter.init();
     });
     
 })(jQuery);

@@ -2,6 +2,14 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.0.1] - 2025-05-04
+
+### Fixed
+- **Critical Bug Fix**: Fixed AJAX action name mismatch between JavaScript and PHP
+  - JavaScript was using `rp_` prefix while PHP expected `sd_` prefix
+  - All AJAX calls now correctly use `sd_` prefix
+  - This fixes the "Bad Request" error on import
+
 ## [2.0.0] - 2025-05-04
 
 ### Major Rebrand
