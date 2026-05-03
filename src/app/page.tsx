@@ -202,7 +202,7 @@ const serviceCategories = [
     description: 'Unlock your motorcycles full potential',
     icon: Sparkles,
     color: '#06B6D4',
-    image: 'https://placehold.co/800x400/06B6D4/FFFFFF/png?text=Performance',
+    image: '/performance-upgrades.png',
     services: [
       'Air intake upgrades',
       'Throttle upgrade'
