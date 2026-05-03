@@ -409,3 +409,61 @@ Stage Summary:
 - Plugin version updated to 1.1.0
 
 ---
+Task ID: 12
+Agent: Main Agent
+Task: Add export function to give pages to Z.ai for further development
+
+Work Log:
+- User request: "can you add a export function to give to z.ai for further devs or changes to the page?"
+- Added complete Export functionality to plugin
+
+  **New Export Tab Features:**
+  - Select any WordPress page to export
+  - Preview export before downloading
+  - Export options:
+    - Include images from Media Library
+    - Extract inline CSS to separate file
+    - Include Z.ai context file
+  - Development notes field for describing changes wanted
+  - Auto-generated Z.ai context preview
+  - Copy context to clipboard
+
+  **Export ZIP Contains:**
+  - index.html - Page HTML content
+  - style.css - Extracted CSS (if selected)
+  - config.json - Page settings and metadata
+  - zai-context.md - Context file for Z.ai
+  - images/ - Downloaded images (if selected)
+
+  **Z.ai Context File Includes:**
+  - Page information (title, slug, URL, template)
+  - WordPress environment details (site URL, theme, WP version)
+  - List of images used in the page
+  - User's development notes
+  - Instructions for Z.ai on expected format
+
+  **Plugin Updates (v1.2.0):**
+  - New tabbed navigation (Import, Export, Z.ai Prompt, History)
+  - Export tab with full functionality
+  - AJAX handlers for preview and export
+  - Automatic CSS extraction from inline styles
+  - Image URL to file path conversion
+  - Recursive ZIP creation
+
+  **Workflow Created:**
+  1. Export page → Upload to Z.ai → Z.ai modifies → Import back
+  2. Add notes describing what changes you want
+  3. Z.ai context file explains current state and requirements
+
+Verification:
+- Plugin ZIP updated: `/downloads/rp-page-importer.zip` (21KB)
+- All export features functional
+- Context file auto-generates correctly
+
+Stage Summary:
+- Complete export workflow for Z.ai development
+- Two-way workflow: Import and Export
+- Context files bridge the gap between WordPress and AI development
+- Plugin version updated to 1.2.0
+
+---

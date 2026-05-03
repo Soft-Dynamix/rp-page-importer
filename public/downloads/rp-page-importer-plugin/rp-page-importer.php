@@ -2,8 +2,8 @@
 /**
  * Plugin Name: RP Page Importer
  * Plugin URI: https://rpmotorcycles.co.za
- * Description: Import feature pages from ZIP files with images, HTML, and CSS. A generic solution for importing any custom page design.
- * Version: 1.1.0
+ * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. A generic solution for importing and exporting any custom page design.
+ * Version: 1.2.0
  * Author: RP Motorcycles
  * Author URI: https://rpmotorcycles.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class RP_Page_Importer {
     
-    private $version = '1.1.0';
+    private $version = '1.2.0';
     private $plugin_name = 'rp-page-importer';
     
     public function __construct() {
@@ -25,6 +25,9 @@ class RP_Page_Importer {
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         add_action('wp_ajax_rp_import_page', array($this, 'ajax_import_page'));
         add_action('wp_ajax_rp_get_import_history', array($this, 'ajax_get_import_history'));
+        add_action('wp_ajax_rp_export_page', array($this, 'ajax_export_page'));
+        add_action('wp_ajax_rp_get_page_content', array($this, 'ajax_get_page_content'));
+        add_action('wp_ajax_rp_preview_export', array($this, 'ajax_preview_export'));
     }
     
     /**
@@ -89,7 +92,10 @@ class RP_Page_Importer {
             <!-- Tabs -->
             <nav class="rp-nav-tabs">
                 <a href="?page=rp-page-importer&tab=import" class="rp-nav-tab <?php echo $current_tab === 'import' ? 'active' : ''; ?>">
-                    <span class="dashicons dashicons-upload"></span> Import Page
+                    <span class="dashicons dashicons-upload"></span> Import
+                </a>
+                <a href="?page=rp-page-importer&tab=export" class="rp-nav-tab <?php echo $current_tab === 'export' ? 'active' : ''; ?>">
+                    <span class="dashicons dashicons-download"></span> Export
                 </a>
                 <a href="?page=rp-page-importer&tab=zai-prompt" class="rp-nav-tab <?php echo $current_tab === 'zai-prompt' ? 'active' : ''; ?>">
                     <span class="dashicons dashicons-admin-customizer"></span> Z.ai Prompt
@@ -102,6 +108,8 @@ class RP_Page_Importer {
             <div class="rp-importer-container">
                 <?php if ($current_tab === 'import'): ?>
                     <?php $this->render_import_tab(); ?>
+                <?php elseif ($current_tab === 'export'): ?>
+                    <?php $this->render_export_tab(); ?>
                 <?php elseif ($current_tab === 'zai-prompt'): ?>
                     <?php $this->render_zai_prompt_tab(); ?>
                 <?php elseif ($current_tab === 'history'): ?>
@@ -242,6 +250,336 @@ class RP_Page_Importer {
     }
     
     /**
+     * Render Export Tab
+     */
+    private function render_export_tab() {
+        $pages = get_pages(array('post_status' => array('publish', 'draft', 'private')));
+        ?>
+        <div class="rp-export-section">
+            <h2>Export Page for Z.ai</h2>
+            <p class="description">Export any WordPress page to a ZIP file that Z.ai can use for further development. The export includes HTML, CSS, images, and a context file for Z.ai.</p>
+            
+            <div class="rp-export-form">
+                <table class="form-table">
+                    <tr>
+                        <th scope="row">Select Page</th>
+                        <td>
+                            <select id="rp-export-page" class="regular-text">
+                                <option value="">-- Select a page to export --</option>
+                                <?php foreach ($pages as $page): ?>
+                                    <option value="<?php echo $page->ID; ?>">
+                                        <?php echo esc_html($page->post_title); ?> 
+                                        (/<?php echo esc_html($page->post_name); ?>)
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Export Options</th>
+                        <td>
+                            <label class="rp-checkbox-label">
+                                <input type="checkbox" id="rp-export-images" checked />
+                                Include images from Media Library
+                            </label>
+                            <br><br>
+                            <label class="rp-checkbox-label">
+                                <input type="checkbox" id="rp-export-css" checked />
+                                Extract inline CSS to separate file
+                            </label>
+                            <br><br>
+                            <label class="rp-checkbox-label">
+                                <input type="checkbox" id="rp-export-context" checked />
+                                Include Z.ai context file (for future development)
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Development Notes</th>
+                        <td>
+                            <textarea id="rp-export-notes" class="large-text" rows="4" placeholder="Add notes for Z.ai about what changes you want made to this page..."></textarea>
+                            <p class="description">Describe what modifications or improvements you want Z.ai to make</p>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="rp-export-actions">
+                    <button type="button" id="rp-preview-export-btn" class="button">
+                        <span class="dashicons dashicons-visibility"></span> Preview Export
+                    </button>
+                    <button type="button" id="rp-export-btn" class="button button-primary button-large">
+                        <span class="dashicons dashicons-download"></span> Export ZIP
+                    </button>
+                    <span class="spinner" id="rp-export-spinner"></span>
+                </div>
+            </div>
+            
+            <!-- Preview Section -->
+            <div class="rp-export-preview" id="rp-export-preview" style="display: none;">
+                <h3>Export Preview</h3>
+                <div class="rp-preview-content" id="rp-preview-content"></div>
+            </div>
+            
+            <!-- Z.ai Context Generator -->
+            <div class="rp-zai-context-section">
+                <h3>Generated Z.ai Context</h3>
+                <p class="description">This context file will be included in the export to help Z.ai understand the page:</p>
+                <div class="rp-context-preview">
+                    <textarea id="rp-zai-context-preview" class="rp-prompt-textarea" readonly style="min-height: 200px;"></textarea>
+                    <button type="button" id="rp-copy-context" class="button" style="margin-top: 10px;">
+                        <span class="dashicons dashicons-clipboard"></span> Copy Context for Z.ai
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            .rp-export-section {
+                background: #fff;
+                padding: 25px;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            
+            .rp-export-section h2 {
+                margin-top: 0;
+            }
+            
+            .rp-export-form {
+                margin-bottom: 30px;
+            }
+            
+            .rp-export-actions {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-top: 20px;
+            }
+            
+            .rp-export-actions .dashicons {
+                margin-right: 5px;
+            }
+            
+            .rp-export-preview {
+                margin-top: 30px;
+                padding: 20px;
+                background: #f6f7f7;
+                border-radius: 8px;
+            }
+            
+            .rp-preview-content {
+                background: #1e1e1e;
+                color: #9cdcfe;
+                padding: 15px;
+                border-radius: 4px;
+                font-family: 'Courier New', monospace;
+                font-size: 12px;
+                max-height: 400px;
+                overflow-y: auto;
+                white-space: pre-wrap;
+            }
+            
+            .rp-zai-context-section {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #dcdcde;
+            }
+            
+            .rp-context-preview {
+                margin-top: 15px;
+            }
+            
+            .rp-export-summary {
+                background: #e7f7ff;
+                border: 1px solid #0085FF;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .rp-export-summary h4 {
+                margin: 0 0 10px 0;
+                color: #0073aa;
+            }
+            
+            .rp-export-summary ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+            
+            .rp-export-summary li {
+                margin-bottom: 5px;
+            }
+        </style>
+        
+        <script>
+            jQuery(document).ready(function($) {
+                // Page selection change - update context preview
+                $('#rp-export-page').on('change', function() {
+                    var pageId = $(this).val();
+                    if (pageId) {
+                        updateContextPreview(pageId);
+                    } else {
+                        $('#rp-zai-context-preview').val('');
+                    }
+                });
+                
+                // Notes change - update context
+                $('#rp-export-notes').on('input', function() {
+                    var pageId = $('#rp-export-page').val();
+                    if (pageId) {
+                        updateContextPreview(pageId);
+                    }
+                });
+                
+                function updateContextPreview(pageId) {
+                    var notes = $('#rp-export-notes').val();
+                    
+                    $.ajax({
+                        url: rpImporter.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'rp_preview_export',
+                            nonce: rpImporter.nonce,
+                            page_id: pageId,
+                            notes: notes
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $('#rp-zai-context-preview').val(response.data.context);
+                            }
+                        }
+                    });
+                }
+                
+                // Preview export
+                $('#rp-preview-export-btn').on('click', function() {
+                    var pageId = $('#rp-export-page').val();
+                    if (!pageId) {
+                        alert('Please select a page to preview.');
+                        return;
+                    }
+                    
+                    var $btn = $(this);
+                    $btn.prop('disabled', true);
+                    
+                    $.ajax({
+                        url: rpImporter.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'rp_get_page_content',
+                            nonce: rpImporter.nonce,
+                            page_id: pageId,
+                            extract_css: $('#rp-export-css').is(':checked')
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $('#rp-preview-content').text(response.data.html);
+                                $('#rp-export-preview').show();
+                            } else {
+                                alert(response.data.message || 'Error loading page content.');
+                            }
+                        },
+                        complete: function() {
+                            $btn.prop('disabled', false);
+                        }
+                    });
+                });
+                
+                // Export ZIP
+                $('#rp-export-btn').on('click', function() {
+                    var pageId = $('#rp-export-page').val();
+                    if (!pageId) {
+                        alert('Please select a page to export.');
+                        return;
+                    }
+                    
+                    var $btn = $(this);
+                    var $spinner = $('#rp-export-spinner');
+                    
+                    $btn.prop('disabled', true);
+                    $spinner.addClass('is-active');
+                    
+                    $.ajax({
+                        url: rpImporter.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'rp_export_page',
+                            nonce: rpImporter.nonce,
+                            page_id: pageId,
+                            include_images: $('#rp-export-images').is(':checked'),
+                            extract_css: $('#rp-export-css').is(':checked'),
+                            include_context: $('#rp-export-context').is(':checked'),
+                            notes: $('#rp-export-notes').val()
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                // Trigger download
+                                var link = document.createElement('a');
+                                link.href = response.data.download_url;
+                                link.download = response.data.filename;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                
+                                // Show success message
+                                showExportResult(response.data, true);
+                            } else {
+                                alert(response.data.message || 'Error exporting page.');
+                            }
+                        },
+                        complete: function() {
+                            $btn.prop('disabled', false);
+                            $spinner.removeClass('is-active');
+                        }
+                    });
+                });
+                
+                function showExportResult(data, success) {
+                    var $result = $('<div class="rp-export-result" style="margin-top: 20px; padding: 15px; background: ' + (success ? '#d4edda' : '#f8d7da') + '; border-radius: 8px;">' +
+                        '<strong>' + (success ? '✓ Export Successful!' : '✗ Export Failed') + '</strong><br>' +
+                        'Filename: ' + data.filename + '<br>' +
+                        'Images exported: ' + data.images_count + '<br>' +
+                        '<a href="' + data.download_url + '" download>Download again</a>' +
+                        '</div>');
+                    
+                    $('.rp-export-form').after($result);
+                    setTimeout(function() {
+                        $result.fadeOut(function() { $(this).remove(); });
+                    }, 10000);
+                }
+                
+                // Copy context
+                $('#rp-copy-context').on('click', function() {
+                    var text = $('#rp-zai-context-preview').val();
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopiedNotice();
+                        });
+                    } else {
+                        var textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        showCopiedNotice();
+                    }
+                });
+                
+                function showCopiedNotice() {
+                    var $notice = $('<div class="rp-copied-notice" style="position: fixed; bottom: 30px; right: 30px; background: #00a32a; color: #fff; padding: 12px 20px; border-radius: 6px; display: flex; align-items: center; gap: 8px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 163, 42, 0.3);"><span class="dashicons dashicons-yes-alt"></span> Copied to clipboard!</div>');
+                    $('body').append($notice);
+                    setTimeout(function() {
+                        $notice.fadeOut(function() { $(this).remove(); });
+                    }, 2000);
+                }
+            });
+        </script>
+        <?php
+    }
+    
+    /**
      * Render Z.ai Prompt Tab
      */
     private function render_zai_prompt_tab() {
@@ -302,45 +640,6 @@ class RP_Page_Importer {
 }</pre>
                     </div>
                 </div>
-            </div>
-            
-            <div class="rp-template-options">
-                <h3>Available Template Options</h3>
-                <table class="widefat">
-                    <thead>
-                        <tr>
-                            <th>Template</th>
-                            <th>Value for config.json</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Default Template</td>
-                            <td><code>default</code></td>
-                            <td>Uses theme's default page template</td>
-                        </tr>
-                        <tr>
-                            <td>Blank Template</td>
-                            <td><code>blank</code></td>
-                            <td>Full-width, no header/footer (auto-created)</td>
-                        </tr>
-                        <tr>
-                            <td>Elementor Canvas</td>
-                            <td><code>elementor_canvas</code></td>
-                            <td>Full-width canvas for Elementor</td>
-                        </tr>
-                        <tr>
-                            <td>Elementor Full Width</td>
-                            <td><code>elementor_header_footer</code></td>
-                            <td>Elementor with theme header/footer</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="rp-copied-notice" id="rp-copied-notice" style="display: none;">
-                <span class="dashicons dashicons-yes-alt"></span> Copied to clipboard!
             </div>
         </div>
         
@@ -433,41 +732,6 @@ class RP_Page_Importer {
                 margin: 0;
             }
             
-            .rp-template-options {
-                margin-top: 20px;
-            }
-            
-            .rp-template-options h3 {
-                margin-bottom: 10px;
-            }
-            
-            .rp-copied-notice {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background: #00a32a;
-                color: #fff;
-                padding: 12px 20px;
-                border-radius: 6px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-weight: 500;
-                box-shadow: 0 4px 12px rgba(0, 163, 42, 0.3);
-                animation: slideIn 0.3s ease;
-            }
-            
-            @keyframes slideIn {
-                from {
-                    transform: translateY(20px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-            
             @media screen and (max-width: 782px) {
                 .rp-structure-grid {
                     grid-template-columns: 1fr;
@@ -508,10 +772,10 @@ class RP_Page_Importer {
                 }
                 
                 function showCopiedNotice() {
-                    var $notice = $('#rp-copied-notice');
-                    $notice.fadeIn(200);
+                    var $notice = $('<div class="rp-copied-notice" style="position: fixed; bottom: 30px; right: 30px; background: #00a32a; color: #fff; padding: 12px 20px; border-radius: 6px; display: flex; align-items: center; gap: 8px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 163, 42, 0.3);"><span class="dashicons dashicons-yes-alt"></span> Copied to clipboard!</div>');
+                    $('body').append($notice);
                     setTimeout(function() {
-                        $notice.fadeOut(200);
+                        $notice.fadeOut(function() { $(this).remove(); });
                     }, 2000);
                 }
             });
@@ -526,7 +790,7 @@ class RP_Page_Importer {
         $history = get_option('rp_page_importer_history', array());
         ?>
         <div class="rp-history-section-full">
-            <h2>Import History</h2>
+            <h2>Import/Export History</h2>
             
             <?php if (empty($history)): ?>
                 <div class="rp-no-history">
@@ -567,6 +831,7 @@ class RP_Page_Importer {
                                 <?php if ($page_exists): ?>
                                     <a href="<?php echo esc_url(get_edit_post_link($item['page_id'])); ?>" class="button button-small">Edit</a>
                                     <a href="<?php echo esc_url(get_permalink($item['page_id'])); ?>" target="_blank" class="button button-small">View</a>
+                                    <a href="?page=rp-page-importer&tab=export" class="button button-small" onclick="localStorage.setItem('rp_export_page', '<?php echo $item['page_id']; ?>')">Export</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -612,6 +877,320 @@ class RP_Page_Importer {
             }
         </style>
         <?php
+    }
+    
+    /**
+     * AJAX: Get page content for preview
+     */
+    public function ajax_get_page_content() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $page_id = isset($_POST['page_id']) ? intval($_POST['page_id']) : 0;
+        $extract_css = isset($_POST['extract_css']) && $_POST['extract_css'] === 'true';
+        
+        $page = get_post($page_id);
+        if (!$page) {
+            wp_send_json_error(array('message' => 'Page not found.'));
+        }
+        
+        $content = $page->post_content;
+        
+        if ($extract_css) {
+            // Extract inline CSS
+            preg_match_all('/<style[^>]*>(.*?)<\/style>/is', $content, $matches);
+            $css = implode("\n\n", $matches[1]);
+            $html = preg_replace('/<style[^>]*>.*?<\/style>/is', '<link rel="stylesheet" href="style.css">', $content);
+            
+            wp_send_json_success(array(
+                'html' => $html,
+                'css' => $css,
+                'title' => $page->post_title,
+                'slug' => $page->post_name
+            ));
+        } else {
+            wp_send_json_success(array(
+                'html' => $content,
+                'title' => $page->post_title,
+                'slug' => $page->post_name
+            ));
+        }
+    }
+    
+    /**
+     * AJAX: Preview export (generate context for Z.ai)
+     */
+    public function ajax_preview_export() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $page_id = isset($_POST['page_id']) ? intval($_POST['page_id']) : 0;
+        $notes = isset($_POST['notes']) ? sanitize_textarea_field($_POST['notes']) : '';
+        
+        $page = get_post($page_id);
+        if (!$page) {
+            wp_send_json_error(array('message' => 'Page not found.'));
+        }
+        
+        $context = $this->generate_zai_context($page, $notes);
+        
+        wp_send_json_success(array(
+            'context' => $context
+        ));
+    }
+    
+    /**
+     * Generate Z.ai context for a page
+     */
+    private function generate_zai_context($page, $notes = '') {
+        $template = get_post_meta($page->ID, '_wp_page_template', true);
+        $permalink = get_permalink($page->ID);
+        $edit_url = get_edit_post_link($page->ID);
+        
+        // Get images used in the page
+        $content = $page->post_content;
+        preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $img_matches);
+        $images = array_unique($img_matches[1] ?? array());
+        
+        // Get theme info
+        $theme = wp_get_theme();
+        
+        $context = <<<CONTEXT
+# Page Export for Z.ai Development
+
+## Page Information
+- **Title:** {$page->post_title}
+- **Slug:** {$page->post_name}
+- **URL:** {$permalink}
+- **Page ID:** {$page->ID}
+- **Template:** {$template}
+- **Status:** {$page->post_status}
+- **Last Modified:** {$page->post_modified}
+
+## WordPress Environment
+- **Site URL:** {$this->get_site_url_safe()}
+- **Theme:** {$theme->get('Name')} v{$theme->get('Version')}
+- **WordPress Version:** {$this->get_wp_version_safe()}
+
+## Page Structure
+- **Content Length:** " . strlen($content) . " characters
+- **Images Used:** " . count($images) . "
+
+## Images in Page
+CONTEXT;
+
+        if (!empty($images)) {
+            foreach ($images as $img_url) {
+                $context .= "\n- {$img_url}";
+            }
+        } else {
+            $context .= "\n- No images detected in content";
+        }
+        
+        if (!empty($notes)) {
+            $context .= <<<CONTEXT
+
+
+## Development Notes from User
+{$notes}
+CONTEXT;
+        }
+        
+        $context .= <<<CONTEXT
+
+
+## Request for Z.ai
+Please review this exported page and help with the following:
+1. Analyze the current page structure and design
+2. Review any development notes above
+3. Suggest improvements or implement requested changes
+4. Export the modified page in the same format for re-import
+
+## Export Format Expected
+When making changes, please provide:
+- index.html (or page.html) with the modified HTML
+- style.css with all CSS (extracted from inline styles if needed)
+- Updated images in the images/ folder if new images are needed
+- config.json with page settings
+- This context file updated with your changes
+
+## Technical Notes for Z.ai
+- This page was exported from WordPress
+- Images are in the WordPress Media Library
+- CSS may be inline in the HTML (extract to style.css)
+- Use relative paths for images (images/filename.jpg)
+- Make responsive and mobile-friendly changes
+- Test dark/light mode if applicable
+
+---
+*Generated by RP Page Importer v{$this->version} on " . current_time('mysql') . "*
+CONTEXT;
+
+        return $context;
+    }
+    
+    /**
+     * AJAX: Export page to ZIP
+     */
+    public function ajax_export_page() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $page_id = isset($_POST['page_id']) ? intval($_POST['page_id']) : 0;
+        $include_images = isset($_POST['include_images']) && $_POST['include_images'] === 'true';
+        $extract_css = isset($_POST['extract_css']) && $_POST['extract_css'] === 'true';
+        $include_context = isset($_POST['include_context']) && $_POST['include_context'] === 'true';
+        $notes = isset($_POST['notes']) ? sanitize_textarea_field($_POST['notes']) : '';
+        
+        $page = get_post($page_id);
+        if (!$page) {
+            wp_send_json_error(array('message' => 'Page not found.'));
+        }
+        
+        // Create export directory
+        $upload_dir = wp_upload_dir();
+        $export_dir = $upload_dir['basedir'] . '/rp-exports/' . $page->post_name . '-' . time();
+        
+        if (!wp_mkdir_p($export_dir)) {
+            wp_send_json_error(array('message' => 'Could not create export directory.'));
+        }
+        
+        $images_dir = $export_dir . '/images';
+        $images_count = 0;
+        
+        // Process content
+        $content = $page->post_content;
+        $css_content = '';
+        
+        if ($extract_css) {
+            // Extract inline CSS
+            preg_match_all('/<style[^>]*>(.*?)<\/style>/is', $content, $matches);
+            $css_content = implode("\n\n", $matches[1]);
+            $content = preg_replace('/<style[^>]*>.*?<\/style>/is', '<link rel="stylesheet" href="style.css">', $content);
+        }
+        
+        if ($include_images) {
+            wp_mkdir_p($images_dir);
+            
+            // Find and download images
+            preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $page->post_content, $img_matches);
+            $images = array_unique($img_matches[1] ?? array());
+            
+            foreach ($images as $img_url) {
+                // Handle both absolute and relative URLs
+                $img_path = $this->url_to_path($img_url);
+                
+                if ($img_path && file_exists($img_path)) {
+                    $filename = basename(parse_url($img_url, PHP_URL_PATH));
+                    $dest_path = $images_dir . '/' . $filename;
+                    
+                    if (copy($img_path, $dest_path)) {
+                        // Replace URL in content
+                        $content = str_replace($img_url, 'images/' . $filename, $content);
+                        $images_count++;
+                    }
+                }
+            }
+        }
+        
+        // Write files
+        file_put_contents($export_dir . '/index.html', $content);
+        
+        if (!empty($css_content)) {
+            file_put_contents($export_dir . '/style.css', $css_content);
+        }
+        
+        if ($include_context) {
+            $context = $this->generate_zai_context($page, $notes);
+            file_put_contents($export_dir . '/zai-context.md', $context);
+        }
+        
+        // Create config.json
+        $template = get_post_meta($page->ID, '_wp_page_template', true);
+        $config = array(
+            'title' => $page->post_title,
+            'slug' => $page->post_name,
+            'template' => $template ?: 'default',
+            'status' => $page->post_status,
+            'export_date' => current_time('mysql'),
+            'source_site' => get_site_url(),
+            'page_id' => $page->ID
+        );
+        file_put_contents($export_dir . '/config.json', json_encode($config, JSON_PRETTY_PRINT));
+        
+        // Create ZIP file
+        $zip_filename = $page->post_name . '-export.zip';
+        $zip_path = $upload_dir['basedir'] . '/rp-exports/' . $zip_filename;
+        
+        $zip = new ZipArchive();
+        if ($zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+            wp_send_json_error(array('message' => 'Could not create ZIP file.'));
+        }
+        
+        $this->add_directory_to_zip($zip, $export_dir, '');
+        $zip->close();
+        
+        // Clean up export directory
+        $this->recursive_delete($export_dir);
+        
+        $download_url = $upload_dir['baseurl'] . '/rp-exports/' . $zip_filename;
+        
+        wp_send_json_success(array(
+            'message' => 'Export completed successfully!',
+            'download_url' => $download_url,
+            'filename' => $zip_filename,
+            'images_count' => $images_count
+        ));
+    }
+    
+    /**
+     * Convert URL to file path
+     */
+    private function url_to_path($url) {
+        $upload_dir = wp_upload_dir();
+        
+        // Check if it's an upload URL
+        if (strpos($url, $upload_dir['baseurl']) !== false) {
+            return str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $url);
+        }
+        
+        // Check if it's a local URL
+        $site_url = get_site_url();
+        if (strpos($url, $site_url) !== false) {
+            return str_replace($site_url, ABSPATH, $url);
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Add directory to ZIP archive recursively
+     */
+    private function add_directory_to_zip($zip, $dir, $prefix) {
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+        
+        foreach ($iterator as $file) {
+            if ($file->isDir()) {
+                $zip->addEmptyDir($prefix . substr($file->getPathname(), strlen($dir) + 1));
+            } else {
+                $zip->addFile(
+                    $file->getPathname(),
+                    $prefix . substr($file->getPathname(), strlen($dir) + 1)
+                );
+            }
+        }
     }
     
     /**
@@ -709,6 +1288,21 @@ PROMPT;
             'full' => $full_prompt,
             'short' => $short_prompt
         ];
+    }
+    
+    /**
+     * Safe get site URL
+     */
+    private function get_site_url_safe() {
+        return get_site_url();
+    }
+    
+    /**
+     * Safe get WP version
+     */
+    private function get_wp_version_safe() {
+        global $wp_version;
+        return $wp_version;
     }
     
     /**
