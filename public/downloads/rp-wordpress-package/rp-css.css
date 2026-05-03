@@ -1,0 +1,115 @@
+/* ============================================
+   RP MOTORCYCLES SERVICES PAGE - CSS
+   Add to: WordPress → Appearance → Customize → Additional CSS
+   ============================================ */
+
+/* ===== DARK BACKGROUND ===== */
+body,
+body.custom-background,
+.site-content,
+.ast-plain-container,
+.ast-separate-container,
+.elementor,
+.elementor-inner,
+.elementor-section-wrap {
+  background-color: #080c14 !important;
+}
+
+/* Remove any white backgrounds */
+.elementor-section,
+.elementor-column,
+.elementor-widget-wrap,
+.elementor-widget {
+  background-color: transparent !important;
+}
+
+/* ===== ELEMENTOR TEXT EDITOR ===== */
+.elementor-widget-text-editor {
+  background-color: transparent !important;
+}
+
+/* ===== FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap');
+
+h1, h2, h3 {
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif !important;
+}
+
+/* ===== ASTRA THEME FIXES ===== */
+/* Remove Astra's default container backgrounds */
+.ast-plain-container.ast-no-sidebar .entry-content,
+.ast-separate-container .ast-article-single {
+  background-color: #080c14 !important;
+}
+
+/* Remove padding from Astra containers */
+.ast-plain-container {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Full width content */
+.entry-content {
+  margin: 0 !important;
+}
+
+/* ===== ELEMENTOR CONTAINER ===== */
+.elementor-container {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* ===== REMOVE ELEMENTOR DEFAULT STYLING ===== */
+.elementor-widget-container {
+  margin: 0 !important;
+}
+
+/* ===== RESPONSIVE GRID ===== */
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  div[style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  div[style*="max-width: calc(50%"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 480px) {
+  div[style*="font-size: 72px"] {
+    font-size: 42px !important;
+  }
+
+  div[style*="font-size: 48px"] {
+    font-size: 32px !important;
+  }
+
+  div[style*="padding: 80px 40px"] {
+    padding: 40px 20px !important;
+  }
+
+  div[style*="padding: 60px"] {
+    padding: 30px !important;
+  }
+
+  div[style*="height: 320px"] {
+    height: 200px !important;
+  }
+
+  div[style*="height: 350px"] {
+    height: 220px !important;
+  }
+}
+
+/* ===== CARD HOVER EFFECTS (Optional) ===== */
+div[style*="border-radius: 24px"][style*="background: #0d1117"]:hover {
+  box-shadow: 0 20px 60px rgba(0,133,255,0.15) !important;
+  transform: translateY(-4px);
+  transition: all 0.5s ease !important;
+}
