@@ -2,6 +2,18 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.0.4] - 2025-05-04
+
+### Fixed
+- **Image Placeholders**: Now correctly replaces `{{IMAGE_1}}`, `{{IMAGE_2}}`, etc. placeholders with WordPress Media Library URLs
+- **CSS Reset**: Less aggressive CSS reset that preserves inline styles from Z.ai preview
+- **Image Import Order**: Images are now sorted by filename for consistent placeholder mapping
+
+### Improved
+- `import_images()` now creates both filename and numbered index mappings
+- `replace_image_urls()` handles Z.ai `{{IMAGE_N}}` placeholder format
+- CSS isolation no longer breaks inline styles with `all: initial`
+
 ## [2.0.3] - 2025-05-04
 
 ### Fixed

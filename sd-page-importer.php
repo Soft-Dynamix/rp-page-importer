@@ -3,7 +3,7 @@
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.3
+ * Version: 2.0.4
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.3';
+    private $version = '2.0.4';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -1952,6 +1952,8 @@ PROMPT;
         require_once(ABSPATH . 'wp-admin/includes/media.php');
         require_once(ABSPATH . 'wp-admin/includes/image.php');
         
+        // Get all image files and sort them by name for consistent ordering
+        $image_files = array();
         $iterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($images_dir, RecursiveDirectoryIterator::SKIP_DOTS),
             RecursiveIteratorIterator::SELF_FIRST
@@ -1959,22 +1961,44 @@ PROMPT;
         
         foreach ($iterator as $file) {
             if ($file->isFile() && $this->is_image_file($file->getPathname())) {
-                $filename = $file->getFilename();
-                $filepath = $file->getPathname();
-                
-                $existing = $this->find_existing_image($filename);
-                if ($existing) {
-                    $image_map[$filename] = $existing;
-                    continue;
-                }
-                
-                $attachment_id = $this->import_single_image($filepath, $filename);
-                if ($attachment_id) {
-                    $image_map[$filename] = array(
-                        'id' => $attachment_id,
-                        'url' => wp_get_attachment_url($attachment_id),
-                    );
-                }
+                $image_files[] = array(
+                    'filename' => $file->getFilename(),
+                    'filepath' => $file->getPathname(),
+                );
+            }
+        }
+        
+        // Sort by filename for consistent ordering
+        usort($image_files, function($a, $b) {
+            return strnatcmp($a['filename'], $b['filename']);
+        });
+        
+        // Track image index for {{IMAGE_N}} placeholders
+        $image_index = 1;
+        
+        foreach ($image_files as $img_file) {
+            $filename = $img_file['filename'];
+            $filepath = $img_file['filepath'];
+            
+            $existing = $this->find_existing_image($filename);
+            if ($existing) {
+                $image_map[$filename] = $existing;
+                // Also add numbered index for {{IMAGE_N}} placeholders
+                $image_map['IMAGE_' . $image_index] = $existing;
+                $image_index++;
+                continue;
+            }
+            
+            $attachment_id = $this->import_single_image($filepath, $filename);
+            if ($attachment_id) {
+                $image_data = array(
+                    'id' => $attachment_id,
+                    'url' => wp_get_attachment_url($attachment_id),
+                );
+                $image_map[$filename] = $image_data;
+                // Also add numbered index for {{IMAGE_N}} placeholders
+                $image_map['IMAGE_' . $image_index] = $image_data;
+                $image_index++;
             }
         }
         
@@ -2105,7 +2129,22 @@ PROMPT;
     }
     
     private function replace_image_urls($html, $image_map) {
-        foreach ($image_map as $original_name => $image_data) {
+        // First, replace {{IMAGE_N}} style placeholders (Z.ai format)
+        for ($i = 1; $i <= 100; $i++) {
+            $placeholder = '{{IMAGE_' . $i . '}}';
+            if (isset($image_map['IMAGE_' . $i])) {
+                $html = str_replace($placeholder, $image_map['IMAGE_' . $i]['url'], $html);
+            }
+        }
+        
+        // Also replace standard image path patterns
+        foreach ($image_map as $key => $image_data) {
+            // Skip numbered indexes (already handled above)
+            if (strpos($key, 'IMAGE_') === 0) {
+                continue;
+            }
+            
+            $original_name = $key;
             $patterns = array(
                 'images/' . $original_name,
                 './images/' . $original_name,
@@ -2113,6 +2152,7 @@ PROMPT;
                 './img/' . $original_name,
                 'assets/images/' . $original_name,
                 'assets/img/' . $original_name,
+                $original_name, // Just the filename
             );
             
             foreach ($patterns as $pattern) {
@@ -2128,22 +2168,27 @@ PROMPT;
      * Adds specificity and ensures styles work within wrapper
      */
     private function isolate_css($css, $slug) {
-        // Add CSS reset for the wrapper to ensure consistent rendering
+        // Add CSS reset for the wrapper - LESS AGGRESSIVE to preserve inline styles
         $reset_css = <<<CSS
-/* SD Page Importer - Reset for exact Z.ai preview match */
+/* SD Page Importer - Minimal reset for Z.ai preview match */
 .sd-imported-page {
-    all: initial;
     display: block;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
-    color: inherit;
-    background: transparent;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 .sd-imported-page *,
 .sd-imported-page *::before,
 .sd-imported-page *::after {
     box-sizing: border-box;
+}
+/* Ensure images work properly */
+.sd-imported-page img {
+    max-width: 100%;
+    height: auto;
 }
 
 CSS;
