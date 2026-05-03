@@ -228,7 +228,7 @@ const serviceCategories = [
     description: 'Comprehensive workshop services for all needs',
     icon: Package,
     color: '#14B8A6',
-    image: 'https://placehold.co/800x400/14B8A6/FFFFFF/png?text=Workshop',
+    image: '/workshop-services.png',
     services: [
       'Bike assembly (new or imported bikes)',
       'Accident repairs',
