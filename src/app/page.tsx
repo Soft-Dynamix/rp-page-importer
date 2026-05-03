@@ -266,7 +266,7 @@ const serviceCategories = [
     description: 'Convenient services designed for busy riders',
     icon: Briefcase,
     color: '#0EA5E9',
-    image: 'https://placehold.co/800x400/0EA5E9/FFFFFF/png?text=Business+Services',
+    image: '/business-services.png',
     highlight: true,
     services: [
       'Pickup & delivery service',
