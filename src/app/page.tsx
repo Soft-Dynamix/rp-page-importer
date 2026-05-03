@@ -214,7 +214,7 @@ const serviceCategories = [
     description: 'Bring classic motorcycles back to life',
     icon: RotateCcw,
     color: '#D97706',
-    image: 'https://placehold.co/800x400/D97706/FFFFFF/png?text=Restoration',
+    image: '/restoration-services.png',
     services: [
       'Full bike restoration',
       'Vintage motorcycle restoration',
