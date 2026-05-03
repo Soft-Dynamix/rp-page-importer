@@ -73,7 +73,7 @@ const serviceCategories = [
     description: 'Complete engine repair, rebuild, and performance tuning',
     icon: Cog,
     color: '#F97316',
-    image: 'https://placehold.co/800x400/F97316/FFFFFF/png?text=Engine+Services',
+    image: '/engine-services.jpg',
     highlight: true,
     subsections: [
       { title: 'Repairs', items: ['Engine fault diagnosis', 'Top-end repairs', 'Bottom-end repairs'] },
