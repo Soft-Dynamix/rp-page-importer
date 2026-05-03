@@ -3,7 +3,7 @@
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.4
+ * Version: 2.0.5
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.4';
+    private $version = '2.0.5';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -1811,12 +1811,12 @@ PROMPT;
             $template = !empty($options['template']) ? $options['template'] : 
                        (!empty($config['template']) ? $config['template'] : 'blank');
             
-            // Handle CSS location - IMPORTANT: Always inline for exact Z.ai preview match
+            // Handle CSS location - for inline-styled HTML (Z.ai), just pass through
             $final_html = $html_content;
+            
+            // Add external CSS if present
             if (!empty($css_content)) {
                 $css_location = isset($options['css_location']) ? $options['css_location'] : 'inline';
-                
-                // Add CSS with proper isolation for exact styling match
                 $isolated_css = $this->isolate_css($css_content, $page_slug);
                 
                 if ($css_location === 'inline' || $css_location === 'both') {
@@ -1828,8 +1828,9 @@ PROMPT;
                 }
             }
             
-            // Wrap content for style isolation
-            $final_html = '<div class="sd-imported-page sd-page-' . esc_attr($page_slug) . '">' . $final_html . '</div>';
+            // Minimal wrapper for full-width display - preserves inline styles
+            $full_width_style = '<style>.sd-fullwidth{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;overflow-x:hidden}.sd-fullwidth img{max-width:100%;height:auto}</style>';
+            $final_html = $full_width_style . '<div class="sd-fullwidth">' . $final_html . '</div>';
             
             // Create or update page
             $page_id = $this->create_page(array(
@@ -2574,12 +2575,12 @@ PHP;
             $template = !empty($options['template']) ? $options['template'] : 
                        (!empty($config['template']) ? $config['template'] : 'blank');
             
-            // Handle CSS location - IMPORTANT: Always inline for exact Z.ai preview match
+            // Handle CSS location - for inline-styled HTML (Z.ai), just pass through
             $final_html = $html_content;
+            
+            // Add external CSS if present
             if (!empty($css_content)) {
                 $css_location = isset($options['css_location']) ? $options['css_location'] : 'inline';
-                
-                // Add CSS with proper isolation for exact styling match
                 $isolated_css = $this->isolate_css($css_content, $page_slug);
                 
                 if ($css_location === 'inline' || $css_location === 'both') {
@@ -2591,8 +2592,9 @@ PHP;
                 }
             }
             
-            // Wrap content for style isolation
-            $final_html = '<div class="sd-imported-page sd-page-' . esc_attr($page_slug) . '">' . $final_html . '</div>';
+            // Minimal wrapper for full-width display - preserves inline styles
+            $full_width_style = '<style>.sd-fullwidth{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;overflow-x:hidden}.sd-fullwidth img{max-width:100%;height:auto}</style>';
+            $final_html = $full_width_style . '<div class="sd-fullwidth">' . $final_html . '</div>';
             
             // Create or update page
             $page_id = $this->create_page(array(

@@ -2,6 +2,18 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.0.5] - 2025-05-04
+
+### Fixed
+- **Wrapper Breaking Styles**: Removed aggressive wrapper that broke inline styles
+- **Full-Width Display**: New minimal wrapper preserves inline styles while ensuring full-width display
+- **Style Isolation**: Simplified approach - inline styles now work exactly as in Z.ai preview
+
+### Changed
+- `.sd-imported-page` wrapper replaced with `.sd-fullwidth` for minimal interference
+- Removed CSS reset that was breaking inline styles
+- Content with inline styles now passes through directly
+
 ## [2.0.4] - 2025-05-04
 
 ### Fixed
