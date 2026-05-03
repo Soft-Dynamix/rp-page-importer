@@ -2,6 +2,78 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.2.0] - 2025-05-04
+
+### Major Enhancement - Mobile & Desktop Responsive Design
+
+#### Added
+- **Comprehensive Responsive CSS**: Added `get_responsive_css()` method with full mobile/desktop support
+- **Three Breakpoints**: 
+  - Tablet (max-width: 1024px) - Moderate scaling
+  - Mobile (max-width: 768px) - Single column grids, reduced sizes
+  - Small Mobile (max-width: 480px) - Further optimizations
+- **Smart Attribute Selectors**: CSS targets inline styles for maximum compatibility
+
+#### Responsive Features
+- **Grid Layouts**: 2-column and 3-column grids automatically collapse to single column on mobile
+- **Font Sizes**: All font sizes scale down appropriately (72px → 36px → 28px, etc.)
+- **Padding**: All padding values reduce on smaller screens (80px 40px → 40px 20px, etc.)
+- **Image Heights**: Hero images scale down (320px → 220px → 180px)
+- **Flexbox Wrapping**: Flex containers wrap on mobile
+- **Buttons**: Touch-friendly button sizes on mobile
+
+#### Technical Details
+- Uses CSS attribute selectors to match inline styles: `div[style*="grid-template-columns: repeat(2"]`
+- Scoped to `.sd-fullwidth` wrapper to avoid affecting other page content
+- All CSS is minified for inline inclusion
+
+## [2.1.0] - 2025-05-04
+
+### Critical Fix
+- **wpautop Corruption Fix**: WordPress was corrupting inline CSS with `<p>` paragraph tags
+  - The `wpautop` filter converts newlines in content to `<p>` tags
+  - This completely broke the CSS styles inside `<style>` tags
+  - Fixed by adding filter to disable `wpautop` for imported pages
+  - Also added CSS minification to remove newlines (immune to wpautop)
+
+### Added
+- `disable_wpautop_for_imported_pages()` - Filter to prevent CSS corruption
+- `minify_css()` - Method to minify CSS and remove newlines
+- Wrapper styles are now minified inline
+
+### Changed
+- All inline CSS is now minified before insertion
+- Wrapper style block is now a single-line minified string
+- Filter priority set to 1 to run before wpautop
+
+## [2.0.9] - 2025-05-04
+
+### Fixed
+- **Critical Bug**: Fixed double URL replacement causing broken images
+  - Images 5-16 had duplicated URLs like: `uploads/2026/05/uploads/2026/05/filename.png`
+  - The second replacement loop was matching filenames in already-replaced URLs
+  - Now skips filename-based replacement when `{{IMAGE_N}}` placeholders are used
+
+### Changed
+- `replace_image_urls()` now tracks if placeholders were used
+- Only falls back to filename-based replacement for legacy HTML without placeholders
+
+## [2.0.8] - 2025-05-04
+
+### Fixed
+- **CSS Theme Compatibility**: Improved wrapper now sets dark background (`#080c14`) universally
+- **Theme CSS Handling**: CSS with `body`/`html` selectors now prefixed with `.sd-fullwidth` for wrapper compatibility
+- **Image Replacement Debug**: Added debug logging to track image placeholder replacements
+
+### Improved
+- **Wrapper Styles**: Comprehensive wrapper now includes min-height and transparent backgrounds for nested elements
+- **Debug Info**: Import response now includes `images_replaced` count and `image_debug` array for troubleshooting
+- **CSS Isolation**: Theme-specific CSS selectors are now wrapped instead of passed through unmodified
+
+### Added
+- Error logging for unreplaced image placeholders
+- Image replacement count in success response
+
 ## [2.0.6] - 2025-05-04
 
 ### Fixed

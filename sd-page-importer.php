@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
- * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.6
+ * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation and mobile/desktop responsiveness.
+ * Version: 2.2.1
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.6';
+    private $version = '2.2.1';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -33,6 +33,28 @@ class SD_Page_Importer {
         add_action('wp_ajax_sd_export_page', array($this, 'ajax_export_page'));
         add_action('wp_ajax_sd_get_page_content', array($this, 'ajax_get_page_content'));
         add_action('wp_ajax_sd_preview_export', array($this, 'ajax_preview_export'));
+        
+        // CRITICAL: Disable wpautop for imported pages to prevent CSS corruption
+        add_filter('the_content', array($this, 'disable_wpautop_for_imported_pages'), 1);
+        add_filter('widget_text', array($this, 'disable_wpautop_for_imported_pages'), 1);
+    }
+    
+    /**
+     * Disable wpautop for pages that contain sd-fullwidth wrapper
+     * This prevents WordPress from corrupting inline CSS with paragraph tags
+     */
+    public function disable_wpautop_for_imported_pages($content) {
+        // Check if this is an imported page (has sd-fullwidth class)
+        if (strpos($content, 'sd-fullwidth') !== false || strpos($content, 'sd-page-importer-wrapper') !== false) {
+            // Remove wpautop filters
+            remove_filter('the_content', 'wpautop');
+            remove_filter('the_content', 'wptexturize');
+            
+            // Also remove from widget text if applicable
+            remove_filter('widget_text', 'wpautop');
+            remove_filter('widget_text', 'wptexturize');
+        }
+        return $content;
     }
     
     /**
@@ -1820,7 +1842,9 @@ PROMPT;
                 $isolated_css = $this->isolate_css($css_content, $page_slug);
                 
                 if ($css_location === 'inline' || $css_location === 'both') {
-                    $final_html = '<style id="sd-imported-styles">' . $isolated_css . '</style>' . $html_content;
+                    // Minify CSS to prevent wpautop corruption
+                    $minified_css = $this->minify_css($isolated_css);
+                    $final_html = '<style id="sd-imported-styles">' . $minified_css . '</style>' . $html_content;
                 }
                 
                 if ($css_location === 'theme' || $css_location === 'both') {
@@ -1828,8 +1852,9 @@ PROMPT;
                 }
             }
             
-            // Minimal wrapper for full-width display - preserves inline styles
-            $full_width_style = '<style>.sd-fullwidth{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;overflow-x:hidden}.sd-fullwidth img{max-width:100%;height:auto}</style>';
+            // Comprehensive wrapper for full-width display, dark theme, and responsive design
+            $responsive_css = $this->get_responsive_css();
+            $full_width_style = '<style id="sd-page-importer-wrapper">' . $responsive_css . '</style>';
             $final_html = $full_width_style . '<div class="sd-fullwidth">' . $final_html . '</div>';
             
             // Create or update page
@@ -1870,6 +1895,8 @@ PROMPT;
                 'page_url' => $page_url,
                 'edit_url' => $edit_url,
                 'images_imported' => count($image_map),
+                'images_replaced' => isset($this->last_image_replacement_count) ? $this->last_image_replacement_count : 0,
+                'image_debug' => isset($this->last_image_debug) ? $this->last_image_debug : array(),
                 'css_added' => !empty($css_content),
             ));
             
@@ -2139,46 +2166,99 @@ PROMPT;
     }
     
     private function replace_image_urls($html, $image_map) {
+        $replaced_count = 0;
+        $debug_info = array();
+        $used_placeholders = false;
+        
         // First, replace {{IMAGE_N}} style placeholders (Z.ai format)
         for ($i = 1; $i <= 100; $i++) {
             $placeholder = '{{IMAGE_' . $i . '}}';
             if (isset($image_map['IMAGE_' . $i])) {
-                $html = str_replace($placeholder, $image_map['IMAGE_' . $i]['url'], $html);
+                $url = $image_map['IMAGE_' . $i]['url'];
+                $html = str_replace($placeholder, $url, $html);
+                $replaced_count++;
+                $used_placeholders = true;
+                $debug_info[] = "Replaced {$placeholder} -> " . basename($url);
             }
         }
         
-        // Also replace standard image path patterns
-        foreach ($image_map as $key => $image_data) {
-            // Skip numbered indexes (already handled above)
-            if (strpos($key, 'IMAGE_') === 0) {
-                continue;
-            }
-            
-            $original_name = $key;
-            $patterns = array(
-                'images/' . $original_name,
-                './images/' . $original_name,
-                'img/' . $original_name,
-                './img/' . $original_name,
-                'assets/images/' . $original_name,
-                'assets/img/' . $original_name,
-                $original_name, // Just the filename
-            );
-            
-            foreach ($patterns as $pattern) {
-                $html = str_replace($pattern, $image_data['url'], $html);
+        // Debug: Log if placeholders remain
+        if (preg_match_all('/\{\{IMAGE_\d+\}\}/', $html, $remaining)) {
+            error_log('SD Page Importer WARNING: Unreplaced placeholders: ' . implode(', ', $remaining[0]));
+            error_log('SD Page Importer Image Map Keys: ' . implode(', ', array_keys($image_map)));
+        }
+        
+        // Only do filename-based replacement if we didn't use {{IMAGE_N}} placeholders
+        // This prevents double-replacement of URLs that contain filenames
+        if (!$used_placeholders) {
+            foreach ($image_map as $key => $image_data) {
+                // Skip numbered indexes (already handled above)
+                if (strpos($key, 'IMAGE_') === 0) {
+                    continue;
+                }
+                
+                $original_name = $key;
+                $patterns = array(
+                    'images/' . $original_name,
+                    './images/' . $original_name,
+                    'img/' . $original_name,
+                    './img/' . $original_name,
+                    'assets/images/' . $original_name,
+                    'assets/img/' . $original_name,
+                );
+                
+                foreach ($patterns as $pattern) {
+                    if (strpos($html, $pattern) !== false) {
+                        $html = str_replace($pattern, $image_data['url'], $html);
+                        $replaced_count++;
+                    }
+                }
             }
         }
+        
+        // Store replacement count for feedback
+        $this->last_image_replacement_count = $replaced_count;
+        $this->last_image_debug = $debug_info;
         
         return $html;
     }
     
     /**
-     * Isolate CSS to prevent theme conflicts
-     * Adds specificity and ensures styles work within wrapper
+     * Minify CSS to prevent wpautop corruption
+     * Removes newlines, extra spaces, and comments
      */
+    private function minify_css($css) {
+        // Remove CSS comments
+        $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+        
+        // Remove newlines and tabs
+        $css = str_replace(["\r\n", "\r", "\n", "\t"], ' ', $css);
+        
+        // Remove extra spaces
+        $css = preg_replace('/\s+/', ' ', $css);
+        
+        // Remove spaces around special characters
+        $css = preg_replace('/\s*([{};:,>+~])\s*/', '$1', $css);
+        
+        // Add space after @media, @keyframes, etc.
+        $css = preg_replace('/(@\w+)\(/', '$1 (', $css);
+        
+        return trim($css);
+    }
+    
+    /**
+     * Get comprehensive responsive CSS for imported pages
+     * Ensures mobile and desktop friendly layouts
+     */
+    private function get_responsive_css() {
+        // Return minified CSS for inline inclusion
+        return <<<'CSS'
+.sd-fullwidth{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;overflow-x:hidden;background-color:#080c14;min-height:100vh}.sd-fullwidth *{box-sizing:border-box}.sd-fullwidth img{max-width:100%;height:auto}.sd-fullwidth>div,.sd-fullwidth>div>div,.sd-fullwidth section{background-color:transparent}.sd-fullwidth p,.sd-fullwidth h1,.sd-fullwidth h2,.sd-fullwidth h3,.sd-fullwidth h4,.sd-fullwidth h5,.sd-fullwidth h6,.sd-fullwidth span,.sd-fullwidth a,.sd-fullwidth li{background-color:transparent!important}@media (max-width:1024px){.sd-fullwidth div[style*="padding: 80px 40px"],.sd-fullwidth div[style*="padding:80px 40px"]{padding:60px 30px!important}.sd-fullwidth div[style*="padding: 60px"],.sd-fullwidth div[style*="padding:60px"]{padding:40px 30px!important}.sd-fullwidth div[style*="font-size: 72px"],.sd-fullwidth div[style*="font-size:72px"]{font-size:56px!important}.sd-fullwidth div[style*="font-size: 48px"],.sd-fullwidth div[style*="font-size:48px"]{font-size:36px!important}}@media (max-width:768px){.sd-fullwidth div[style*="grid-template-columns: repeat(2"],.sd-fullwidth div[style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr!important}.sd-fullwidth div[style*="grid-template-columns: repeat(3"],.sd-fullwidth div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}.sd-fullwidth div[style*="max-width: calc(50%"],.sd-fullwidth div[style*="max-width:calc(50%"]{max-width:100%!important;width:100%!important}.sd-fullwidth div[style*="padding: 80px 40px"],.sd-fullwidth div[style*="padding:80px 40px"]{padding:40px 20px!important}.sd-fullwidth div[style*="padding: 0 40px"],.sd-fullwidth div[style*="padding:0 40px"]{padding:0 20px!important}.sd-fullwidth div[style*="padding: 28px 40px"],.sd-fullwidth div[style*="padding:28px 40px"]{padding:20px 20px!important}.sd-fullwidth div[style*="padding: 40px"],.sd-fullwidth div[style*="padding:40px"]{padding:30px 20px!important}.sd-fullwidth div[style*="padding: 60px"],.sd-fullwidth div[style*="padding:60px"]{padding:30px 20px!important}.sd-fullwidth div[style*="height: 320px"],.sd-fullwidth div[style*="height:320px"],.sd-fullwidth img[style*="height: 320px"],.sd-fullwidth img[style*="height:320px"]{height:220px!important}.sd-fullwidth div[style*="height: 350px"],.sd-fullwidth div[style*="height:350px"],.sd-fullwidth img[style*="height: 350px"],.sd-fullwidth img[style*="height:350px"]{height:250px!important}.sd-fullwidth div[style*="font-size: 72px"],.sd-fullwidth div[style*="font-size:72px"],.sd-fullwidth h1[style*="font-size: 72px"],.sd-fullwidth h1[style*="font-size:72px"]{font-size:36px!important}.sd-fullwidth div[style*="font-size: 48px"],.sd-fullwidth div[style*="font-size:48px"],.sd-fullwidth h2[style*="font-size: 48px"],.sd-fullwidth h2[style*="font-size:48px"]{font-size:28px!important}.sd-fullwidth div[style*="font-size: 26px"],.sd-fullwidth div[style*="font-size:26px"],.sd-fullwidth h3[style*="font-size: 26px"],.sd-fullwidth h3[style*="font-size:26px"]{font-size:22px!important}.sd-fullwidth div[style*="font-size: 20px"],.sd-fullwidth div[style*="font-size:20px"],.sd-fullwidth p[style*="font-size: 20px"],.sd-fullwidth p[style*="font-size:20px"]{font-size:16px!important}.sd-fullwidth div[style*="display: flex"],.sd-fullwidth div[style*="display:flex"]{flex-wrap:wrap!important}.sd-fullwidth div[style*="gap: 24px"],.sd-fullwidth div[style*="gap:24px"]{gap:16px!important}.sd-fullwidth div[style*="gap: 16px"],.sd-fullwidth div[style*="gap:16px"]{gap:12px!important}.sd-fullwidth div[style*="padding: 30px 35px 35px"]{padding:20px!important;margin-top:-60px!important}.sd-fullwidth div[style*="padding: 30px 40px 40px"]{padding:20px!important;margin-top:-60px!important}}@media (max-width:480px){.sd-fullwidth div[style*="grid-template-columns: 1fr 1fr"],.sd-fullwidth div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}.sd-fullwidth div[style*="font-size: 72px"],.sd-fullwidth div[style*="font-size:72px"],.sd-fullwidth h1[style*="font-size: 72px"],.sd-fullwidth h1[style*="font-size:72px"]{font-size:28px!important}.sd-fullwidth div[style*="font-size: 48px"],.sd-fullwidth div[style*="font-size:48px"],.sd-fullwidth h2[style*="font-size: 48px"],.sd-fullwidth h2[style*="font-size:48px"]{font-size:24px!important}.sd-fullwidth div[style*="font-size: 26px"],.sd-fullwidth div[style*="font-size:26px"],.sd-fullwidth h3[style*="font-size: 26px"],.sd-fullwidth h3[style*="font-size:26px"]{font-size:20px!important}.sd-fullwidth div[style*="height: 320px"],.sd-fullwidth div[style*="height:320px"],.sd-fullwidth img[style*="height: 320px"],.sd-fullwidth img[style*="height:320px"]{height:180px!important}.sd-fullwidth div[style*="height: 350px"],.sd-fullwidth div[style*="height:350px"],.sd-fullwidth img[style*="height: 350px"],.sd-fullwidth img[style*="height:350px"]{height:200px!important}.sd-fullwidth div[style*="padding: 20px 28px"],.sd-fullwidth div[style*="padding:20px 28px"]{padding:16px 20px!important}.sd-fullwidth div[style*="width: 300px"],.sd-fullwidth div[style*="width:300px"]{width:100%!important}.sd-fullwidth a[style*="padding: 20px 40px"],.sd-fullwidth a[style*="padding:20px 40px"]{padding:16px 24px!important;font-size:16px!important}.sd-fullwidth div[style*="padding: 30px 35px 35px"]{padding:16px!important;margin-top:-50px!important}.sd-fullwidth div[style*="width: 64px"],.sd-fullwidth div[style*="width:64px"]{width:48px!important;height:48px!important}.sd-fullwidth div[style*="margin-top: -80px"],.sd-fullwidth div[style*="margin-top:-80px"]{margin-top:-50px!important}}
+CSS;
+    }
+    
     private function isolate_css($css, $slug) {
-        // Check if CSS contains theme-specific selectors that should NOT be prefixed
+        // Check if CSS contains theme-specific selectors
         $theme_selectors = ['body', 'html', '.elementor', '.ast-', '#page', '.site', '.entry-content', '.site-content'];
         $is_theme_css = false;
         foreach ($theme_selectors as $selector) {
@@ -2188,9 +2268,15 @@ PROMPT;
             }
         }
         
-        // For theme-specific CSS, don't modify it - pass through as-is
+        // For theme-specific CSS, add wrapper prefix to make it work
         if ($is_theme_css) {
-            return "/* SD Page Importer - Theme Compatibility CSS */\n" . $css;
+            // Replace body/html selectors with wrapper class for theme CSS
+            $css = preg_replace('/^body\s*,?\s*/m', '.sd-fullwidth ', $css);
+            $css = preg_replace('/^html\s*,?\s*/m', '.sd-fullwidth ', $css);
+            $css = preg_replace('/,\s*body\s*/m', ', .sd-fullwidth ', $css);
+            $css = preg_replace('/,\s*html\s*/m', ', .sd-fullwidth ', $css);
+            
+            return "/* SD Page Importer - Theme Compatibility CSS */" . $css;
         }
         
         // For custom CSS, add minimal reset and prefix selectors
@@ -2604,7 +2690,9 @@ PHP;
                 $isolated_css = $this->isolate_css($css_content, $page_slug);
                 
                 if ($css_location === 'inline' || $css_location === 'both') {
-                    $final_html = '<style id="sd-imported-styles">' . $isolated_css . '</style>' . $html_content;
+                    // Minify CSS to prevent wpautop corruption
+                    $minified_css = $this->minify_css($isolated_css);
+                    $final_html = '<style id="sd-imported-styles">' . $minified_css . '</style>' . $html_content;
                 }
                 
                 if ($css_location === 'theme' || $css_location === 'both') {
@@ -2612,8 +2700,9 @@ PHP;
                 }
             }
             
-            // Minimal wrapper for full-width display - preserves inline styles
-            $full_width_style = '<style>.sd-fullwidth{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;overflow-x:hidden}.sd-fullwidth img{max-width:100%;height:auto}</style>';
+            // Comprehensive wrapper for full-width display, dark theme, and responsive design
+            $responsive_css = $this->get_responsive_css();
+            $full_width_style = '<style id="sd-page-importer-wrapper">' . $responsive_css . '</style>';
             $final_html = $full_width_style . '<div class="sd-fullwidth">' . $final_html . '</div>';
             
             // Create or update page
@@ -2654,6 +2743,8 @@ PHP;
                 'page_url' => $page_url,
                 'edit_url' => $edit_url,
                 'images_imported' => count($image_map),
+                'images_replaced' => isset($this->last_image_replacement_count) ? $this->last_image_replacement_count : 0,
+                'image_debug' => isset($this->last_image_debug) ? $this->last_image_debug : array(),
                 'css_added' => !empty($css_content),
             );
             
