@@ -1,5 +1,6 @@
 /**
  * RP Page Importer - Admin JavaScript
+ * Version: 1.3.0
  */
 (function($) {
     'use strict';
@@ -8,6 +9,7 @@
         init: function() {
             this.bindEvents();
             this.loadHistory();
+            this.checkUploadLimits();
         },
         
         bindEvents: function() {
@@ -53,6 +55,24 @@
             });
         },
         
+        checkUploadLimits: function() {
+            // Display upload size info
+            var maxUpload = this.getMaxUploadSize();
+            if (maxUpload) {
+                var infoHtml = '<div class="rp-upload-limit-info">';
+                infoHtml += '<span class="dashicons dashicons-info"></span> ';
+                infoHtml += 'Max upload size: <strong>' + this.formatFileSize(maxUpload) + '</strong>';
+                infoHtml += '</div>';
+                $('#rp-upload-area').after(infoHtml);
+            }
+        },
+        
+        getMaxUploadSize: function() {
+            // Try to get from PHP settings (approximate)
+            // Common limits: 2M, 8M, 16M, 32M, 64M, 128M
+            return 32 * 1024 * 1024; // Default assumption
+        },
+        
         handleFileSelect: function(file) {
             if (!file) return;
             
@@ -60,9 +80,17 @@
             var $uploadInfo = $uploadArea.find('.rp-upload-info');
             
             $uploadArea.addClass('has-file');
+            
+            // Check file size and warn if large
+            var sizeMB = file.size / (1024 * 1024);
+            var sizeWarning = '';
+            if (sizeMB > 10) {
+                sizeWarning = '<br><span style="color: #d63638;">⚠ Large file - upload may take a while</span>';
+            }
+            
             $uploadInfo.find('p').html(
                 '<strong>' + file.name + '</strong><br>' +
-                this.formatFileSize(file.size)
+                this.formatFileSize(file.size) + sizeWarning
             );
             
             // Auto-populate title from filename
@@ -89,6 +117,7 @@
             }
             
             var file = fileInput.files[0];
+            var fileSizeMB = file.size / (1024 * 1024);
             
             // Show progress section
             $('#rp-progress-section').show();
@@ -100,55 +129,85 @@
             $btn.prop('disabled', true).find('.dashicons').removeClass('dashicons-upload').addClass('dashicons-update dashicons-spin');
             $('#rp-import-spinner').addClass('is-active');
             
-            // Read file as base64
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                self.updateProgress(10, 'File read successfully', 'success');
-                self.updateProgress(20, 'Uploading to server...', 'info');
-                
-                // Get options
-                var options = {
-                    title: $('#rp-page-title').val(),
-                    slug: $('#rp-page-slug').val(),
-                    template: $('#rp-page-template').val(),
-                    css_location: $('#rp-css-location').val(),
-                    status: $('#rp-page-status').val(),
-                    parent: $('#rp-parent-page').val(),
-                    replace: $('#rp-replace-existing').is(':checked')
-                };
-                
-                // Send AJAX request
-                $.ajax({
-                    url: rpImporter.ajax_url,
-                    type: 'POST',
-                    data: {
-                        action: 'rp_import_page',
-                        nonce: rpImporter.nonce,
-                        file_data: e.target.result,
-                        options: options
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            self.updateProgress(100, 'Import completed!', 'success');
-                            self.showResult(response.data, true);
-                        } else {
-                            self.updateProgress(100, 'Error: ' + response.data.message, 'error');
-                            self.showResult(response.data, false);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        self.updateProgress(100, 'Server error: ' + error, 'error');
-                        self.showResult({ message: 'Server error: ' + error }, false);
-                    },
-                    complete: function() {
-                        $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                        $('#rp-import-spinner').removeClass('is-active');
-                        self.loadHistory();
-                    }
-                });
-            };
+            // Use FormData for direct file upload (better for large files)
+            var formData = new FormData();
+            formData.append('action', 'rp_import_page');
+            formData.append('nonce', rpImporter.nonce);
+            formData.append('zip_file', file);
             
-            reader.readAsDataURL(file);
+            // Add options
+            formData.append('options[title]', $('#rp-page-title').val());
+            formData.append('options[slug]', $('#rp-page-slug').val());
+            formData.append('options[template]', $('#rp-page-template').val());
+            formData.append('options[css_location]', $('#rp-css-location').val());
+            formData.append('options[status]', $('#rp-page-status').val());
+            formData.append('options[parent]', $('#rp-parent-page').val());
+            formData.append('options[replace]', $('#rp-replace-existing').is(':checked') ? '1' : '0');
+            
+            this.updateProgress(10, 'File read successfully', 'success');
+            this.updateProgress(20, 'Uploading to server...', 'info');
+            
+            // Send AJAX request with FormData
+            $.ajax({
+                url: rpImporter.ajax_url,
+                type: 'POST',
+                data: formData,
+                processData: false,  // Important: don't process the data
+                contentType: false,  // Important: don't set contentType
+                xhr: function() {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener('progress', function(e) {
+                        if (e.lengthComputable) {
+                            var percent = 20 + (e.loaded / e.total) * 50;
+                            self.updateProgress(percent, 'Uploading: ' + self.formatFileSize(e.loaded) + ' / ' + self.formatFileSize(e.total), 'info');
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function(response) {
+                    if (response.success) {
+                        self.updateProgress(100, 'Import completed!', 'success');
+                        self.showResult(response.data, true);
+                    } else {
+                        var errorMsg = response.data.message || 'Unknown error';
+                        
+                        // Check for size-related errors
+                        if (errorMsg.indexOf('Request Entity Too Large') !== -1 || 
+                            errorMsg.indexOf('too large') !== -1 ||
+                            errorMsg.indexOf('exceeds') !== -1) {
+                            errorMsg += '\n\nSolutions:\n';
+                            errorMsg += '1. Ask your host to increase upload_max_filesize and post_max_size in php.ini\n';
+                            errorMsg += '2. Use the FTP method instead\n';
+                            errorMsg += '3. Try a smaller ZIP file';
+                        }
+                        
+                        self.updateProgress(100, 'Error: ' + errorMsg, 'error');
+                        self.showResult({ message: errorMsg }, false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    var errorMsg = error;
+                    
+                    // Check for common size errors
+                    if (xhr.status === 413) {
+                        errorMsg = 'Request Entity Too Large - The file exceeds the server\'s maximum upload size.\n\n';
+                        errorMsg += 'Solutions:\n';
+                        errorMsg += '1. Ask your hosting provider to increase the upload limit\n';
+                        errorMsg += '2. Add to .htaccess:\n';
+                        errorMsg += '   php_value upload_max_filesize 64M\n';
+                        errorMsg += '   php_value post_max_size 64M\n';
+                        errorMsg += '3. Or use the FTP method below';
+                    }
+                    
+                    self.updateProgress(100, 'Server error: ' + errorMsg, 'error');
+                    self.showResult({ message: errorMsg }, false);
+                },
+                complete: function() {
+                    $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
+                    $('#rp-import-spinner').removeClass('is-active');
+                    self.loadHistory();
+                }
+            });
         },
         
         updateProgress: function(percent, message, type) {

@@ -158,6 +158,28 @@ The plugin supports these template options:
 
 ## Troubleshooting
 
+### Upload fails with "Request Entity Too Large"
+This means the ZIP file exceeds your server's maximum upload size. Solutions:
+
+1. **Increase PHP Limits** (contact your host or add to php.ini):
+   ```ini
+   upload_max_filesize = 64M
+   post_max_size = 64M
+   max_execution_time = 300
+   ```
+
+2. **Add to .htaccess** (if allowed by your host):
+   ```apache
+   php_value upload_max_filesize 64M
+   php_value post_max_size 64M
+   php_value max_execution_time 300
+   ```
+
+3. **FTP Method**: Extract the ZIP locally and upload files manually:
+   - Upload images to Media Library
+   - Copy HTML content to a new page
+   - Add CSS to Additional CSS in Customizer
+
 ### Page doesn't look right
 - Try using **Elementor Canvas** or **Blank Template** for full-width pages
 - Make sure CSS is included (inline or theme CSS)
@@ -192,6 +214,12 @@ The plugin supports these template options:
 For issues or feature requests, contact the developer.
 
 ## Changelog
+
+### 1.3.0
+- Fixed large file upload support (FormData instead of base64)
+- Better upload progress tracking with byte count
+- Clearer error messages for upload size limits
+- File type validation improvements
 
 ### 1.2.0
 - Added Export functionality

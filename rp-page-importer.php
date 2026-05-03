@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: RP Page Importer
- * Plugin URI: https://rpmotorcycles.co.za
+ * Plugin URI: https://github.com/rpmotorcycles/rp-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. A generic solution for importing and exporting any custom page design.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: RP Motorcycles
  * Author URI: https://rpmotorcycles.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class RP_Page_Importer {
     
-    private $version = '1.2.0';
+    private $version = '1.3.0';
     private $plugin_name = 'rp-page-importer';
     
     public function __construct() {
@@ -1307,20 +1307,13 @@ PROMPT;
     
     /**
      * AJAX handler for importing pages
+     * Supports both FormData (direct file upload) and base64 encoded data
      */
     public function ajax_import_page() {
         check_ajax_referer('rp_page_importer_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_send_json_error(array('message' => 'Permission denied.'));
-        }
-        
-        // Get parameters
-        $file_data = isset($_POST['file_data']) ? $_POST['file_data'] : '';
-        $options = isset($_POST['options']) ? $_POST['options'] : array();
-        
-        if (empty($file_data)) {
-            wp_send_json_error(array('message' => 'No file data received.'));
         }
         
         // Create temp directory
@@ -1332,23 +1325,61 @@ PROMPT;
         }
         
         try {
-            // Decode and save the ZIP file
-            $file_parts = explode(';base64,', $file_data);
-            if (count($file_parts) !== 2) {
-                throw new Exception('Invalid file data format.');
-            }
-            
-            $zip_data = base64_decode($file_parts[1]);
             $zip_path = $temp_dir . '/import.zip';
             
-            if (file_put_contents($zip_path, $zip_data) === false) {
-                throw new Exception('Could not save ZIP file.');
+            // Check if file was uploaded via FormData
+            if (!empty($_FILES['zip_file']) && $_FILES['zip_file']['error'] === UPLOAD_ERR_OK) {
+                // Handle FormData upload (preferred method)
+                $uploaded_file = $_FILES['zip_file'];
+                
+                // Check file size against limits
+                $max_size = wp_max_upload_size();
+                if ($uploaded_file['size'] > $max_size) {
+                    throw new Exception(sprintf(
+                        'File size (%s) exceeds maximum upload size (%s). Please increase upload_max_filesize and post_max_size in php.ini or use the FTP method.',
+                        size_format($uploaded_file['size']),
+                        size_format($max_size)
+                    ));
+                }
+                
+                // Validate file type
+                $file_type = wp_check_filetype_and_ext($uploaded_file['tmp_name'], $uploaded_file['name']);
+                if ($file_type['ext'] !== 'zip') {
+                    throw new Exception('Please upload a ZIP file.');
+                }
+                
+                // Move uploaded file
+                if (!move_uploaded_file($uploaded_file['tmp_name'], $zip_path)) {
+                    throw new Exception('Could not save uploaded file.');
+                }
+                
+                // Get options from POST
+                $options = isset($_POST['options']) ? $_POST['options'] : array();
+                
+            } elseif (!empty($_POST['file_data'])) {
+                // Handle base64 encoded data (legacy method)
+                $file_data = $_POST['file_data'];
+                $options = isset($_POST['options']) ? $_POST['options'] : array();
+                
+                // Decode and save the ZIP file
+                $file_parts = explode(';base64,', $file_data);
+                if (count($file_parts) !== 2) {
+                    throw new Exception('Invalid file data format.');
+                }
+                
+                $zip_data = base64_decode($file_parts[1]);
+                
+                if (file_put_contents($zip_path, $zip_data) === false) {
+                    throw new Exception('Could not save ZIP file.');
+                }
+            } else {
+                throw new Exception('No file received. Please select a ZIP file to import.');
             }
             
             // Extract ZIP
             $zip = new ZipArchive();
             if ($zip->open($zip_path) !== true) {
-                throw new Exception('Could not open ZIP file.');
+                throw new Exception('Could not open ZIP file. The file may be corrupted.');
             }
             
             $zip->extractTo($temp_dir);
@@ -1388,11 +1419,13 @@ PROMPT;
             // Handle CSS location
             $final_html = $html_content;
             if (!empty($css_content)) {
-                if ($options['css_location'] === 'inline' || $options['css_location'] === 'both') {
+                $css_location = isset($options['css_location']) ? $options['css_location'] : 'inline';
+                
+                if ($css_location === 'inline' || $css_location === 'both') {
                     $final_html = '<style>' . $css_content . '</style>' . $html_content;
                 }
                 
-                if ($options['css_location'] === 'theme' || $options['css_location'] === 'both') {
+                if ($css_location === 'theme' || $css_location === 'both') {
                     $this->add_to_theme_css($css_content, $page_slug);
                 }
             }

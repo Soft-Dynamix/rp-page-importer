@@ -2,6 +2,26 @@
 
 All notable changes to the RP Page Importer plugin will be documented in this file.
 
+## [1.3.0] - 2025-05-04
+
+### Fixed
+- **Large File Upload Support**: Changed from base64 encoding to FormData for direct file uploads
+  - No more 33% size increase from base64 encoding
+  - Better handling of large ZIP files with progress tracking
+  - Clearer error messages for upload size limits
+
+### Improved
+- Upload progress now shows actual bytes transferred
+- Added upload size warning for files over 10MB
+- Better error handling with specific solutions for size-related errors
+- File type validation with WordPress functions
+
+### Technical Changes
+- AJAX handler now supports both FormData (preferred) and base64 (legacy)
+- Uses `$_FILES` for direct upload handling
+- Proper MIME type validation
+- Server upload size detection with `wp_max_upload_size()`
+
 ## [1.2.0] - 2025-05-03
 
 ### Added
