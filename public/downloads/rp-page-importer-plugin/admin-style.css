@@ -1,0 +1,285 @@
+/**
+ * RP Page Importer - Admin Styles
+ */
+
+.rp-importer-wrap {
+    max-width: 1200px;
+}
+
+.rp-importer-container {
+    display: grid;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.rp-import-section,
+.rp-history-section {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.rp-import-section h2,
+.rp-history-section h2 {
+    margin-top: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.rp-import-section h2 .dashicons,
+.rp-history-section h2 .dashicons {
+    margin-right: 10px;
+    color: #2271b1;
+}
+
+.rp-requirements {
+    margin: 15px 0 25px;
+    padding-left: 20px;
+}
+
+.rp-requirements li {
+    margin-bottom: 8px;
+}
+
+.rp-requirements code {
+    background: #f0f0f1;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+/* Upload Area */
+.rp-upload-area {
+    border: 2px dashed #dcdcde;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.rp-upload-area:hover,
+.rp-upload-area.dragover {
+    border-color: #2271b1;
+    background: #f0f6fc;
+}
+
+.rp-upload-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.rp-upload-info {
+    pointer-events: none;
+}
+
+.rp-upload-info .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #2271b1;
+    margin-bottom: 15px;
+}
+
+.rp-upload-info p {
+    font-size: 14px;
+    color: #50575e;
+    margin: 0;
+}
+
+.rp-upload-area.has-file {
+    border-color: #00a32a;
+    background: #edfaef;
+}
+
+.rp-upload-area.has-file .dashicons {
+    color: #00a32a;
+}
+
+/* Import Options */
+.rp-import-options {
+    margin-bottom: 25px;
+}
+
+.rp-import-options h3 {
+    margin-bottom: 15px;
+}
+
+.rp-import-options .form-table {
+    margin-top: 0;
+}
+
+.rp-import-options .form-table th {
+    width: 150px;
+}
+
+.rp-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Import Actions */
+.rp-import-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.rp-import-actions .button .dashicons {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#rp-import-spinner {
+    float: none;
+}
+
+/* Progress Section */
+.rp-progress-section {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.rp-progress-bar {
+    height: 20px;
+    background: #f0f0f1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.rp-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2271b1, #135e96);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.rp-progress-log {
+    background: #1e1e1e;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    padding: 15px;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.rp-progress-log .log-item {
+    margin-bottom: 5px;
+}
+
+.rp-progress-log .log-success {
+    color: #00ff00;
+}
+
+.rp-progress-log .log-error {
+    color: #ff4444;
+}
+
+.rp-progress-log .log-info {
+    color: #4fa3ff;
+}
+
+/* Result Section */
+.rp-result-section {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.rp-result-content {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.rp-result-content.success {
+    background: #edfaef;
+    border-left: 4px solid #00a32a;
+}
+
+.rp-result-content.error {
+    background: #fcf0f1;
+    border-left: 4px solid #d63638;
+}
+
+.rp-result-content .result-message {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.rp-result-content .result-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rp-result-content .result-details li {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rp-result-content .result-details .dashicons {
+    color: #00a32a;
+}
+
+.rp-result-content .result-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
+}
+
+/* History Section */
+.rp-history-section table {
+    margin-top: 10px;
+}
+
+.rp-history-section table th,
+.rp-history-section table td {
+    padding: 12px 15px;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .rp-import-options .form-table th {
+        width: 100%;
+        padding-bottom: 5px;
+    }
+    
+    .rp-import-options .form-table td {
+        padding-top: 0;
+    }
+    
+    .rp-import-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .rp-import-actions .button {
+        width: 100%;
+        justify-content: center;
+    }
+}

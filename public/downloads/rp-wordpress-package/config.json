@@ -1,0 +1,10 @@
+{
+    "title": "Our Services",
+    "slug": "services",
+    "template": "elementor_canvas",
+    "description": "Premium motorcycle services page for RP Motorcycles featuring 16 service categories",
+    "meta": {
+        "_yoast_wpseo_title": "Premium Motorcycle Services | RP Motorcycles",
+        "_yoast_wpseo_metadesc": "Expert motorcycle repair and maintenance services. Engine repairs, diagnostics, electrical services, and more. Professional workshop in South Africa."
+    }
+}

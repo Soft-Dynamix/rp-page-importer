@@ -24,7 +24,10 @@ import {
   ArrowRight,
   Puzzle,
   Check,
-  Star
+  Star,
+  Download,
+  FileArchive,
+  Plugin
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -545,6 +548,94 @@ export default function ServicesPage() {
                 </div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Download Section */}
+      <section className="relative pb-16">
+        <div className="max-w-5xl mx-auto px-6 md:px-8">
+          <div className="relative overflow-hidden rounded-3xl border border-[#0085FF]/30 bg-gradient-to-br from-[#0085FF]/10 via-[#080c14] to-[#A855F7]/10">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0085FF] to-transparent" />
+            
+            <div className="p-8 md:p-12">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 bg-[#0085FF]/15 border border-[#0085FF]/25 rounded-full px-4 py-2 mb-4">
+                  <Download className="w-4 h-4 text-[#0085FF]" />
+                  <span className="text-[#0085FF] text-sm font-bold tracking-wider uppercase">WordPress Import</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Download Files for WordPress
+                </h2>
+                <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  Import this page directly into WordPress using our custom plugin and page package.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Plugin Download */}
+                <a 
+                  href="/downloads/rp-page-importer.zip"
+                  className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/[0.15] p-6 hover:border-[#0085FF]/50 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(0,133,255,0.2)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-[#0085FF]/30 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF] to-[#0070E0] flex items-center justify-center shadow-[0_4px_20px_rgba(0,133,255,0.3)]">
+                        <Plugin className="w-7 h-7 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white mb-1">Page Importer Plugin</h3>
+                      <p className="text-gray-400 text-sm mb-3">Install in WordPress to import pages from ZIP files</p>
+                      <div className="flex items-center gap-2 text-[#0085FF] text-sm font-medium group-hover:gap-3 transition-all">
+                        <Download className="w-4 h-4" />
+                        <span>Download Plugin</span>
+                        <ArrowRight className="w-4 h-4 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                {/* Services Package Download */}
+                <a 
+                  href="/downloads/rp-motorcycles-services.zip"
+                  className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/[0.15] p-6 hover:border-[#22C55E]/50 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(34,197,94,0.2)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-[#22C55E]/30 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#16A34A] flex items-center justify-center shadow-[0_4px_20px_rgba(34,197,94,0.3)]">
+                        <FileArchive className="w-7 h-7 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white mb-1">Services Page Package</h3>
+                      <p className="text-gray-400 text-sm mb-3">Complete page with HTML, CSS, images & config</p>
+                      <div className="flex items-center gap-2 text-[#22C55E] text-sm font-medium group-hover:gap-3 transition-all">
+                        <Download className="w-4 h-4" />
+                        <span>Download Package</span>
+                        <ArrowRight className="w-4 h-4 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              
+              {/* Instructions */}
+              <div className="mt-8 p-5 rounded-xl bg-[#080c14]/80 border border-white/[0.08]">
+                <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-[#0085FF]/20 flex items-center justify-center text-[#0085FF] text-sm font-bold">?</span>
+                  How to Import
+                </h4>
+                <ol className="text-gray-400 text-sm space-y-2 list-decimal list-inside">
+                  <li>Download and install the <strong className="text-white">Page Importer Plugin</strong> in WordPress</li>
+                  <li>Go to <strong className="text-white">Page Importer</strong> in WordPress admin menu</li>
+                  <li>Upload the <strong className="text-white">Services Page Package</strong> ZIP file</li>
+                  <li>Configure options and click <strong className="text-white">Import Page</strong></li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
       </section>
