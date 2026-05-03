@@ -163,7 +163,7 @@ const serviceCategories = [
     description: 'Keep your power transfer smooth and reliable',
     icon: Settings,
     color: '#10B981',
-    image: 'https://placehold.co/800x400/10B981/FFFFFF/png?text=Transmission',
+    image: '/transmission.png',
     services: [
       'Clutch replacement',
       'Clutch cable adjustment/replacement',
