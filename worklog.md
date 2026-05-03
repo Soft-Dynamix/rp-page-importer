@@ -362,3 +362,50 @@ Current Project Status:
 - Ready for user to test in WordPress
 
 ---
+Task ID: 11
+Agent: Main Agent
+Task: Add Z.ai prompt generator to plugin for easy copy/paste
+
+Work Log:
+- User request: "build a script fro Z.ai in the plugin to copy and paste to give to next time"
+- Added new tabbed interface to plugin (Import | Z.ai Prompt | History)
+- Created Z.ai Prompt tab with:
+  - Full prompt with complete instructions for Z.ai
+  - Short prompt for quick reference
+  - Copy to clipboard functionality
+  - ZIP file structure reference
+  - config.json example format
+  - Available template options table
+
+  **Plugin Updates (v1.1.0):**
+  - New tabbed navigation (Import, Z.ai Prompt, History)
+  - Z.ai Prompt tab with copyable prompts
+  - WordPress site URL and theme auto-detected
+  - Visual improvements with better styling
+  - Dedicated History tab with better UI
+
+  **Prompt Contents:**
+  - ZIP file structure requirements
+  - HTML requirements (semantic, responsive, relative paths)
+  - CSS requirements (variables, breakpoints, no @import)
+  - config.json format with all options
+  - Template options explanation
+  - Image guidelines
+  - WordPress-specific info
+
+  **Fixed Issues:**
+  - Changed `Plugin` icon to `Plug` (lucide-react doesn't have Plugin)
+  - Restarted dev server after cache issues
+
+Verification:
+- Plugin ZIP updated: `/downloads/rp-page-importer.zip` (17KB)
+- Page loads correctly (200 status)
+- All tabs and functionality working
+
+Stage Summary:
+- Z.ai prompt generator added to plugin
+- Users can copy full or short prompt
+- Clear instructions for creating importable pages
+- Plugin version updated to 1.1.0
+
+---

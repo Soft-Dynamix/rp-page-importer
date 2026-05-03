@@ -27,7 +27,7 @@ import {
   Star,
   Download,
   FileArchive,
-  Plugin
+  Plug
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -582,7 +582,7 @@ export default function ServicesPage() {
                     <div className="relative">
                       <div className="absolute inset-0 bg-[#0085FF]/30 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#0085FF] to-[#0070E0] flex items-center justify-center shadow-[0_4px_20px_rgba(0,133,255,0.3)]">
-                        <Plugin className="w-7 h-7 text-white" />
+                        <Plug className="w-7 h-7 text-white" />
                       </div>
                     </div>
                     <div className="flex-1">
