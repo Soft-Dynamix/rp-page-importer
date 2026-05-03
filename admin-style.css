@@ -2,19 +2,19 @@
  * RP Page Importer - Admin Styles
  */
 
-.rp-importer-wrap {
+.sd-importer-wrap {
     max-width: 1200px;
 }
 
 /* Navigation Tabs */
-.rp-nav-tabs {
+.sd-nav-tabs {
     display: flex;
     gap: 0;
     margin-bottom: 20px;
     border-bottom: 1px solid #c3c4c7;
 }
 
-.rp-nav-tab {
+.sd-nav-tab {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -28,69 +28,69 @@
     transition: all 0.2s ease;
 }
 
-.rp-nav-tab:first-child {
+.sd-nav-tab:first-child {
     border-radius: 4px 0 0 0;
 }
 
-.rp-nav-tab:last-child {
+.sd-nav-tab:last-child {
     border-radius: 0 4px 0 0;
 }
 
-.rp-nav-tab .dashicons {
+.sd-nav-tab .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
-.rp-nav-tab:hover {
+.sd-nav-tab:hover {
     background: #e9e9e9;
     color: #1d2327;
 }
 
-.rp-nav-tab.active {
+.sd-nav-tab.active {
     background: #fff;
     color: #0073aa;
     border-bottom: 1px solid #fff;
     margin-bottom: -1px;
 }
 
-.rp-importer-container {
+.sd-importer-container {
     display: grid;
     gap: 30px;
     margin-top: 20px;
 }
 
-.rp-import-section,
-.rp-history-section {
+.sd-import-section,
+.sd-history-section {
     background: #fff;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.rp-import-section h2,
-.rp-history-section h2 {
+.sd-import-section h2,
+.sd-history-section h2 {
     margin-top: 0;
     padding-bottom: 15px;
     border-bottom: 1px solid #ddd;
 }
 
-.rp-import-section h2 .dashicons,
-.rp-history-section h2 .dashicons {
+.sd-import-section h2 .dashicons,
+.sd-history-section h2 .dashicons {
     margin-right: 10px;
     color: #2271b1;
 }
 
-.rp-requirements {
+.sd-requirements {
     margin: 15px 0 25px;
     padding-left: 20px;
 }
 
-.rp-requirements li {
+.sd-requirements li {
     margin-bottom: 8px;
 }
 
-.rp-requirements code {
+.sd-requirements code {
     background: #f0f0f1;
     padding: 3px 8px;
     border-radius: 3px;
@@ -98,7 +98,7 @@
 }
 
 /* Upload Area */
-.rp-upload-area {
+.sd-upload-area {
     border: 2px dashed #dcdcde;
     border-radius: 8px;
     padding: 40px 20px;
@@ -109,13 +109,13 @@
     position: relative;
 }
 
-.rp-upload-area:hover,
-.rp-upload-area.dragover {
+.sd-upload-area:hover,
+.sd-upload-area.dragover {
     border-color: #2271b1;
     background: #f0f6fc;
 }
 
-.rp-upload-area input[type="file"] {
+.sd-upload-area input[type="file"] {
     position: absolute;
     top: 0;
     left: 0;
@@ -125,11 +125,11 @@
     cursor: pointer;
 }
 
-.rp-upload-info {
+.sd-upload-info {
     pointer-events: none;
 }
 
-.rp-upload-info .dashicons {
+.sd-upload-info .dashicons {
     font-size: 48px;
     width: 48px;
     height: 48px;
@@ -137,39 +137,39 @@
     margin-bottom: 15px;
 }
 
-.rp-upload-info p {
+.sd-upload-info p {
     font-size: 14px;
     color: #50575e;
     margin: 0;
 }
 
-.rp-upload-area.has-file {
+.sd-upload-area.has-file {
     border-color: #00a32a;
     background: #edfaef;
 }
 
-.rp-upload-area.has-file .dashicons {
+.sd-upload-area.has-file .dashicons {
     color: #00a32a;
 }
 
 /* Import Options */
-.rp-import-options {
+.sd-import-options {
     margin-bottom: 25px;
 }
 
-.rp-import-options h3 {
+.sd-import-options h3 {
     margin-bottom: 15px;
 }
 
-.rp-import-options .form-table {
+.sd-import-options .form-table {
     margin-top: 0;
 }
 
-.rp-import-options .form-table th {
+.sd-import-options .form-table th {
     width: 150px;
 }
 
-.rp-checkbox-label {
+.sd-checkbox-label {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -177,7 +177,7 @@
 }
 
 /* Import Actions */
-.rp-import-actions {
+.sd-import-actions {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -185,24 +185,24 @@
     border-top: 1px solid #ddd;
 }
 
-.rp-import-actions .button .dashicons {
+.sd-import-actions .button .dashicons {
     margin-right: 8px;
     vertical-align: middle;
 }
 
-#rp-import-spinner {
+#sd-import-spinner {
     float: none;
 }
 
 /* Progress Section */
-.rp-progress-section {
+.sd-progress-section {
     background: #fff;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.rp-progress-bar {
+.sd-progress-bar {
     height: 20px;
     background: #f0f0f1;
     border-radius: 10px;
@@ -210,7 +210,7 @@
     margin-bottom: 15px;
 }
 
-.rp-progress-fill {
+.sd-progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #2271b1, #135e96);
     border-radius: 10px;
@@ -218,7 +218,7 @@
     transition: width 0.3s ease;
 }
 
-.rp-progress-log {
+.sd-progress-log {
     background: #1e1e1e;
     color: #00ff00;
     font-family: 'Courier New', monospace;
@@ -230,69 +230,69 @@
     line-height: 1.6;
 }
 
-.rp-progress-log .log-item {
+.sd-progress-log .log-item {
     margin-bottom: 5px;
 }
 
-.rp-progress-log .log-success {
+.sd-progress-log .log-success {
     color: #00ff00;
 }
 
-.rp-progress-log .log-error {
+.sd-progress-log .log-error {
     color: #ff4444;
 }
 
-.rp-progress-log .log-info {
+.sd-progress-log .log-info {
     color: #4fa3ff;
 }
 
 /* Result Section */
-.rp-result-section {
+.sd-result-section {
     background: #fff;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.rp-result-content {
+.sd-result-content {
     padding: 20px;
     border-radius: 5px;
 }
 
-.rp-result-content.success {
+.sd-result-content.success {
     background: #edfaef;
     border-left: 4px solid #00a32a;
 }
 
-.rp-result-content.error {
+.sd-result-content.error {
     background: #fcf0f1;
     border-left: 4px solid #d63638;
 }
 
-.rp-result-content .result-message {
+.sd-result-content .result-message {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
-.rp-result-content .result-details {
+.sd-result-content .result-details {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.rp-result-content .result-details li {
+.sd-result-content .result-details li {
     padding: 5px 0;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.rp-result-content .result-details .dashicons {
+.sd-result-content .result-details .dashicons {
     color: #00a32a;
 }
 
-.rp-result-content .result-actions {
+.sd-result-content .result-actions {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid #ddd;
@@ -301,32 +301,32 @@
 }
 
 /* History Section */
-.rp-history-section table {
+.sd-history-section table {
     margin-top: 10px;
 }
 
-.rp-history-section table th,
-.rp-history-section table td {
+.sd-history-section table th,
+.sd-history-section table td {
     padding: 12px 15px;
 }
 
 /* Responsive */
 @media screen and (max-width: 782px) {
-    .rp-import-options .form-table th {
+    .sd-import-options .form-table th {
         width: 100%;
         padding-bottom: 5px;
     }
     
-    .rp-import-options .form-table td {
+    .sd-import-options .form-table td {
         padding-top: 0;
     }
     
-    .rp-import-actions {
+    .sd-import-actions {
         flex-direction: column;
         align-items: stretch;
     }
     
-    .rp-import-actions .button {
+    .sd-import-actions .button {
         width: 100%;
         justify-content: center;
     }

@@ -17,17 +17,17 @@
             var self = this;
             
             // File input change (browser upload)
-            $('#rp-zip-file').on('change', function(e) {
+            $('#sd-zip-file').on('change', function(e) {
                 self.handleFileSelect(e.target.files[0]);
             });
             
             // Chunked file input change
-            $('#rp-chunked-file').on('change', function(e) {
+            $('#sd-chunked-file').on('change', function(e) {
                 self.handleChunkedFileSelect(e.target.files[0]);
             });
             
             // Drag and drop for browser upload
-            var $uploadArea = $('#rp-upload-area');
+            var $uploadArea = $('#sd-upload-area');
             
             $uploadArea.on('dragover', function(e) {
                 e.preventDefault();
@@ -46,7 +46,7 @@
                 var files = e.originalEvent.dataTransfer.files;
                 if (files.length > 0) {
                     if (files[0].name.endsWith('.zip')) {
-                        $('#rp-zip-file')[0].files = files;
+                        $('#sd-zip-file')[0].files = files;
                         self.handleFileSelect(files[0]);
                     } else {
                         alert('Please upload a ZIP file.');
@@ -55,7 +55,7 @@
             });
             
             // Drag and drop for chunked upload
-            var $chunkedUploadArea = $('#rp-chunked-upload-area');
+            var $chunkedUploadArea = $('#sd-chunked-upload-area');
             
             $chunkedUploadArea.on('dragover', function(e) {
                 e.preventDefault();
@@ -74,7 +74,7 @@
                 var files = e.originalEvent.dataTransfer.files;
                 if (files.length > 0) {
                     if (files[0].name.endsWith('.zip')) {
-                        $('#rp-chunked-file')[0].files = files;
+                        $('#sd-chunked-file')[0].files = files;
                         self.handleChunkedFileSelect(files[0]);
                     } else {
                         alert('Please upload a ZIP file.');
@@ -83,7 +83,7 @@
             });
             
             // Import button
-            $('#rp-import-btn').on('click', function(e) {
+            $('#sd-import-btn').on('click', function(e) {
                 e.preventDefault();
                 self.startImport();
             });
@@ -92,8 +92,8 @@
         handleFileSelect: function(file) {
             if (!file) return;
             
-            var $uploadArea = $('#rp-upload-area');
-            var $uploadInfo = $uploadArea.find('.rp-upload-info');
+            var $uploadArea = $('#sd-upload-area');
+            var $uploadInfo = $uploadArea.find('.sd-upload-info');
             
             $uploadArea.addClass('has-file');
             
@@ -112,8 +112,8 @@
             // Auto-populate title from filename
             var title = file.name.replace('.zip', '').replace(/[-_]/g, ' ');
             title = title.charAt(0).toUpperCase() + title.slice(1);
-            if (!$('#rp-page-title').val()) {
-                $('#rp-page-title').val(title);
+            if (!$('#sd-page-title').val()) {
+                $('#sd-page-title').val(title);
             }
         },
         
@@ -121,8 +121,8 @@
             if (!file) return;
             
             var self = this;
-            var $uploadArea = $('#rp-chunked-upload-area');
-            var $uploadInfo = $uploadArea.find('.rp-upload-info');
+            var $uploadArea = $('#sd-chunked-upload-area');
+            var $uploadInfo = $uploadArea.find('.sd-upload-info');
             
             $uploadArea.addClass('has-file');
             
@@ -134,16 +134,16 @@
             );
             
             // Show file info
-            $('#rp-chunked-filename').text(file.name);
-            $('#rp-chunked-filesize').text(this.formatFileSize(file.size));
-            $('#rp-chunked-count').text(totalChunks);
-            $('#rp-chunked-info').show();
+            $('#sd-chunked-filename').text(file.name);
+            $('#sd-chunked-filesize').text(this.formatFileSize(file.size));
+            $('#sd-chunked-count').text(totalChunks);
+            $('#sd-chunked-info').show();
             
             // Auto-populate title from filename
             var title = file.name.replace('.zip', '').replace(/[-_]/g, ' ');
             title = title.charAt(0).toUpperCase() + title.slice(1);
-            if (!$('#rp-page-title').val()) {
-                $('#rp-page-title').val(title);
+            if (!$('#sd-page-title').val()) {
+                $('#sd-page-title').val(title);
             }
         },
         
@@ -155,44 +155,44 @@
         
         getOptions: function() {
             return {
-                title: $('#rp-page-title').val(),
-                slug: $('#rp-page-slug').val(),
-                template: $('#rp-page-template').val(),
-                css_location: $('#rp-css-location').val(),
-                status: $('#rp-page-status').val(),
-                parent: $('#rp-parent-page').val(),
-                replace: $('#rp-replace-existing').is(':checked')
+                title: $('#sd-page-title').val(),
+                slug: $('#sd-page-slug').val(),
+                template: $('#sd-page-template').val(),
+                css_location: $('#sd-css-location').val(),
+                status: $('#sd-page-status').val(),
+                parent: $('#sd-parent-page').val(),
+                replace: $('#sd-replace-existing').is(':checked')
             };
         },
         
         startImport: function() {
             var self = this;
-            var method = $('#rp-selected-method').val();
+            var method = $('#sd-selected-method').val();
             
             // Validate based on method
             if (method === 'browser') {
-                var fileInput = $('#rp-zip-file')[0];
+                var fileInput = $('#sd-zip-file')[0];
                 if (!fileInput.files || fileInput.files.length === 0) {
-                    alert(rpImporter.strings.select_file);
+                    alert(sdImporter.strings.select_file);
                     return;
                 }
                 this.importFromBrowser();
             } else if (method === 'chunked') {
-                var chunkedFileInput = $('#rp-chunked-file')[0];
+                var chunkedFileInput = $('#sd-chunked-file')[0];
                 if (!chunkedFileInput.files || chunkedFileInput.files.length === 0) {
                     alert('Please select a file for chunked upload.');
                     return;
                 }
                 this.importChunked(chunkedFileInput.files[0]);
             } else if (method === 'url') {
-                var url = $('#rp-import-url').val();
+                var url = $('#sd-import-url').val();
                 if (!url) {
                     alert('Please enter a URL to import from.');
                     return;
                 }
                 this.importFromUrl(url);
             } else if (method === 'ftp') {
-                var selectedFile = $('input[name="rp-ftp-select"]:checked').val();
+                var selectedFile = $('input[name="sd-ftp-select"]:checked').val();
                 if (!selectedFile) {
                     alert('Please select a file to import.');
                     return;
@@ -203,23 +203,23 @@
         
         importFromBrowser: function() {
             var self = this;
-            var fileInput = $('#rp-zip-file')[0];
+            var fileInput = $('#sd-zip-file')[0];
             var file = fileInput.files[0];
             
             // Show progress section
-            $('#rp-progress-section').show();
-            $('#rp-result-section').hide();
+            $('#sd-progress-section').show();
+            $('#sd-result-section').hide();
             this.updateProgress(0, 'Starting import...', 'info');
             
             // Disable button
-            var $btn = $('#rp-import-btn');
+            var $btn = $('#sd-import-btn');
             $btn.prop('disabled', true).find('.dashicons').removeClass('dashicons-upload').addClass('dashicons-update dashicons-spin');
-            $('#rp-import-spinner').addClass('is-active');
+            $('#sd-import-spinner').addClass('is-active');
             
             // Use FormData for direct file upload
             var formData = new FormData();
             formData.append('action', 'rp_import_page');
-            formData.append('nonce', rpImporter.nonce);
+            formData.append('nonce', sdImporter.nonce);
             formData.append('zip_file', file);
             
             // Add options
@@ -232,7 +232,7 @@
             this.updateProgress(20, 'Uploading to server...', 'info');
             
             $.ajax({
-                url: rpImporter.ajax_url,
+                url: sdImporter.ajax_url,
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -266,7 +266,7 @@
                 },
                 complete: function() {
                     $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                    $('#rp-import-spinner').removeClass('is-active');
+                    $('#sd-import-spinner').removeClass('is-active');
                     self.loadHistory();
                 }
             });
@@ -281,14 +281,14 @@
             var startTime = Date.now();
             
             // Disable button
-            var $btn = $('#rp-import-btn');
+            var $btn = $('#sd-import-btn');
             $btn.prop('disabled', true).find('.dashicons').removeClass('dashicons-upload').addClass('dashicons-update dashicons-spin');
-            $('#rp-import-spinner').addClass('is-active');
+            $('#sd-import-spinner').addClass('is-active');
             
             // Show chunked progress
             $('#rp-chunk-progress-container').show();
-            $('#rp-progress-section').hide();
-            $('#rp-result-section').hide();
+            $('#sd-progress-section').hide();
+            $('#sd-result-section').hide();
             
             // Update UI
             $('#rp-chunk-total').text(totalChunks);
@@ -308,7 +308,7 @@
                 
                 var formData = new FormData();
                 formData.append('action', 'rp_upload_chunk');
-                formData.append('nonce', rpImporter.nonce);
+                formData.append('nonce', sdImporter.nonce);
                 formData.append('chunk', chunk);
                 formData.append('chunk_index', currentChunk);
                 formData.append('total_chunks', totalChunks);
@@ -324,7 +324,7 @@
                 }
                 
                 $.ajax({
-                    url: rpImporter.ajax_url,
+                    url: sdImporter.ajax_url,
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -352,11 +352,11 @@
                                 
                                 // Re-enable button
                                 $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                                $('#rp-import-spinner').removeClass('is-active');
+                                $('#sd-import-spinner').removeClass('is-active');
                                 
                                 // Clear file input
-                                $('#rp-chunked-file').val('');
-                                $('#rp-chunked-info').hide();
+                                $('#sd-chunked-file').val('');
+                                $('#sd-chunked-info').hide();
                                 $('#rp-chunk-progress-container').hide();
                             } else {
                                 // Upload next chunk
@@ -367,7 +367,7 @@
                             self.showResult(response.data, false);
                             
                             $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                            $('#rp-import-spinner').removeClass('is-active');
+                            $('#sd-import-spinner').removeClass('is-active');
                         }
                     },
                     error: function(xhr, status, error) {
@@ -375,7 +375,7 @@
                         self.showResult({ message: 'Upload failed: ' + error }, false);
                         
                         $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                        $('#rp-import-spinner').removeClass('is-active');
+                        $('#sd-import-spinner').removeClass('is-active');
                     }
                 });
             };
@@ -388,24 +388,24 @@
             var self = this;
             
             // Show progress section
-            $('#rp-progress-section').show();
-            $('#rp-result-section').hide();
+            $('#sd-progress-section').show();
+            $('#sd-result-section').hide();
             this.updateProgress(0, 'Starting import from URL...', 'info');
             
             // Disable button
-            var $btn = $('#rp-import-btn');
+            var $btn = $('#sd-import-btn');
             $btn.prop('disabled', true).find('.dashicons').removeClass('dashicons-upload').addClass('dashicons-update dashicons-spin');
-            $('#rp-import-spinner').addClass('is-active');
+            $('#sd-import-spinner').addClass('is-active');
             
             this.updateProgress(10, 'Validating URL...', 'info');
             this.updateProgress(20, 'Downloading file from URL...', 'info');
             
             $.ajax({
-                url: rpImporter.ajax_url,
+                url: sdImporter.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'rp_import_from_url',
-                    nonce: rpImporter.nonce,
+                    nonce: sdImporter.nonce,
                     url: url,
                     options: this.getOptions()
                 },
@@ -414,7 +414,7 @@
                         self.updateProgress(100, 'Import completed!', 'success');
                         self.showResult(response.data, true);
                         // Clear URL field
-                        $('#rp-import-url').val('');
+                        $('#sd-import-url').val('');
                     } else {
                         self.updateProgress(100, 'Error: ' + response.data.message, 'error');
                         self.showResult(response.data, false);
@@ -426,7 +426,7 @@
                 },
                 complete: function() {
                     $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                    $('#rp-import-spinner').removeClass('is-active');
+                    $('#sd-import-spinner').removeClass('is-active');
                     self.loadHistory();
                 }
             });
@@ -436,23 +436,23 @@
             var self = this;
             
             // Show progress section
-            $('#rp-progress-section').show();
-            $('#rp-result-section').hide();
+            $('#sd-progress-section').show();
+            $('#sd-result-section').hide();
             this.updateProgress(0, 'Starting import from server...', 'info');
             
             // Disable button
-            var $btn = $('#rp-import-btn');
+            var $btn = $('#sd-import-btn');
             $btn.prop('disabled', true).find('.dashicons').removeClass('dashicons-upload').addClass('dashicons-update dashicons-spin');
-            $('#rp-import-spinner').addClass('is-active');
+            $('#sd-import-spinner').addClass('is-active');
             
             this.updateProgress(20, 'Reading file: ' + filename, 'info');
             
             $.ajax({
-                url: rpImporter.ajax_url,
+                url: sdImporter.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'rp_import_from_ftp',
-                    nonce: rpImporter.nonce,
+                    nonce: sdImporter.nonce,
                     filename: filename,
                     options: this.getOptions()
                 },
@@ -471,16 +471,16 @@
                 },
                 complete: function() {
                     $btn.prop('disabled', false).find('.dashicons').removeClass('dashicons-update dashicons-spin').addClass('dashicons-upload');
-                    $('#rp-import-spinner').removeClass('is-active');
+                    $('#sd-import-spinner').removeClass('is-active');
                     self.loadHistory();
                 }
             });
         },
         
         updateProgress: function(percent, message, type) {
-            $('#rp-progress-fill').css('width', percent + '%');
+            $('#sd-progress-fill').css('width', percent + '%');
             
-            var $log = $('#rp-progress-log');
+            var $log = $('#sd-progress-log');
             var icon = '';
             switch(type) {
                 case 'success': icon = '✓ '; break;
@@ -493,8 +493,8 @@
         },
         
         showResult: function(data, success) {
-            var $resultSection = $('#rp-result-section');
-            var $resultContent = $('#rp-result-content');
+            var $resultSection = $('#sd-result-section');
+            var $resultContent = $('#sd-result-content');
             
             $resultContent.removeClass('success error').addClass(success ? 'success' : 'error');
             
@@ -524,11 +524,11 @@
         
         loadHistory: function() {
             $.ajax({
-                url: rpImporter.ajax_url,
+                url: sdImporter.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'rp_get_import_history',
-                    nonce: rpImporter.nonce
+                    nonce: sdImporter.nonce
                 },
                 success: function(response) {
                     if (response.success) {

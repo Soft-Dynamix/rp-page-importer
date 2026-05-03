@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: RP Page Importer
- * Plugin URI: https://github.com/Soft-Dynamix/rp-page-importer
- * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Supports browser upload, chunked upload, URL import, and FTP/server import for any file size.
- * Version: 1.5.0
- * Author: RP Motorcycles
- * Author URI: https://rpmotorcycles.co.za
+ * Plugin Name: Soft Dynamix Page Importer
+ * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
+ * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
+ * Version: 2.0.0
+ * Author: Soft Dynamix
+ * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
- * Text Domain: rp-page-importer
+ * Text Domain: sd-page-importer
  */
 
 // Prevent direct access
@@ -15,24 +15,24 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class RP_Page_Importer {
+class SD_Page_Importer {
     
-    private $version = '1.5.0';
-    private $plugin_name = 'rp-page-importer';
+    private $version = '2.0.0';
+    private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
-        add_action('wp_ajax_rp_import_page', array($this, 'ajax_import_page'));
-        add_action('wp_ajax_rp_import_from_url', array($this, 'ajax_import_from_url'));
-        add_action('wp_ajax_rp_import_from_ftp', array($this, 'ajax_import_from_ftp'));
-        add_action('wp_ajax_rp_upload_chunk', array($this, 'ajax_upload_chunk'));
-        add_action('wp_ajax_rp_delete_ftp_file', array($this, 'ajax_delete_ftp_file'));
-        add_action('wp_ajax_rp_clear_ftp_files', array($this, 'ajax_clear_ftp_files'));
-        add_action('wp_ajax_rp_get_import_history', array($this, 'ajax_get_import_history'));
-        add_action('wp_ajax_rp_export_page', array($this, 'ajax_export_page'));
-        add_action('wp_ajax_rp_get_page_content', array($this, 'ajax_get_page_content'));
-        add_action('wp_ajax_rp_preview_export', array($this, 'ajax_preview_export'));
+        add_action('wp_ajax_sd_import_page', array($this, 'ajax_import_page'));
+        add_action('wp_ajax_sd_import_from_url', array($this, 'ajax_import_from_url'));
+        add_action('wp_ajax_sd_import_from_ftp', array($this, 'ajax_import_from_ftp'));
+        add_action('wp_ajax_sd_upload_chunk', array($this, 'ajax_upload_chunk'));
+        add_action('wp_ajax_sd_delete_ftp_file', array($this, 'ajax_delete_ftp_file'));
+        add_action('wp_ajax_sd_clear_ftp_files', array($this, 'ajax_clear_ftp_files'));
+        add_action('wp_ajax_sd_get_import_history', array($this, 'ajax_get_import_history'));
+        add_action('wp_ajax_sd_export_page', array($this, 'ajax_export_page'));
+        add_action('wp_ajax_sd_get_page_content', array($this, 'ajax_get_page_content'));
+        add_action('wp_ajax_sd_preview_export', array($this, 'ajax_preview_export'));
     }
     
     /**
@@ -43,7 +43,7 @@ class RP_Page_Importer {
             'Page Importer',
             'Page Importer',
             'manage_options',
-            'rp-page-importer',
+            'sd-page-importer',
             array($this, 'render_admin_page'),
             'dashicons-migrate',
             30
@@ -54,33 +54,33 @@ class RP_Page_Importer {
      * Enqueue admin assets
      */
     public function enqueue_admin_assets($hook) {
-        if ($hook !== 'toplevel_page_rp-page-importer') {
+        if ($hook !== 'toplevel_page_sd-page-importer') {
             return;
         }
         
         wp_enqueue_style(
-            'rp-page-importer-admin',
+            'sd-page-importer-admin',
             plugin_dir_url(__FILE__) . 'admin-style.css',
             array(),
             $this->version
         );
         
         wp_enqueue_script(
-            'rp-page-importer-admin',
+            'sd-page-importer-admin',
             plugin_dir_url(__FILE__) . 'admin-script.js',
             array('jquery'),
             $this->version,
             true
         );
         
-        wp_localize_script('rp-page-importer-admin', 'rpImporter', array(
+        wp_localize_script('sd-page-importer-admin', 'sdImporter', array(
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('rp_page_importer_nonce'),
+            'nonce' => wp_create_nonce('sd_page_importer_nonce'),
             'strings' => array(
-                'select_file' => __('Please select a ZIP file to import.', 'rp-page-importer'),
-                'importing' => __('Importing... Please wait.', 'rp-page-importer'),
-                'success' => __('Import completed successfully!', 'rp-page-importer'),
-                'error' => __('An error occurred during import.', 'rp-page-importer'),
+                'select_file' => __('Please select a ZIP file to import.', 'sd-page-importer'),
+                'importing' => __('Importing... Please wait.', 'sd-page-importer'),
+                'success' => __('Import completed successfully!', 'sd-page-importer'),
+                'error' => __('An error occurred during import.', 'sd-page-importer'),
             )
         ));
     }
@@ -91,26 +91,26 @@ class RP_Page_Importer {
     public function render_admin_page() {
         $current_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'import';
         ?>
-        <div class="wrap rp-importer-wrap">
-            <h1><span class="dashicons dashicons-migrate"></span> RP Page Importer</h1>
+        <div class="wrap sd-importer-wrap">
+            <h1><span class="dashicons dashicons-migrate"></span> Soft Dynamix Page Importer</h1>
             
             <!-- Tabs -->
-            <nav class="rp-nav-tabs">
-                <a href="?page=rp-page-importer&tab=import" class="rp-nav-tab <?php echo $current_tab === 'import' ? 'active' : ''; ?>">
+            <nav class="sd-nav-tabs">
+                <a href="?page=sd-page-importer&tab=import" class="sd-nav-tab <?php echo $current_tab === 'import' ? 'active' : ''; ?>">
                     <span class="dashicons dashicons-upload"></span> Import
                 </a>
-                <a href="?page=rp-page-importer&tab=export" class="rp-nav-tab <?php echo $current_tab === 'export' ? 'active' : ''; ?>">
+                <a href="?page=sd-page-importer&tab=export" class="sd-nav-tab <?php echo $current_tab === 'export' ? 'active' : ''; ?>">
                     <span class="dashicons dashicons-download"></span> Export
                 </a>
-                <a href="?page=rp-page-importer&tab=zai-prompt" class="rp-nav-tab <?php echo $current_tab === 'zai-prompt' ? 'active' : ''; ?>">
+                <a href="?page=sd-page-importer&tab=zai-prompt" class="sd-nav-tab <?php echo $current_tab === 'zai-prompt' ? 'active' : ''; ?>">
                     <span class="dashicons dashicons-admin-customizer"></span> Z.ai Prompt
                 </a>
-                <a href="?page=rp-page-importer&tab=history" class="rp-nav-tab <?php echo $current_tab === 'history' ? 'active' : ''; ?>">
+                <a href="?page=sd-page-importer&tab=history" class="sd-nav-tab <?php echo $current_tab === 'history' ? 'active' : ''; ?>">
                     <span class="dashicons dashicons-backup"></span> History
                 </a>
             </nav>
             
-            <div class="rp-importer-container">
+            <div class="sd-importer-container">
                 <?php if ($current_tab === 'import'): ?>
                     <?php $this->render_import_tab(); ?>
                 <?php elseif ($current_tab === 'export'): ?>
@@ -135,8 +135,8 @@ class RP_Page_Importer {
         
         // Get upload directory info
         $upload_dir = wp_upload_dir();
-        $import_dir = $upload_dir['basedir'] . '/rp-imports/';
-        $import_url = $upload_dir['baseurl'] . '/rp-imports/';
+        $import_dir = $upload_dir['basedir'] . '/sd-imports/';
+        $import_url = $upload_dir['baseurl'] . '/sd-imports/';
         
         // Create import directory if not exists
         wp_mkdir_p($import_dir);
@@ -155,7 +155,7 @@ class RP_Page_Importer {
             }
         }
         ?>
-        <div class="rp-import-section">
+        <div class="sd-import-section">
             <h2>Import Feature Page</h2>
             <p class="description">Import a ZIP file containing your feature page. The ZIP should include:</p>
             <ul class="rp-requirements">
@@ -166,30 +166,30 @@ class RP_Page_Importer {
             </ul>
             
             <!-- Upload Method Tabs -->
-            <div class="rp-method-tabs">
-                <button type="button" class="rp-method-tab active" data-method="browser">
+            <div class="sd-method-tabs">
+                <button type="button" class="sd-method-tab active" data-method="browser">
                     <span class="dashicons dashicons-upload"></span> Browser Upload
                     <small>(Max: <?php echo esc_html($max_upload_mb); ?>)</small>
                 </button>
-                <button type="button" class="rp-method-tab" data-method="chunked">
+                <button type="button" class="sd-method-tab" data-method="chunked">
                     <span class="dashicons dashicons-networking"></span> Chunked Upload
                     <small>(No size limit!)</small>
                 </button>
-                <button type="button" class="rp-method-tab" data-method="url">
+                <button type="button" class="sd-method-tab" data-method="url">
                     <span class="dashicons dashicons-admin-links"></span> From URL
                     <small>(No size limit)</small>
                 </button>
-                <button type="button" class="rp-method-tab" data-method="ftp">
+                <button type="button" class="sd-method-tab" data-method="ftp">
                     <span class="dashicons dashicons-category"></span> FTP/Server
                     <small>(No size limit)</small>
                 </button>
             </div>
             
             <!-- Method: Browser Upload -->
-            <div class="rp-upload-method rp-method-browser active">
-                <div class="rp-upload-area" id="rp-upload-area">
-                    <input type="file" id="rp-zip-file" accept=".zip" />
-                    <div class="rp-upload-info">
+            <div class="sd-upload-method sd-method-browser active">
+                <div class="sd-upload-area" id="sd-upload-area">
+                    <input type="file" id="sd-zip-file" accept=".zip" />
+                    <div class="sd-upload-info">
                         <span class="dashicons dashicons-upload"></span>
                         <p>Drag & drop a ZIP file here or click to browse</p>
                     </div>
@@ -197,24 +197,24 @@ class RP_Page_Importer {
             </div>
             
             <!-- Method: Chunked Upload -->
-            <div class="rp-upload-method rp-method-chunked" style="display: none;">
-                <div class="rp-chunked-import-box">
+            <div class="sd-upload-method sd-method-chunked" style="display: none;">
+                <div class="sd-chunked-import-box">
                     <h4><span class="dashicons dashicons-networking"></span> Chunked Upload (No Size Limit)</h4>
                     <p class="description">Upload large files by splitting them into smaller chunks. Works with any file size!</p>
                     
-                    <div class="rp-upload-area" id="rp-chunked-upload-area">
-                        <input type="file" id="rp-chunked-file" accept=".zip" />
-                        <div class="rp-upload-info">
+                    <div class="sd-upload-area" id="sd-chunked-upload-area">
+                        <input type="file" id="sd-chunked-file" accept=".zip" />
+                        <div class="sd-upload-info">
                             <span class="dashicons dashicons-networking"></span>
                             <p>Select any size ZIP file - it will be uploaded in chunks</p>
                         </div>
                     </div>
                     
-                    <div class="rp-chunked-info" id="rp-chunked-info" style="display: none; margin-top: 15px;">
-                        <div class="rp-chunked-file-info">
-                            <strong>File:</strong> <span id="rp-chunked-filename"></span><br>
-                            <strong>Size:</strong> <span id="rp-chunked-filesize"></span><br>
-                            <strong>Chunks:</strong> <span id="rp-chunked-count"></span> x 2MB
+                    <div class="sd-chunked-info" id="sd-chunked-info" style="display: none; margin-top: 15px;">
+                        <div class="sd-chunked-file-info">
+                            <strong>File:</strong> <span id="sd-chunked-filename"></span><br>
+                            <strong>Size:</strong> <span id="sd-chunked-filesize"></span><br>
+                            <strong>Chunks:</strong> <span id="sd-chunked-count"></span> x 2MB
                         </div>
                     </div>
                     
@@ -237,31 +237,31 @@ class RP_Page_Importer {
             </div>
             
             <!-- Method: URL Import -->
-            <div class="rp-upload-method rp-method-url" style="display: none;">
+            <div class="sd-upload-method sd-method-url" style="display: none;">
                 <div class="rp-url-import-box">
                     <h4><span class="dashicons dashicons-admin-links"></span> Import from URL</h4>
                     <p class="description">Enter a direct download URL to a ZIP file. This bypasses server upload limits.</p>
-                    <input type="url" id="rp-import-url" class="large-text" placeholder="https://example.com/your-page.zip" />
+                    <input type="url" id="sd-import-url" class="large-text" placeholder="https://example.com/your-page.zip" />
                     <p class="description">Works with any publicly accessible ZIP file URL.</p>
                 </div>
             </div>
             
             <!-- Method: FTP/Server -->
-            <div class="rp-upload-method rp-method-ftp" style="display: none;">
-                <div class="rp-ftp-import-box">
+            <div class="sd-upload-method sd-method-ftp" style="display: none;">
+                <div class="sd-ftp-import-box">
                     <h4><span class="dashicons dashicons-category"></span> Import from Server</h4>
                     <p class="description">Upload your ZIP via FTP/SFTP first, then import it here.</p>
                     
-                    <div class="rp-ftp-instructions">
+                    <div class="sd-ftp-instructions">
                         <strong>Instructions:</strong>
                         <ol>
                             <li>Upload your ZIP file via FTP/SFTP to this directory:</li>
-                            <li><code class="rp-path-code"><?php echo esc_html($import_dir); ?></code></li>
+                            <li><code class="sd-path-code"><?php echo esc_html($import_dir); ?></code></li>
                             <li>Click "Refresh List" below to see your file</li>
                             <li>Select the file and import</li>
                         </ol>
                         
-                        <div class="rp-ftp-actions" style="margin-top: 15px;">
+                        <div class="sd-ftp-actions" style="margin-top: 15px;">
                             <button type="button" id="rp-refresh-ftp" class="button">
                                 <span class="dashicons dashicons-update"></span> Refresh List
                             </button>
@@ -271,7 +271,7 @@ class RP_Page_Importer {
                         </div>
                     </div>
                     
-                    <div class="rp-ftp-files" id="rp-ftp-files" style="margin-top: 20px;">
+                    <div class="sd-ftp-files" id="sd-ftp-files" style="margin-top: 20px;">
                         <?php if (!empty($existing_zips)): ?>
                             <table class="widefat striped">
                                 <thead>
@@ -286,7 +286,7 @@ class RP_Page_Importer {
                                 <tbody>
                                     <?php foreach ($existing_zips as $zip): ?>
                                         <tr>
-                                            <td><input type="radio" name="rp-ftp-select" value="<?php echo esc_attr($zip['name']); ?>" /></td>
+                                            <td><input type="radio" name="sd-ftp-select" value="<?php echo esc_attr($zip['name']); ?>" /></td>
                                             <td><strong><?php echo esc_html($zip['name']); ?></strong></td>
                                             <td><?php echo esc_html($zip['size']); ?></td>
                                             <td><?php echo esc_html($zip['date']); ?></td>
@@ -300,7 +300,7 @@ class RP_Page_Importer {
                                 </tbody>
                             </table>
                         <?php else: ?>
-                            <div class="rp-no-files">
+                            <div class="sd-no-files">
                                 <span class="dashicons dashicons-media-archive" style="font-size: 48px; width: 48px; height: 48px; opacity: 0.3;"></span>
                                 <p>No ZIP files found in the import directory.</p>
                                 <p class="description">Upload a file via FTP to: <code><?php echo esc_html($import_dir); ?></code></p>
@@ -310,28 +310,28 @@ class RP_Page_Importer {
                 </div>
             </div>
             
-            <div class="rp-import-options">
+            <div class="sd-import-options">
                 <h3>Import Options</h3>
                 
                 <table class="form-table">
                     <tr>
                         <th scope="row">Page Title</th>
                         <td>
-                            <input type="text" id="rp-page-title" class="regular-text" placeholder="e.g., Our Services" />
+                            <input type="text" id="sd-page-title" class="regular-text" placeholder="e.g., Our Services" />
                             <p class="description">Leave empty to use title from config.json or filename</p>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">Page Slug</th>
                         <td>
-                            <input type="text" id="rp-page-slug" class="regular-text" placeholder="e.g., services" />
+                            <input type="text" id="sd-page-slug" class="regular-text" placeholder="e.g., services" />
                             <p class="description">Leave empty to auto-generate from title</p>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">Page Template</th>
                         <td>
-                            <select id="rp-page-template">
+                            <select id="sd-page-template">
                                 <option value="default">Default Template</option>
                                 <?php
                                 $templates = get_page_templates();
@@ -348,7 +348,7 @@ class RP_Page_Importer {
                     <tr>
                         <th scope="row">CSS Location</th>
                         <td>
-                            <select id="rp-css-location">
+                            <select id="sd-css-location">
                                 <option value="inline">Inline (in page content)</option>
                                 <option value="theme">Theme Additional CSS</option>
                                 <option value="both">Both</option>
@@ -358,7 +358,7 @@ class RP_Page_Importer {
                     <tr>
                         <th scope="row">Status</th>
                         <td>
-                            <select id="rp-page-status">
+                            <select id="sd-page-status">
                                 <option value="publish">Published</option>
                                 <option value="draft">Draft</option>
                                 <option value="private">Private</option>
@@ -370,7 +370,7 @@ class RP_Page_Importer {
                         <td>
                             <?php
                             $pages = get_pages();
-                            echo '<select id="rp-parent-page">';
+                            echo '<select id="sd-parent-page">';
                             echo '<option value="0">No Parent</option>';
                             foreach ($pages as $page) {
                                 echo '<option value="' . $page->ID . '">' . esc_html($page->post_title) . '</option>';
@@ -383,7 +383,7 @@ class RP_Page_Importer {
                         <th scope="row">Replace Existing</th>
                         <td>
                             <label class="rp-checkbox-label">
-                                <input type="checkbox" id="rp-replace-existing" />
+                                <input type="checkbox" id="sd-replace-existing" />
                                 Replace page if one with same slug exists
                             </label>
                         </td>
@@ -391,31 +391,31 @@ class RP_Page_Importer {
                 </table>
             </div>
             
-            <div class="rp-import-actions">
-                <button type="button" id="rp-import-btn" class="button button-primary button-large">
+            <div class="sd-import-actions">
+                <button type="button" id="sd-import-btn" class="button button-primary button-large">
                     <span class="dashicons dashicons-upload"></span> Import Page
                 </button>
-                <span class="spinner" id="rp-import-spinner"></span>
+                <span class="spinner" id="sd-import-spinner"></span>
             </div>
         </div>
         
         <!-- Progress Section -->
-        <div class="rp-progress-section" id="rp-progress-section" style="display: none;">
+        <div class="sd-progress-section" id="sd-progress-section" style="display: none;">
             <h3>Import Progress</h3>
-            <div class="rp-progress-bar">
-                <div class="rp-progress-fill" id="rp-progress-fill"></div>
+            <div class="sd-progress-bar">
+                <div class="sd-progress-fill" id="sd-progress-fill"></div>
             </div>
-            <div class="rp-progress-log" id="rp-progress-log"></div>
+            <div class="sd-progress-log" id="sd-progress-log"></div>
         </div>
         
         <!-- Result Section -->
-        <div class="rp-result-section" id="rp-result-section" style="display: none;">
+        <div class="sd-result-section" id="sd-result-section" style="display: none;">
             <h3>Import Result</h3>
-            <div class="rp-result-content" id="rp-result-content"></div>
+            <div class="sd-result-content" id="sd-result-content"></div>
         </div>
         
         <style>
-            .rp-method-tabs {
+            .sd-method-tabs {
                 display: flex;
                 gap: 10px;
                 margin: 20px 0;
@@ -424,7 +424,7 @@ class RP_Page_Importer {
                 border-radius: 8px;
             }
             
-            .rp-method-tab {
+            .sd-method-tab {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
@@ -437,35 +437,35 @@ class RP_Page_Importer {
                 transition: all 0.2s ease;
             }
             
-            .rp-method-tab:hover {
+            .sd-method-tab:hover {
                 border-color: #2271b1;
                 background: #f0f6fc;
             }
             
-            .rp-method-tab.active {
+            .sd-method-tab.active {
                 border-color: #2271b1;
                 background: #2271b1;
                 color: #fff;
             }
             
-            .rp-method-tab .dashicons {
+            .sd-method-tab .dashicons {
                 font-size: 24px;
                 width: 24px;
                 height: 24px;
                 margin-bottom: 8px;
             }
             
-            .rp-method-tab small {
+            .sd-method-tab small {
                 font-size: 11px;
                 opacity: 0.7;
                 margin-top: 5px;
             }
             
-            .rp-method-tab.active small {
+            .sd-method-tab.active small {
                 color: #fff;
             }
             
-            .rp-url-import-box, .rp-ftp-import-box, .rp-chunked-import-box {
+            .rp-url-import-box, .sd-ftp-import-box, .sd-chunked-import-box {
                 background: #fff;
                 padding: 20px;
                 border: 1px solid #dcdcde;
@@ -473,7 +473,7 @@ class RP_Page_Importer {
                 margin-top: 15px;
             }
             
-            .rp-url-import-box h4, .rp-ftp-import-box h4, .rp-chunked-import-box h4 {
+            .rp-url-import-box h4, .sd-ftp-import-box h4, .sd-chunked-import-box h4 {
                 margin-top: 0;
                 display: flex;
                 align-items: center;
@@ -481,7 +481,7 @@ class RP_Page_Importer {
             }
             
             /* Chunked Upload Styles */
-            .rp-chunked-file-info {
+            .sd-chunked-file-info {
                 background: #f6f7f7;
                 padding: 15px;
                 border-radius: 6px;
@@ -528,22 +528,22 @@ class RP_Page_Importer {
                 color: #646970;
             }
             
-            .rp-ftp-instructions {
+            .sd-ftp-instructions {
                 background: #f6f7f7;
                 padding: 15px;
                 border-radius: 6px;
                 margin-top: 15px;
             }
             
-            .rp-ftp-instructions ol {
+            .sd-ftp-instructions ol {
                 margin: 10px 0 0 20px;
             }
             
-            .rp-ftp-instructions li {
+            .sd-ftp-instructions li {
                 margin-bottom: 8px;
             }
             
-            .rp-path-code {
+            .sd-path-code {
                 display: block;
                 background: #1e1e1e;
                 color: #9cdcfe;
@@ -554,19 +554,19 @@ class RP_Page_Importer {
                 word-break: break-all;
             }
             
-            .rp-no-files {
+            .sd-no-files {
                 text-align: center;
                 padding: 40px 20px;
                 color: #646970;
             }
             
-            .rp-no-files .dashicons {
+            .sd-no-files .dashicons {
                 display: block;
                 margin: 0 auto 15px;
             }
             
             @media screen and (max-width: 782px) {
-                .rp-method-tabs {
+                .sd-method-tabs {
                     flex-direction: column;
                 }
             }
@@ -575,17 +575,17 @@ class RP_Page_Importer {
         <script>
             jQuery(document).ready(function($) {
                 // Method tab switching
-                $('.rp-method-tab').on('click', function() {
+                $('.sd-method-tab').on('click', function() {
                     var method = $(this).data('method');
                     
-                    $('.rp-method-tab').removeClass('active');
+                    $('.sd-method-tab').removeClass('active');
                     $(this).addClass('active');
                     
-                    $('.rp-upload-method').hide();
-                    $('.rp-method-' + method).show();
+                    $('.sd-upload-method').hide();
+                    $('.sd-method-' + method).show();
                     
                     // Store selected method
-                    $('#rp-selected-method').val(method);
+                    $('#sd-selected-method').val(method);
                 });
                 
                 // Refresh FTP files list
@@ -598,11 +598,11 @@ class RP_Page_Importer {
                     var file = $(this).data('file');
                     if (confirm('Delete ' + file + '?')) {
                         $.ajax({
-                            url: rpImporter.ajax_url,
+                            url: sdImporter.ajax_url,
                             type: 'POST',
                             data: {
                                 action: 'rp_delete_ftp_file',
-                                nonce: rpImporter.nonce,
+                                nonce: sdImporter.nonce,
                                 filename: file
                             },
                             success: function(response) {
@@ -620,11 +620,11 @@ class RP_Page_Importer {
                 $('#rp-clear-ftp').on('click', function() {
                     if (confirm('Delete all ZIP files from the import directory?')) {
                         $.ajax({
-                            url: rpImporter.ajax_url,
+                            url: sdImporter.ajax_url,
                             type: 'POST',
                             data: {
                                 action: 'rp_clear_ftp_files',
-                                nonce: rpImporter.nonce
+                                nonce: sdImporter.nonce
                             },
                             success: function(response) {
                                 if (response.success) {
@@ -640,7 +640,7 @@ class RP_Page_Importer {
         </script>
         
         <!-- Hidden input for selected method -->
-        <input type="hidden" id="rp-selected-method" value="browser" />
+        <input type="hidden" id="sd-selected-method" value="browser" />
         <?php
     }
     
@@ -650,16 +650,16 @@ class RP_Page_Importer {
     private function render_export_tab() {
         $pages = get_pages(array('post_status' => array('publish', 'draft', 'private')));
         ?>
-        <div class="rp-export-section">
+        <div class="sd-export-section">
             <h2>Export Page for Z.ai</h2>
             <p class="description">Export any WordPress page to a ZIP file that Z.ai can use for further development. The export includes HTML, CSS, images, and a context file for Z.ai.</p>
             
-            <div class="rp-export-form">
+            <div class="sd-export-form">
                 <table class="form-table">
                     <tr>
                         <th scope="row">Select Page</th>
                         <td>
-                            <select id="rp-export-page" class="regular-text">
+                            <select id="sd-export-page" class="regular-text">
                                 <option value="">-- Select a page to export --</option>
                                 <?php foreach ($pages as $page): ?>
                                     <option value="<?php echo $page->ID; ?>">
@@ -674,17 +674,17 @@ class RP_Page_Importer {
                         <th scope="row">Export Options</th>
                         <td>
                             <label class="rp-checkbox-label">
-                                <input type="checkbox" id="rp-export-images" checked />
+                                <input type="checkbox" id="sd-export-images" checked />
                                 Include images from Media Library
                             </label>
                             <br><br>
                             <label class="rp-checkbox-label">
-                                <input type="checkbox" id="rp-export-css" checked />
+                                <input type="checkbox" id="sd-export-css" checked />
                                 Extract inline CSS to separate file
                             </label>
                             <br><br>
                             <label class="rp-checkbox-label">
-                                <input type="checkbox" id="rp-export-context" checked />
+                                <input type="checkbox" id="sd-export-context" checked />
                                 Include Z.ai context file (for future development)
                             </label>
                         </td>
@@ -692,25 +692,25 @@ class RP_Page_Importer {
                     <tr>
                         <th scope="row">Development Notes</th>
                         <td>
-                            <textarea id="rp-export-notes" class="large-text" rows="4" placeholder="Add notes for Z.ai about what changes you want made to this page..."></textarea>
+                            <textarea id="sd-export-notes" class="large-text" rows="4" placeholder="Add notes for Z.ai about what changes you want made to this page..."></textarea>
                             <p class="description">Describe what modifications or improvements you want Z.ai to make</p>
                         </td>
                     </tr>
                 </table>
                 
-                <div class="rp-export-actions">
+                <div class="sd-export-actions">
                     <button type="button" id="rp-preview-export-btn" class="button">
                         <span class="dashicons dashicons-visibility"></span> Preview Export
                     </button>
-                    <button type="button" id="rp-export-btn" class="button button-primary button-large">
+                    <button type="button" id="sd-export-btn" class="button button-primary button-large">
                         <span class="dashicons dashicons-download"></span> Export ZIP
                     </button>
-                    <span class="spinner" id="rp-export-spinner"></span>
+                    <span class="spinner" id="sd-export-spinner"></span>
                 </div>
             </div>
             
             <!-- Preview Section -->
-            <div class="rp-export-preview" id="rp-export-preview" style="display: none;">
+            <div class="sd-export-preview" id="sd-export-preview" style="display: none;">
                 <h3>Export Preview</h3>
                 <div class="rp-preview-content" id="rp-preview-content"></div>
             </div>
@@ -729,33 +729,33 @@ class RP_Page_Importer {
         </div>
         
         <style>
-            .rp-export-section {
+            .sd-export-section {
                 background: #fff;
                 padding: 25px;
                 border-radius: 8px;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             }
             
-            .rp-export-section h2 {
+            .sd-export-section h2 {
                 margin-top: 0;
             }
             
-            .rp-export-form {
+            .sd-export-form {
                 margin-bottom: 30px;
             }
             
-            .rp-export-actions {
+            .sd-export-actions {
                 display: flex;
                 gap: 10px;
                 align-items: center;
                 margin-top: 20px;
             }
             
-            .rp-export-actions .dashicons {
+            .sd-export-actions .dashicons {
                 margin-right: 5px;
             }
             
-            .rp-export-preview {
+            .sd-export-preview {
                 margin-top: 30px;
                 padding: 20px;
                 background: #f6f7f7;
@@ -784,7 +784,7 @@ class RP_Page_Importer {
                 margin-top: 15px;
             }
             
-            .rp-export-summary {
+            .sd-export-summary {
                 background: #e7f7ff;
                 border: 1px solid #0085FF;
                 border-radius: 8px;
@@ -792,17 +792,17 @@ class RP_Page_Importer {
                 margin-bottom: 20px;
             }
             
-            .rp-export-summary h4 {
+            .sd-export-summary h4 {
                 margin: 0 0 10px 0;
                 color: #0073aa;
             }
             
-            .rp-export-summary ul {
+            .sd-export-summary ul {
                 margin: 0;
                 padding-left: 20px;
             }
             
-            .rp-export-summary li {
+            .sd-export-summary li {
                 margin-bottom: 5px;
             }
         </style>
@@ -810,7 +810,7 @@ class RP_Page_Importer {
         <script>
             jQuery(document).ready(function($) {
                 // Page selection change - update context preview
-                $('#rp-export-page').on('change', function() {
+                $('#sd-export-page').on('change', function() {
                     var pageId = $(this).val();
                     if (pageId) {
                         updateContextPreview(pageId);
@@ -820,22 +820,22 @@ class RP_Page_Importer {
                 });
                 
                 // Notes change - update context
-                $('#rp-export-notes').on('input', function() {
-                    var pageId = $('#rp-export-page').val();
+                $('#sd-export-notes').on('input', function() {
+                    var pageId = $('#sd-export-page').val();
                     if (pageId) {
                         updateContextPreview(pageId);
                     }
                 });
                 
                 function updateContextPreview(pageId) {
-                    var notes = $('#rp-export-notes').val();
+                    var notes = $('#sd-export-notes').val();
                     
                     $.ajax({
-                        url: rpImporter.ajax_url,
+                        url: sdImporter.ajax_url,
                         type: 'POST',
                         data: {
                             action: 'rp_preview_export',
-                            nonce: rpImporter.nonce,
+                            nonce: sdImporter.nonce,
                             page_id: pageId,
                             notes: notes
                         },
@@ -849,7 +849,7 @@ class RP_Page_Importer {
                 
                 // Preview export
                 $('#rp-preview-export-btn').on('click', function() {
-                    var pageId = $('#rp-export-page').val();
+                    var pageId = $('#sd-export-page').val();
                     if (!pageId) {
                         alert('Please select a page to preview.');
                         return;
@@ -859,18 +859,18 @@ class RP_Page_Importer {
                     $btn.prop('disabled', true);
                     
                     $.ajax({
-                        url: rpImporter.ajax_url,
+                        url: sdImporter.ajax_url,
                         type: 'POST',
                         data: {
                             action: 'rp_get_page_content',
-                            nonce: rpImporter.nonce,
+                            nonce: sdImporter.nonce,
                             page_id: pageId,
-                            extract_css: $('#rp-export-css').is(':checked')
+                            extract_css: $('#sd-export-css').is(':checked')
                         },
                         success: function(response) {
                             if (response.success) {
                                 $('#rp-preview-content').text(response.data.html);
-                                $('#rp-export-preview').show();
+                                $('#sd-export-preview').show();
                             } else {
                                 alert(response.data.message || 'Error loading page content.');
                             }
@@ -882,30 +882,30 @@ class RP_Page_Importer {
                 });
                 
                 // Export ZIP
-                $('#rp-export-btn').on('click', function() {
-                    var pageId = $('#rp-export-page').val();
+                $('#sd-export-btn').on('click', function() {
+                    var pageId = $('#sd-export-page').val();
                     if (!pageId) {
                         alert('Please select a page to export.');
                         return;
                     }
                     
                     var $btn = $(this);
-                    var $spinner = $('#rp-export-spinner');
+                    var $spinner = $('#sd-export-spinner');
                     
                     $btn.prop('disabled', true);
                     $spinner.addClass('is-active');
                     
                     $.ajax({
-                        url: rpImporter.ajax_url,
+                        url: sdImporter.ajax_url,
                         type: 'POST',
                         data: {
                             action: 'rp_export_page',
-                            nonce: rpImporter.nonce,
+                            nonce: sdImporter.nonce,
                             page_id: pageId,
-                            include_images: $('#rp-export-images').is(':checked'),
-                            extract_css: $('#rp-export-css').is(':checked'),
-                            include_context: $('#rp-export-context').is(':checked'),
-                            notes: $('#rp-export-notes').val()
+                            include_images: $('#sd-export-images').is(':checked'),
+                            extract_css: $('#sd-export-css').is(':checked'),
+                            include_context: $('#sd-export-context').is(':checked'),
+                            notes: $('#sd-export-notes').val()
                         },
                         success: function(response) {
                             if (response.success) {
@@ -931,14 +931,14 @@ class RP_Page_Importer {
                 });
                 
                 function showExportResult(data, success) {
-                    var $result = $('<div class="rp-export-result" style="margin-top: 20px; padding: 15px; background: ' + (success ? '#d4edda' : '#f8d7da') + '; border-radius: 8px;">' +
+                    var $result = $('<div class="sd-export-result" style="margin-top: 20px; padding: 15px; background: ' + (success ? '#d4edda' : '#f8d7da') + '; border-radius: 8px;">' +
                         '<strong>' + (success ? '✓ Export Successful!' : '✗ Export Failed') + '</strong><br>' +
                         'Filename: ' + data.filename + '<br>' +
                         'Images exported: ' + data.images_count + '<br>' +
                         '<a href="' + data.download_url + '" download>Download again</a>' +
                         '</div>');
                     
-                    $('.rp-export-form').after($result);
+                    $('.sd-export-form').after($result);
                     setTimeout(function() {
                         $result.fadeOut(function() { $(this).remove(); });
                     }, 10000);
@@ -1191,7 +1191,7 @@ class RP_Page_Importer {
                 <div class="rp-no-history">
                     <span class="dashicons dashicons-archive"></span>
                     <p>No pages imported yet.</p>
-                    <a href="?page=rp-page-importer&tab=import" class="button">Import Your First Page</a>
+                    <a href="?page=sd-page-importer&tab=import" class="button">Import Your First Page</a>
                 </div>
             <?php else: ?>
                 <table class="widefat striped">
@@ -1226,7 +1226,7 @@ class RP_Page_Importer {
                                 <?php if ($page_exists): ?>
                                     <a href="<?php echo esc_url(get_edit_post_link($item['page_id'])); ?>" class="button button-small">Edit</a>
                                     <a href="<?php echo esc_url(get_permalink($item['page_id'])); ?>" target="_blank" class="button button-small">View</a>
-                                    <a href="?page=rp-page-importer&tab=export" class="button button-small" onclick="localStorage.setItem('rp_export_page', '<?php echo $item['page_id']; ?>')">Export</a>
+                                    <a href="?page=sd-page-importer&tab=export" class="button button-small" onclick="localStorage.setItem('rp_export_page', '<?php echo $item['page_id']; ?>')">Export</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -1424,7 +1424,7 @@ When making changes, please provide:
 - Test dark/light mode if applicable
 
 ---
-*Generated by RP Page Importer v{$this->version} on " . current_time('mysql') . "*
+*Generated by Soft Dynamix Page Importer v{$this->version} on " . current_time('mysql') . "*
 CONTEXT;
 
         return $context;
@@ -1453,7 +1453,7 @@ CONTEXT;
         
         // Create export directory
         $upload_dir = wp_upload_dir();
-        $export_dir = $upload_dir['basedir'] . '/rp-exports/' . $page->post_name . '-' . time();
+        $export_dir = $upload_dir['basedir'] . '/sd-exports/' . $page->post_name . '-' . time();
         
         if (!wp_mkdir_p($export_dir)) {
             wp_send_json_error(array('message' => 'Could not create export directory.'));
@@ -1524,7 +1524,7 @@ CONTEXT;
         
         // Create ZIP file
         $zip_filename = $page->post_name . '-export.zip';
-        $zip_path = $upload_dir['basedir'] . '/rp-exports/' . $zip_filename;
+        $zip_path = $upload_dir['basedir'] . '/sd-exports/' . $zip_filename;
         
         $zip = new ZipArchive();
         if ($zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
@@ -1537,7 +1537,7 @@ CONTEXT;
         // Clean up export directory
         $this->recursive_delete($export_dir);
         
-        $download_url = $upload_dir['baseurl'] . '/rp-exports/' . $zip_filename;
+        $download_url = $upload_dir['baseurl'] . '/sd-exports/' . $zip_filename;
         
         wp_send_json_success(array(
             'message' => 'Export completed successfully!',
@@ -1593,7 +1593,7 @@ CONTEXT;
      */
     private function get_zai_prompt($site_url, $theme_name) {
         $full_prompt = <<<PROMPT
-I have a WordPress website with the "RP Page Importer" plugin installed. Please create a feature page that I can import using this plugin.
+I have a WordPress website with the "Soft Dynamix Page Importer" plugin installed. Please create a feature page that I can import using this plugin.
 
 ## ZIP File Structure Required
 Create a ZIP package with this structure:
@@ -1657,7 +1657,7 @@ NOW, tell me what kind of page you want to create and I will build it in this fo
 PROMPT;
 
         $short_prompt = <<<PROMPT
-Create a WordPress feature page ZIP for the RP Page Importer plugin.
+Create a WordPress feature page ZIP for the Soft Dynamix Page Importer plugin.
 
 Required structure:
 - index.html (main content)
@@ -1713,7 +1713,7 @@ PROMPT;
         
         // Create temp directory
         $upload_dir = wp_upload_dir();
-        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        $temp_dir = $upload_dir['basedir'] . '/sd-importer-temp-' . time();
         
         if (!wp_mkdir_p($temp_dir)) {
             wp_send_json_error(array('message' => 'Could not create temporary directory.'));
@@ -1807,23 +1807,29 @@ PROMPT;
             // Read CSS
             $css_content = $this->read_css($content_dir);
             
-            // Determine template
+            // Determine template - default to blank for exact styling match
             $template = !empty($options['template']) ? $options['template'] : 
-                       (!empty($config['template']) ? $config['template'] : 'default');
+                       (!empty($config['template']) ? $config['template'] : 'blank');
             
-            // Handle CSS location
+            // Handle CSS location - IMPORTANT: Always inline for exact Z.ai preview match
             $final_html = $html_content;
             if (!empty($css_content)) {
                 $css_location = isset($options['css_location']) ? $options['css_location'] : 'inline';
                 
+                // Add CSS with proper isolation for exact styling match
+                $isolated_css = $this->isolate_css($css_content, $page_slug);
+                
                 if ($css_location === 'inline' || $css_location === 'both') {
-                    $final_html = '<style>' . $css_content . '</style>' . $html_content;
+                    $final_html = '<style id="sd-imported-styles">' . $isolated_css . '</style>' . $html_content;
                 }
                 
                 if ($css_location === 'theme' || $css_location === 'both') {
                     $this->add_to_theme_css($css_content, $page_slug);
                 }
             }
+            
+            // Wrap content for style isolation
+            $final_html = '<div class="sd-imported-page sd-page-' . esc_attr($page_slug) . '">' . $final_html . '</div>';
             
             // Create or update page
             $page_id = $this->create_page(array(
@@ -2087,6 +2093,66 @@ PROMPT;
         return $html;
     }
     
+    /**
+     * Isolate CSS to prevent theme conflicts
+     * Adds specificity and ensures styles work within wrapper
+     */
+    private function isolate_css($css, $slug) {
+        // Add CSS reset for the wrapper to ensure consistent rendering
+        $reset_css = <<<CSS
+/* SD Page Importer - Reset for exact Z.ai preview match */
+.sd-imported-page {
+    all: initial;
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: inherit;
+    background: transparent;
+    box-sizing: border-box;
+}
+.sd-imported-page *,
+.sd-imported-page *::before,
+.sd-imported-page *::after {
+    box-sizing: border-box;
+}
+
+CSS;
+
+        // Prefix all selectors with the wrapper class for isolation
+        // This ensures styles don't leak out and theme styles don't interfere
+        $prefixed_css = preg_replace_callback(
+            '/([^{]+)\{([^}]*)\}/s',
+            function($matches) use ($slug) {
+                $selectors = $matches[1];
+                $rules = $matches[2];
+                
+                // Skip @media, @keyframes, etc.
+                if (preg_match('/^\s*@/', $selectors)) {
+                    return $selectors . '{' . $rules . '}';
+                }
+                
+                // Prefix each selector
+                $prefixed_selectors = array_map(function($selector) use ($slug) {
+                    $selector = trim($selector);
+                    if (empty($selector)) return $selector;
+                    
+                    // Don't prefix if already prefixed
+                    if (strpos($selector, '.sd-imported-page') === 0) {
+                        return $selector;
+                    }
+                    
+                    // Prefix with the wrapper class
+                    return '.sd-imported-page ' . $selector;
+                }, explode(',', $selectors));
+                
+                return implode(', ', $prefixed_selectors) . '{' . $rules . '}';
+            },
+            $css
+        );
+        
+        return $reset_css . $prefixed_css;
+    }
+    
     private function add_to_theme_css($css, $slug) {
         $current_css = get_option('theme_mods_' . get_option('stylesheet'), array());
         
@@ -2096,7 +2162,7 @@ PROMPT;
         if ($css_post_id) {
             $post = get_post($css_post_id);
             if ($post) {
-                $new_css = "/* RP Page Importer - {$slug} */\n{$css}\n/* End {$slug} */\n\n" . $post->post_content;
+                $new_css = "/* Soft Dynamix Page Importer - {$slug} */\n{$css}\n/* End {$slug} */\n\n" . $post->post_content;
                 wp_update_post(array(
                     'ID' => $css_post_id,
                     'post_content' => $new_css,
@@ -2108,7 +2174,7 @@ PROMPT;
         $post_id = wp_insert_post(array(
             'post_title' => 'Custom CSS',
             'post_name' => 'custom-css',
-            'post_content' => "/* RP Page Importer - {$slug} */\n{$css}\n/* End {$slug} */",
+            'post_content' => "/* Soft Dynamix Page Importer - {$slug} */\n{$css}\n/* End {$slug} */",
             'post_status' => 'publish',
             'post_type' => 'custom_css',
         ));
@@ -2306,7 +2372,7 @@ PHP;
         
         // Download the file
         $upload_dir = wp_upload_dir();
-        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        $temp_dir = $upload_dir['basedir'] . '/sd-importer-temp-' . time();
         
         if (!wp_mkdir_p($temp_dir)) {
             wp_send_json_error(array('message' => 'Could not create temporary directory.'));
@@ -2354,7 +2420,7 @@ PHP;
         }
         
         $upload_dir = wp_upload_dir();
-        $import_dir = $upload_dir['basedir'] . '/rp-imports/';
+        $import_dir = $upload_dir['basedir'] . '/sd-imports/';
         $file_path = $import_dir . $filename;
         
         if (!file_exists($file_path)) {
@@ -2362,7 +2428,7 @@ PHP;
         }
         
         // Create temp directory for processing
-        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        $temp_dir = $upload_dir['basedir'] . '/sd-importer-temp-' . time();
         
         if (!wp_mkdir_p($temp_dir)) {
             wp_send_json_error(array('message' => 'Could not create temporary directory.'));
@@ -2429,23 +2495,29 @@ PHP;
             // Read CSS
             $css_content = $this->read_css($content_dir);
             
-            // Determine template
+            // Determine template - default to blank for exact styling match
             $template = !empty($options['template']) ? $options['template'] : 
-                       (!empty($config['template']) ? $config['template'] : 'default');
+                       (!empty($config['template']) ? $config['template'] : 'blank');
             
-            // Handle CSS location
+            // Handle CSS location - IMPORTANT: Always inline for exact Z.ai preview match
             $final_html = $html_content;
             if (!empty($css_content)) {
                 $css_location = isset($options['css_location']) ? $options['css_location'] : 'inline';
                 
+                // Add CSS with proper isolation for exact styling match
+                $isolated_css = $this->isolate_css($css_content, $page_slug);
+                
                 if ($css_location === 'inline' || $css_location === 'both') {
-                    $final_html = '<style>' . $css_content . '</style>' . $html_content;
+                    $final_html = '<style id="sd-imported-styles">' . $isolated_css . '</style>' . $html_content;
                 }
                 
                 if ($css_location === 'theme' || $css_location === 'both') {
                     $this->add_to_theme_css($css_content, $page_slug);
                 }
             }
+            
+            // Wrap content for style isolation
+            $final_html = '<div class="sd-imported-page sd-page-' . esc_attr($page_slug) . '">' . $final_html . '</div>';
             
             // Create or update page
             $page_id = $this->create_page(array(
@@ -2514,7 +2586,7 @@ PHP;
         }
         
         $upload_dir = wp_upload_dir();
-        $file_path = $upload_dir['basedir'] . '/rp-imports/' . $filename;
+        $file_path = $upload_dir['basedir'] . '/sd-imports/' . $filename;
         
         if (file_exists($file_path)) {
             if (unlink($file_path)) {
@@ -2538,7 +2610,7 @@ PHP;
         }
         
         $upload_dir = wp_upload_dir();
-        $import_dir = $upload_dir['basedir'] . '/rp-imports/';
+        $import_dir = $upload_dir['basedir'] . '/sd-imports/';
         
         $files = glob($import_dir . '*.zip');
         $deleted = 0;
@@ -2622,7 +2694,7 @@ PHP;
      */
     private function reassemble_and_import($chunks_dir, $total_chunks, $filename) {
         $upload_dir = wp_upload_dir();
-        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        $temp_dir = $upload_dir['basedir'] . '/sd-importer-temp-' . time();
         
         if (!wp_mkdir_p($temp_dir)) {
             return new WP_Error('temp_error', 'Could not create temporary directory.');
@@ -2661,4 +2733,4 @@ PHP;
 }
 
 // Initialize the plugin
-new RP_Page_Importer();
+new SD_Page_Importer();
