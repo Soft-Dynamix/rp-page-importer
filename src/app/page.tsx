@@ -58,7 +58,7 @@ const serviceCategories = [
     description: 'Advanced diagnostic services to identify and resolve issues',
     icon: Brain,
     color: '#A855F7',
-    image: 'https://placehold.co/800x400/A855F7/FFFFFF/png?text=Diagnostics',
+    image: '/diagnostics.jpg',
     services: [
       'Full diagnostic checks (manual & electronic)',
       'Fault finding (engine, electrical, fuel system)',
