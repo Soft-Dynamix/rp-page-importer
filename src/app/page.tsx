@@ -243,7 +243,7 @@ const serviceCategories = [
     description: 'Enhance your motorcycle with quality accessories and upgrades',
     icon: Puzzle,
     color: '#8B5CF6',
-    image: 'https://placehold.co/800x400/8B5CF6/FFFFFF/png?text=Accessories',
+    image: '/accessories-addons.png',
     highlight: true,
     services: [
       'Crash bars & engine guards installation',
