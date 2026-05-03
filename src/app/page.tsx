@@ -103,7 +103,7 @@ const serviceCategories = [
     description: 'Fuel system maintenance, cleaning, and repair',
     icon: Fuel,
     color: '#22C55E',
-    image: 'https://placehold.co/800x400/22C55E/FFFFFF/png?text=Fuel+System',
+    image: '/fuel-system.png',
     services: [
       'Carburetor cleaning & rebuild',
       'Fuel injector cleaning',
