@@ -189,7 +189,7 @@ const serviceCategories = [
     description: 'Transform your motorcycle with custom modifications',
     icon: Paintbrush,
     color: '#EC4899',
-    image: 'https://placehold.co/800x400/EC4899/FFFFFF/png?text=Custom+Builds',
+    image: '/custom-builds.png',
     services: [
       'Frame modifications',
       'LED lighting upgrades',
