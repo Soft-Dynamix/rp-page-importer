@@ -118,7 +118,7 @@ const serviceCategories = [
     description: 'Critical brake system services for your safety',
     icon: Shield,
     color: '#EF4444',
-    image: 'https://placehold.co/800x400/EF4444/FFFFFF/png?text=Brakes+Safety',
+    image: '/brakes-safety.png',
     highlight: true,
     services: [
       'Brake pad replacement',
