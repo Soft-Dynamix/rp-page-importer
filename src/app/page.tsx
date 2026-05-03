@@ -87,7 +87,7 @@ const serviceCategories = [
     description: 'Complete electrical system diagnosis and repair',
     icon: Zap,
     color: '#EAB308',
-    image: 'https://placehold.co/800x400/EAB308/000000/png?text=Electrical+Services',
+    image: '/electrical-services.jpeg',
     services: [
       'Battery testing & replacement',
       'Charging system repairs (stator, regulator)',
