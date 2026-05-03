@@ -148,7 +148,7 @@ const serviceCategories = [
     description: 'Complete wheel and tyre services',
     icon: CircleDot,
     color: '#64748B',
-    image: 'https://placehold.co/800x400/64748B/FFFFFF/png?text=Wheels+Tyres',
+    image: '/wheels-tyres.png',
     services: [
       'Tyre fitting & replacement',
       'Tube replacement',
