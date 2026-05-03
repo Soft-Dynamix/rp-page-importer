@@ -177,7 +177,7 @@ const serviceCategories = [
     description: 'Custom exhaust solutions and performance upgrades',
     icon: Rocket,
     color: '#F59E0B',
-    image: 'https://placehold.co/800x400/F59E0B/000000/png?text=Exhaust',
+    image: '/exhaust-performance.png',
     services: [
       'Exhaust system installation',
       'Custom exhaust fabrication'
