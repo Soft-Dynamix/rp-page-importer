@@ -2,6 +2,18 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.0.6] - 2025-05-04
+
+### Fixed
+- **CSS File Detection**: Now finds CSS files like `rp-css.css` and any `.css` file
+- **Theme CSS Support**: CSS with theme-specific selectors (body, elementor, astra, etc.) is passed through unmodified
+- **Selector Prefix**: Updated from `.sd-imported-page` to `.sd-fullwidth` to match wrapper
+
+### Improved
+- `read_css()` now searches for any `.css` file if standard names not found
+- Added `rp-css.css`, `theme.css`, `app.css` to priority CSS file list
+- Theme compatibility CSS is no longer prefixed, preserving theme fixes
+
 ## [2.0.5] - 2025-05-04
 
 ### Fixed

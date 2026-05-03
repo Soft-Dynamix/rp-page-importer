@@ -3,7 +3,7 @@
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.5
+ * Version: 2.0.6
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.5';
+    private $version = '2.0.6';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -2117,13 +2117,22 @@ PROMPT;
     }
     
     private function read_css($dir) {
-        $css_files = ['style.css', 'styles.css', 'custom.css', 'main.css'];
+        // Priority list of CSS files to look for
+        $css_files = ['style.css', 'styles.css', 'custom.css', 'main.css', 'rp-css.css', 'theme.css', 'app.css'];
         
         foreach ($css_files as $file) {
             $filepath = $dir . '/' . $file;
             if (file_exists($filepath)) {
                 return file_get_contents($filepath);
             }
+        }
+        
+        // If not found, search for ANY .css file in the directory
+        $files = glob($dir . '/*.css');
+        if (!empty($files)) {
+            // Sort and return the first CSS file found
+            sort($files);
+            return file_get_contents($files[0]);
         }
         
         return false;
@@ -2169,25 +2178,37 @@ PROMPT;
      * Adds specificity and ensures styles work within wrapper
      */
     private function isolate_css($css, $slug) {
-        // Add CSS reset for the wrapper - LESS AGGRESSIVE to preserve inline styles
+        // Check if CSS contains theme-specific selectors that should NOT be prefixed
+        $theme_selectors = ['body', 'html', '.elementor', '.ast-', '#page', '.site', '.entry-content', '.site-content'];
+        $is_theme_css = false;
+        foreach ($theme_selectors as $selector) {
+            if (strpos($css, $selector) !== false) {
+                $is_theme_css = true;
+                break;
+            }
+        }
+        
+        // For theme-specific CSS, don't modify it - pass through as-is
+        if ($is_theme_css) {
+            return "/* SD Page Importer - Theme Compatibility CSS */\n" . $css;
+        }
+        
+        // For custom CSS, add minimal reset and prefix selectors
         $reset_css = <<<CSS
 /* SD Page Importer - Minimal reset for Z.ai preview match */
-.sd-imported-page {
+.sd-fullwidth {
     display: block;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
 }
-.sd-imported-page *,
-.sd-imported-page *::before,
-.sd-imported-page *::after {
+.sd-fullwidth *,
+.sd-fullwidth *::before,
+.sd-fullwidth *::after {
     box-sizing: border-box;
 }
-/* Ensure images work properly */
-.sd-imported-page img {
+.sd-fullwidth img {
     max-width: 100%;
     height: auto;
 }
@@ -2195,30 +2216,29 @@ PROMPT;
 CSS;
 
         // Prefix all selectors with the wrapper class for isolation
-        // This ensures styles don't leak out and theme styles don't interfere
         $prefixed_css = preg_replace_callback(
             '/([^{]+)\{([^}]*)\}/s',
-            function($matches) use ($slug) {
+            function($matches) {
                 $selectors = $matches[1];
                 $rules = $matches[2];
                 
-                // Skip @media, @keyframes, etc.
+                // Skip @media, @keyframes, @import, etc.
                 if (preg_match('/^\s*@/', $selectors)) {
                     return $selectors . '{' . $rules . '}';
                 }
                 
                 // Prefix each selector
-                $prefixed_selectors = array_map(function($selector) use ($slug) {
+                $prefixed_selectors = array_map(function($selector) {
                     $selector = trim($selector);
                     if (empty($selector)) return $selector;
                     
                     // Don't prefix if already prefixed
-                    if (strpos($selector, '.sd-imported-page') === 0) {
+                    if (strpos($selector, '.sd-fullwidth') === 0) {
                         return $selector;
                     }
                     
                     // Prefix with the wrapper class
-                    return '.sd-imported-page ' . $selector;
+                    return '.sd-fullwidth ' . $selector;
                 }, explode(',', $selectors));
                 
                 return implode(', ', $prefixed_selectors) . '{' . $rules . '}';
