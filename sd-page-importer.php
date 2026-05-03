@@ -3,7 +3,7 @@
  * Plugin Name: Soft Dynamix Page Importer
  * Plugin URI: https://github.com/Soft-Dynamix/soft-dynamix-page-importer
  * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Imports pages exactly as designed in Z.ai with full styling preservation.
- * Version: 2.0.2
+ * Version: 2.0.3
  * Author: Soft Dynamix
  * Author URI: https://softdynamix.co.za
  * License: GPL v2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 
 class SD_Page_Importer {
     
-    private $version = '2.0.2';
+    private $version = '2.0.3';
     private $plugin_name = 'sd-page-importer';
     
     public function __construct() {
@@ -1798,7 +1798,7 @@ PROMPT;
             // Read and process HTML
             $html_content = $this->read_html($content_dir);
             if ($html_content === false) {
-                throw new Exception('Could not find HTML file (index.html or page.html required).');
+                throw new Exception('Could not find HTML file. Please include an .html file in your ZIP.');
             }
             
             // Replace image URLs
@@ -1892,20 +1892,22 @@ PROMPT;
             $extracted_dir . '/page',
         );
         
+        // Check common paths first
         foreach ($possible_paths as $path) {
-            if (file_exists($path . '/index.html') || file_exists($path . '/page.html')) {
+            if (file_exists($path . '/index.html') || file_exists($path . '/page.html') || 
+                file_exists($path . '/content.html') || glob($path . '/*.html')) {
                 return $path;
             }
         }
         
-        // Search recursively for HTML file
+        // Search recursively for ANY HTML file
         $iterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($extracted_dir, RecursiveDirectoryIterator::SKIP_DOTS),
             RecursiveIteratorIterator::SELF_FIRST
         );
         
         foreach ($iterator as $file) {
-            if ($file->isFile() && in_array($file->getFilename(), ['index.html', 'page.html'])) {
+            if ($file->isFile() && $file->getExtension() === 'html') {
                 return $file->getPath();
             }
         }
@@ -2049,12 +2051,40 @@ PROMPT;
     }
     
     private function read_html($dir) {
-        $html_files = ['index.html', 'page.html', 'content.html'];
+        // Priority list of HTML files to look for
+        $html_files = ['index.html', 'page.html', 'content.html', 'main.html', 'home.html', 'template.html'];
         
+        // First, check priority files
         foreach ($html_files as $file) {
             $filepath = $dir . '/' . $file;
             if (file_exists($filepath)) {
                 return file_get_contents($filepath);
+            }
+        }
+        
+        // If not found, search for ANY .html file in the directory
+        $files = glob($dir . '/*.html');
+        if (!empty($files)) {
+            // Sort by name, prefer files with common names
+            usort($files, function($a, $b) {
+                $priority = ['index', 'page', 'content', 'main', 'home', 'template'];
+                $aName = basename($a, '.html');
+                $bName = basename($b, '.html');
+                $aPriority = array_search($aName, $priority);
+                $bPriority = array_search($bName, $priority);
+                if ($aPriority === false) $aPriority = 999;
+                if ($bPriority === false) $bPriority = 999;
+                return $aPriority - $bPriority;
+            });
+            return file_get_contents($files[0]);
+        }
+        
+        // Also check subdirectories (one level deep)
+        $subdirs = glob($dir . '/*', GLOB_ONLYDIR);
+        foreach ($subdirs as $subdir) {
+            $files = glob($subdir . '/*.html');
+            if (!empty($files)) {
+                return file_get_contents($files[0]);
             }
         }
         
@@ -2486,7 +2516,7 @@ PHP;
             // Read and process HTML
             $html_content = $this->read_html($content_dir);
             if ($html_content === false) {
-                return new WP_Error('html_error', 'Could not find HTML file (index.html or page.html required).');
+                return new WP_Error('html_error', 'Could not find HTML file. Please include an .html file in your ZIP.');
             }
             
             // Replace image URLs

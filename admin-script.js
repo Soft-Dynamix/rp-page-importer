@@ -1,6 +1,6 @@
 /**
  * Soft Dynamix Page Importer - Admin JavaScript
- * Version: 2.0.2
+ * Version: 2.0.3
  */
 (function($) {
     'use strict';

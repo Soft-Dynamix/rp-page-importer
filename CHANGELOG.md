@@ -2,6 +2,18 @@
 
 All notable changes to the Soft Dynamix Page Importer plugin will be documented in this file.
 
+## [2.0.3] - 2025-05-04
+
+### Fixed
+- **HTML File Detection**: Now finds ANY `.html` file in ZIP, not just `index.html` or `page.html`
+- **Nested Directories**: Improved handling of ZIP files with nested folder structures
+- **Better Error Message**: More helpful error when HTML file not found
+
+### Improved
+- `read_html()` now searches for any `.html` file with priority ordering
+- `find_content_directory()` now searches recursively for HTML files
+- Supports ZIP files with any folder structure
+
 ## [2.0.2] - 2025-05-04
 
 ### Fixed
