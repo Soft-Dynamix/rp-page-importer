@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: RP Page Importer
- * Plugin URI: https://github.com/rpmotorcycles/rp-page-importer
- * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. A generic solution for importing and exporting any custom page design.
- * Version: 1.3.0
+ * Plugin URI: https://github.com/Soft-Dynamix/rp-page-importer
+ * Description: Import and export feature pages from ZIP files with images, HTML, and CSS. Supports browser upload, URL import, and FTP/server import for large files.
+ * Version: 1.4.0
  * Author: RP Motorcycles
  * Author URI: https://rpmotorcycles.co.za
  * License: GPL v2 or later
@@ -17,13 +17,17 @@ if (!defined('ABSPATH')) {
 
 class RP_Page_Importer {
     
-    private $version = '1.3.0';
+    private $version = '1.4.0';
     private $plugin_name = 'rp-page-importer';
     
     public function __construct() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         add_action('wp_ajax_rp_import_page', array($this, 'ajax_import_page'));
+        add_action('wp_ajax_rp_import_from_url', array($this, 'ajax_import_from_url'));
+        add_action('wp_ajax_rp_import_from_ftp', array($this, 'ajax_import_from_ftp'));
+        add_action('wp_ajax_rp_delete_ftp_file', array($this, 'ajax_delete_ftp_file'));
+        add_action('wp_ajax_rp_clear_ftp_files', array($this, 'ajax_clear_ftp_files'));
         add_action('wp_ajax_rp_get_import_history', array($this, 'ajax_get_import_history'));
         add_action('wp_ajax_rp_export_page', array($this, 'ajax_export_page'));
         add_action('wp_ajax_rp_get_page_content', array($this, 'ajax_get_page_content'));
@@ -124,10 +128,35 @@ class RP_Page_Importer {
      * Render Import Tab
      */
     private function render_import_tab() {
+        // Get server upload limit
+        $max_upload = wp_max_upload_size();
+        $max_upload_mb = size_format($max_upload);
+        
+        // Get upload directory info
+        $upload_dir = wp_upload_dir();
+        $import_dir = $upload_dir['basedir'] . '/rp-imports/';
+        $import_url = $upload_dir['baseurl'] . '/rp-imports/';
+        
+        // Create import directory if not exists
+        wp_mkdir_p($import_dir);
+        
+        // Check for existing ZIP files in import directory
+        $existing_zips = array();
+        if (is_dir($import_dir)) {
+            $files = glob($import_dir . '*.zip');
+            foreach ($files as $file) {
+                $existing_zips[] = array(
+                    'path' => $file,
+                    'name' => basename($file),
+                    'size' => size_format(filesize($file)),
+                    'date' => date('Y-m-d H:i', filemtime($file))
+                );
+            }
+        }
         ?>
         <div class="rp-import-section">
             <h2>Import Feature Page</h2>
-            <p class="description">Upload a ZIP file containing your feature page. The ZIP should include:</p>
+            <p class="description">Import a ZIP file containing your feature page. The ZIP should include:</p>
             <ul class="rp-requirements">
                 <li><code>index.html</code> or <code>page.html</code> - Main page content (required)</li>
                 <li><code>style.css</code> or <code>styles.css</code> - Custom styles (optional)</li>
@@ -135,11 +164,104 @@ class RP_Page_Importer {
                 <li><code>config.json</code> - Page settings (optional)</li>
             </ul>
             
-            <div class="rp-upload-area" id="rp-upload-area">
-                <input type="file" id="rp-zip-file" accept=".zip" />
-                <div class="rp-upload-info">
-                    <span class="dashicons dashicons-upload"></span>
-                    <p>Drag & drop a ZIP file here or click to browse</p>
+            <!-- Upload Method Tabs -->
+            <div class="rp-method-tabs">
+                <button type="button" class="rp-method-tab active" data-method="browser">
+                    <span class="dashicons dashicons-upload"></span> Browser Upload
+                    <small>(Max: <?php echo esc_html($max_upload_mb); ?>)</small>
+                </button>
+                <button type="button" class="rp-method-tab" data-method="url">
+                    <span class="dashicons dashicons-admin-links"></span> From URL
+                    <small>(No size limit)</small>
+                </button>
+                <button type="button" class="rp-method-tab" data-method="ftp">
+                    <span class="dashicons dashicons-category"></span> FTP/Server
+                    <small>(No size limit)</small>
+                </button>
+            </div>
+            
+            <!-- Method: Browser Upload -->
+            <div class="rp-upload-method rp-method-browser active">
+                <div class="rp-upload-area" id="rp-upload-area">
+                    <input type="file" id="rp-zip-file" accept=".zip" />
+                    <div class="rp-upload-info">
+                        <span class="dashicons dashicons-upload"></span>
+                        <p>Drag & drop a ZIP file here or click to browse</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Method: URL Import -->
+            <div class="rp-upload-method rp-method-url" style="display: none;">
+                <div class="rp-url-import-box">
+                    <h4><span class="dashicons dashicons-admin-links"></span> Import from URL</h4>
+                    <p class="description">Enter a direct download URL to a ZIP file. This bypasses server upload limits.</p>
+                    <input type="url" id="rp-import-url" class="large-text" placeholder="https://example.com/your-page.zip" />
+                    <p class="description">Works with any publicly accessible ZIP file URL.</p>
+                </div>
+            </div>
+            
+            <!-- Method: FTP/Server -->
+            <div class="rp-upload-method rp-method-ftp" style="display: none;">
+                <div class="rp-ftp-import-box">
+                    <h4><span class="dashicons dashicons-category"></span> Import from Server</h4>
+                    <p class="description">Upload your ZIP via FTP/SFTP first, then import it here.</p>
+                    
+                    <div class="rp-ftp-instructions">
+                        <strong>Instructions:</strong>
+                        <ol>
+                            <li>Upload your ZIP file via FTP/SFTP to this directory:</li>
+                            <li><code class="rp-path-code"><?php echo esc_html($import_dir); ?></code></li>
+                            <li>Click "Refresh List" below to see your file</li>
+                            <li>Select the file and import</li>
+                        </ol>
+                        
+                        <div class="rp-ftp-actions" style="margin-top: 15px;">
+                            <button type="button" id="rp-refresh-ftp" class="button">
+                                <span class="dashicons dashicons-update"></span> Refresh List
+                            </button>
+                            <button type="button" id="rp-clear-ftp" class="button" style="margin-left: 10px;">
+                                <span class="dashicons dashicons-trash"></span> Clear All Files
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="rp-ftp-files" id="rp-ftp-files" style="margin-top: 20px;">
+                        <?php if (!empty($existing_zips)): ?>
+                            <table class="widefat striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30px;"></th>
+                                        <th>Filename</th>
+                                        <th>Size</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($existing_zips as $zip): ?>
+                                        <tr>
+                                            <td><input type="radio" name="rp-ftp-select" value="<?php echo esc_attr($zip['name']); ?>" /></td>
+                                            <td><strong><?php echo esc_html($zip['name']); ?></strong></td>
+                                            <td><?php echo esc_html($zip['size']); ?></td>
+                                            <td><?php echo esc_html($zip['date']); ?></td>
+                                            <td>
+                                                <button type="button" class="button button-small rp-delete-ftp-file" data-file="<?php echo esc_attr($zip['name']); ?>">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <div class="rp-no-files">
+                                <span class="dashicons dashicons-media-archive" style="font-size: 48px; width: 48px; height: 48px; opacity: 0.3;"></span>
+                                <p>No ZIP files found in the import directory.</p>
+                                <p class="description">Upload a file via FTP to: <code><?php echo esc_html($import_dir); ?></code></p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             
@@ -246,6 +368,186 @@ class RP_Page_Importer {
             <h3>Import Result</h3>
             <div class="rp-result-content" id="rp-result-content"></div>
         </div>
+        
+        <style>
+            .rp-method-tabs {
+                display: flex;
+                gap: 10px;
+                margin: 20px 0;
+                padding: 10px;
+                background: #f6f7f7;
+                border-radius: 8px;
+            }
+            
+            .rp-method-tab {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px 20px;
+                background: #fff;
+                border: 2px solid #dcdcde;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            
+            .rp-method-tab:hover {
+                border-color: #2271b1;
+                background: #f0f6fc;
+            }
+            
+            .rp-method-tab.active {
+                border-color: #2271b1;
+                background: #2271b1;
+                color: #fff;
+            }
+            
+            .rp-method-tab .dashicons {
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+                margin-bottom: 8px;
+            }
+            
+            .rp-method-tab small {
+                font-size: 11px;
+                opacity: 0.7;
+                margin-top: 5px;
+            }
+            
+            .rp-method-tab.active small {
+                color: #fff;
+            }
+            
+            .rp-url-import-box, .rp-ftp-import-box {
+                background: #fff;
+                padding: 20px;
+                border: 1px solid #dcdcde;
+                border-radius: 8px;
+                margin-top: 15px;
+            }
+            
+            .rp-url-import-box h4, .rp-ftp-import-box h4 {
+                margin-top: 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .rp-ftp-instructions {
+                background: #f6f7f7;
+                padding: 15px;
+                border-radius: 6px;
+                margin-top: 15px;
+            }
+            
+            .rp-ftp-instructions ol {
+                margin: 10px 0 0 20px;
+            }
+            
+            .rp-ftp-instructions li {
+                margin-bottom: 8px;
+            }
+            
+            .rp-path-code {
+                display: block;
+                background: #1e1e1e;
+                color: #9cdcfe;
+                padding: 10px 15px;
+                border-radius: 4px;
+                margin: 10px 0;
+                font-size: 12px;
+                word-break: break-all;
+            }
+            
+            .rp-no-files {
+                text-align: center;
+                padding: 40px 20px;
+                color: #646970;
+            }
+            
+            .rp-no-files .dashicons {
+                display: block;
+                margin: 0 auto 15px;
+            }
+            
+            @media screen and (max-width: 782px) {
+                .rp-method-tabs {
+                    flex-direction: column;
+                }
+            }
+        </style>
+        
+        <script>
+            jQuery(document).ready(function($) {
+                // Method tab switching
+                $('.rp-method-tab').on('click', function() {
+                    var method = $(this).data('method');
+                    
+                    $('.rp-method-tab').removeClass('active');
+                    $(this).addClass('active');
+                    
+                    $('.rp-upload-method').hide();
+                    $('.rp-method-' + method).show();
+                    
+                    // Store selected method
+                    $('#rp-selected-method').val(method);
+                });
+                
+                // Refresh FTP files list
+                $('#rp-refresh-ftp').on('click', function() {
+                    location.reload();
+                });
+                
+                // Delete FTP file
+                $('.rp-delete-ftp-file').on('click', function() {
+                    var file = $(this).data('file');
+                    if (confirm('Delete ' + file + '?')) {
+                        $.ajax({
+                            url: rpImporter.ajax_url,
+                            type: 'POST',
+                            data: {
+                                action: 'rp_delete_ftp_file',
+                                nonce: rpImporter.nonce,
+                                filename: file
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    location.reload();
+                                } else {
+                                    alert(response.data.message);
+                                }
+                            }
+                        });
+                    }
+                });
+                
+                // Clear all FTP files
+                $('#rp-clear-ftp').on('click', function() {
+                    if (confirm('Delete all ZIP files from the import directory?')) {
+                        $.ajax({
+                            url: rpImporter.ajax_url,
+                            type: 'POST',
+                            data: {
+                                action: 'rp_clear_ftp_files',
+                                nonce: rpImporter.nonce
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    location.reload();
+                                } else {
+                                    alert(response.data.message);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        
+        <!-- Hidden input for selected method -->
+        <input type="hidden" id="rp-selected-method" value="browser" />
         <?php
     }
     
@@ -1874,6 +2176,287 @@ PHP;
         </table>
         <?php
         wp_send_json_success(array('html' => ob_get_clean()));
+    }
+    
+    /**
+     * AJAX: Import from URL
+     */
+    public function ajax_import_from_url() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $url = isset($_POST['url']) ? esc_url_raw($_POST['url']) : '';
+        $options = isset($_POST['options']) ? $_POST['options'] : array();
+        
+        if (empty($url)) {
+            wp_send_json_error(array('message' => 'Please enter a valid URL.'));
+        }
+        
+        // Validate URL
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            wp_send_json_error(array('message' => 'Invalid URL format.'));
+        }
+        
+        // Check if URL is accessible
+        $response = wp_remote_head($url);
+        if (is_wp_error($response)) {
+            wp_send_json_error(array('message' => 'Could not access URL: ' . $response->get_error_message()));
+        }
+        
+        $code = wp_remote_retrieve_response_code($response);
+        if ($code !== 200) {
+            wp_send_json_error(array('message' => "URL returned HTTP {$code}. Please check the URL is publicly accessible."));
+        }
+        
+        // Download the file
+        $upload_dir = wp_upload_dir();
+        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        
+        if (!wp_mkdir_p($temp_dir)) {
+            wp_send_json_error(array('message' => 'Could not create temporary directory.'));
+        }
+        
+        $zip_path = $temp_dir . '/import.zip';
+        
+        // Download file
+        $download_response = wp_remote_get($url, array(
+            'timeout' => 300,
+            'stream' => true,
+            'filename' => $zip_path
+        ));
+        
+        if (is_wp_error($download_response)) {
+            $this->recursive_delete($temp_dir);
+            wp_send_json_error(array('message' => 'Download failed: ' . $download_response->get_error_message()));
+        }
+        
+        // Process the import
+        $result = $this->process_import($zip_path, $temp_dir, $options);
+        
+        if (is_wp_error($result)) {
+            wp_send_json_error(array('message' => $result->get_error_message()));
+        }
+        
+        wp_send_json_success($result);
+    }
+    
+    /**
+     * AJAX: Import from FTP/Server
+     */
+    public function ajax_import_from_ftp() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $filename = isset($_POST['filename']) ? sanitize_file_name($_POST['filename']) : '';
+        $options = isset($_POST['options']) ? $_POST['options'] : array();
+        
+        if (empty($filename)) {
+            wp_send_json_error(array('message' => 'Please select a file to import.'));
+        }
+        
+        $upload_dir = wp_upload_dir();
+        $import_dir = $upload_dir['basedir'] . '/rp-imports/';
+        $file_path = $import_dir . $filename;
+        
+        if (!file_exists($file_path)) {
+            wp_send_json_error(array('message' => 'File not found. It may have been deleted.'));
+        }
+        
+        // Create temp directory for processing
+        $temp_dir = $upload_dir['basedir'] . '/rp-importer-temp-' . time();
+        
+        if (!wp_mkdir_p($temp_dir)) {
+            wp_send_json_error(array('message' => 'Could not create temporary directory.'));
+        }
+        
+        // Copy file to temp
+        $zip_path = $temp_dir . '/import.zip';
+        if (!copy($file_path, $zip_path)) {
+            $this->recursive_delete($temp_dir);
+            wp_send_json_error(array('message' => 'Could not copy file for processing.'));
+        }
+        
+        // Process the import
+        $result = $this->process_import($zip_path, $temp_dir, $options);
+        
+        if (is_wp_error($result)) {
+            wp_send_json_error(array('message' => $result->get_error_message()));
+        }
+        
+        // Delete the original file after successful import
+        @unlink($file_path);
+        
+        wp_send_json_success($result);
+    }
+    
+    /**
+     * Process import from ZIP file
+     */
+    private function process_import($zip_path, $temp_dir, $options = array()) {
+        try {
+            // Extract ZIP
+            $zip = new ZipArchive();
+            if ($zip->open($zip_path) !== true) {
+                return new WP_Error('zip_error', 'Could not open ZIP file. The file may be corrupted.');
+            }
+            
+            $zip->extractTo($temp_dir);
+            $zip->close();
+            
+            // Find the content directory
+            $content_dir = $this->find_content_directory($temp_dir);
+            
+            // Parse config if exists
+            $config = $this->parse_config($content_dir);
+            
+            // Merge options with config
+            $page_title = !empty($options['title']) ? $options['title'] : 
+                         (!empty($config['title']) ? $config['title'] : 'Imported Page');
+            $page_slug = !empty($options['slug']) ? $options['slug'] : 
+                        (!empty($config['slug']) ? $config['slug'] : sanitize_title($page_title));
+            
+            // Import images to media library
+            $image_map = $this->import_images($content_dir);
+            
+            // Read and process HTML
+            $html_content = $this->read_html($content_dir);
+            if ($html_content === false) {
+                return new WP_Error('html_error', 'Could not find HTML file (index.html or page.html required).');
+            }
+            
+            // Replace image URLs
+            $html_content = $this->replace_image_urls($html_content, $image_map);
+            
+            // Read CSS
+            $css_content = $this->read_css($content_dir);
+            
+            // Determine template
+            $template = !empty($options['template']) ? $options['template'] : 
+                       (!empty($config['template']) ? $config['template'] : 'default');
+            
+            // Handle CSS location
+            $final_html = $html_content;
+            if (!empty($css_content)) {
+                $css_location = isset($options['css_location']) ? $options['css_location'] : 'inline';
+                
+                if ($css_location === 'inline' || $css_location === 'both') {
+                    $final_html = '<style>' . $css_content . '</style>' . $html_content;
+                }
+                
+                if ($css_location === 'theme' || $css_location === 'both') {
+                    $this->add_to_theme_css($css_content, $page_slug);
+                }
+            }
+            
+            // Create or update page
+            $page_id = $this->create_page(array(
+                'title' => $page_title,
+                'slug' => $page_slug,
+                'content' => $final_html,
+                'template' => $template,
+                'status' => !empty($options['status']) ? $options['status'] : 'publish',
+                'parent' => !empty($options['parent']) ? intval($options['parent']) : 0,
+                'replace' => !empty($options['replace']),
+                'meta' => !empty($config['meta']) ? $config['meta'] : array(),
+            ));
+            
+            if (is_wp_error($page_id)) {
+                return $page_id;
+            }
+            
+            // Clean up temp directory
+            $this->recursive_delete($temp_dir);
+            
+            // Get page URL
+            $page_url = get_permalink($page_id);
+            $edit_url = get_edit_post_link($page_id);
+            
+            // Save import history
+            $this->save_import_history(array(
+                'page_id' => $page_id,
+                'title' => $page_title,
+                'slug' => $page_slug,
+                'images_count' => count($image_map),
+                'timestamp' => current_time('mysql'),
+            ));
+            
+            return array(
+                'message' => 'Page imported successfully!',
+                'page_id' => $page_id,
+                'page_url' => $page_url,
+                'edit_url' => $edit_url,
+                'images_imported' => count($image_map),
+                'css_added' => !empty($css_content),
+            );
+            
+        } catch (Exception $e) {
+            // Clean up on error
+            if (file_exists($temp_dir)) {
+                $this->recursive_delete($temp_dir);
+            }
+            return new WP_Error('exception', $e->getMessage());
+        }
+    }
+    
+    /**
+     * AJAX: Delete FTP file
+     */
+    public function ajax_delete_ftp_file() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $filename = isset($_POST['filename']) ? sanitize_file_name($_POST['filename']) : '';
+        
+        if (empty($filename)) {
+            wp_send_json_error(array('message' => 'No filename provided.'));
+        }
+        
+        $upload_dir = wp_upload_dir();
+        $file_path = $upload_dir['basedir'] . '/rp-imports/' . $filename;
+        
+        if (file_exists($file_path)) {
+            if (unlink($file_path)) {
+                wp_send_json_success(array('message' => 'File deleted.'));
+            } else {
+                wp_send_json_error(array('message' => 'Could not delete file.'));
+            }
+        } else {
+            wp_send_json_error(array('message' => 'File not found.'));
+        }
+    }
+    
+    /**
+     * AJAX: Clear all FTP files
+     */
+    public function ajax_clear_ftp_files() {
+        check_ajax_referer('rp_page_importer_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        
+        $upload_dir = wp_upload_dir();
+        $import_dir = $upload_dir['basedir'] . '/rp-imports/';
+        
+        $files = glob($import_dir . '*.zip');
+        $deleted = 0;
+        
+        foreach ($files as $file) {
+            if (unlink($file)) {
+                $deleted++;
+            }
+        }
+        
+        wp_send_json_success(array('message' => "Deleted {$deleted} file(s)."));
     }
 }
 

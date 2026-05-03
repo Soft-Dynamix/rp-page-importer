@@ -2,6 +2,26 @@
 
 All notable changes to the RP Page Importer plugin will be documented in this file.
 
+## [1.4.0] - 2025-05-04
+
+### Added
+- **Three Upload Methods** for handling any file size:
+  1. **Browser Upload** - Standard upload with size limit display
+  2. **URL Import** - Import from any public URL (no size limit!)
+  3. **FTP/Server Import** - Upload via FTP first, then import (no size limit!)
+
+### New Features
+- Method tabs with clear size limit indicators
+- FTP import directory auto-created at `wp-content/uploads/rp-imports/`
+- File management for FTP imports (list, select, delete, clear all)
+- Shows server's max upload size to help users choose the right method
+- Auto-populate title from filename when selecting FTP files
+
+### Improved
+- Better error messages with method-specific suggestions
+- Unified import processing for all methods
+- Files auto-deleted from FTP directory after successful import
+
 ## [1.3.0] - 2025-05-04
 
 ### Fixed
