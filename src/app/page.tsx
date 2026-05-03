@@ -133,7 +133,7 @@ const serviceCategories = [
     description: 'Optimize your ride quality and handling',
     icon: Gauge,
     color: '#6366F1',
-    image: 'https://placehold.co/800x400/6366F1/FFFFFF/png?text=Suspension',
+    image: '/suspension.png',
     services: [
       'Fork seal replacement',
       'Fork rebuilds',
